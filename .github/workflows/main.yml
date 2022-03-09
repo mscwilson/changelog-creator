@@ -12,7 +12,7 @@ jobs:
 
       - name: Hello world action step
         id: hello
-        uses: mscwilson/changelog-test@v1
+        uses: mscwilson/changelog-test@v2
         with:
           who-to-greet: "Ace"
       # Use the output from the `hello` step
