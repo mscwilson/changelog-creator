@@ -59,9 +59,8 @@ describe ChangelogCreator do
     expect(@creator.generate_log_for_new_commits(commits, changelog, "Java 0.99.0")).to eq expected
   end
 
-  xit "appends commits to an existing changelog"
-  xit "checks that all the release commits are present"
+  xit "creates a new changelog file"
   xit "thanks external contributors"
-  xit "can cope if there are brackets in the message"
+  xit "gets the tags and commits using GH API"
 
 end
