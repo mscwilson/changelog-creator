@@ -1,1 +1,1 @@
-puts "Hello from Ruby"
+puts "Hello, #{ARGV[0]}"
