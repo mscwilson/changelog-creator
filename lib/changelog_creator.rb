@@ -5,7 +5,7 @@ require "date"
 
 class ChangelogCreator
   COMMIT_MESSAGE_PATTERN = /\A([\w\s.,'"-:`@]+)\((?:close|closes|fixes|fix) \#(\d+)\)$/
-  EMAIL_PATTERN = /\w+@(\w+.\w+)/
+  EMAIL_PATTERN = /\w+@snowplowanalytics\.com/
 
   def read_commits(file_path)
     raise StandardError, "Must be a JSON file" if file_path[-5..] != ".json"
@@ -28,7 +28,7 @@ class ChangelogCreator
     message_match = commit["commit"]["message"].match(COMMIT_MESSAGE_PATTERN)
     return nil if message_match.nil?
 
-    p email_match = commit["commit"]["author"]["email"].match(EMAIL_PATTERN)
+    email_match = commit["commit"]["author"]["email"].match(EMAIL_PATTERN)
 
     { message: message_match[1].strip,
       issue: message_match[2],

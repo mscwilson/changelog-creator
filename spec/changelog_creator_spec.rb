@@ -18,22 +18,39 @@ describe ChangelogCreator do
     expect { @creator.read_commits(filename) }.to raise_error(StandardError)
   end
 
-  # it "parses commit messages" do
-  #   message = "Remove logging of user supplied values (close #286)\n\n* Remove this text"
-  #   expected = "Remove logging of user supplied values (#286)"
-  #   expect(@creator.parse_commit_message(message)).to eq expected
-  # end
+  describe "extracting commit data" do
+      it "parses one of my commits into a hash" do
+      filename = "./lib/single_commit_me.json"
+      parsed_json = @creator.read_commits(filename)
 
-  it "parses commit JSON into a hash" do
-    filename = "./lib/single_commit_me.json"
-    parsed_json = @creator.read_commits(filename)
+      results = @creator.process_single_commit(parsed_json)
+      expect(results[:message]).to eq "Remove logging of user supplied values"
+      expect(results[:issue]).to eq "286"
+      expect(results[:author]).to eq "mscwilson"
+      expect(results[:snowplower?]).to eq true
+    end
 
-    results = @creator.process_single_commit(parsed_json)
-    expect(results[:message]).to eq "Remove logging of user supplied values"
-    expect(results[:issue]).to eq "286"
-    expect(results[:author]).to eq "mscwilson"
-    expect(results[:snowplower?]).to eq true
+    it "parses an external commit into a hash" do
+      filename = "./lib/single_commit_ext.json"
+      parsed_json = @creator.read_commits(filename)
+
+      results = @creator.process_single_commit(parsed_json)
+      expect(results[:message]).to eq "Allow Emitter to use a custom ExecutorService"
+      expect(results[:issue]).to eq "278"
+      expect(results[:author]).to eq "AcidFlow"
+      expect(results[:snowplower?]).to eq false
+    end
+
+    it "returns nil for a commit without an issue number" do
+      filename = "./lib/single_commit_not_for_changelog.json"
+      parsed_json = @creator.read_commits(filename)
+
+      results = @creator.process_single_commit(parsed_json)
+      expect(results).to be nil
+    end
   end
+
+
 
   # it "extracts the commit data from saved JSON" do
   #   filename = "./lib/example_commits.json"
