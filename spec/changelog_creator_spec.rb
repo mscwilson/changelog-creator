@@ -7,23 +7,36 @@ describe ChangelogCreator do
     allow(Date).to receive(:today).and_return(Date.new(2022, 2, 1))
   end
 
-  it "gets commits from a file" do
-    filename = "./lib/example_commits.json"
-    results = @creator.read_commits_from_file(filename)
-    expect(results[0]["commit"]["author"]["name"]).to eq "Miranda Wilson"
+  describe "gets the data" do
+    it "gets commits from a file" do
+      filename = "./lib/example_commits.json"
+      results = @creator.read_commits_from_file(filename)
+      expect(results[0]["commit"]["author"]["name"]).to eq "Miranda Wilson"
+    end
+
+    it "checks commits file extension is valid" do
+      filename = "./lib/changelog_creator.rb"
+      expect { @creator.read_commits(filename) }.to raise_error(StandardError)
+    end
+
+    it "gets commits from Github" do
+      json = @creator.fetch_commits("snowplow", "snowplow-java-tracker", "master")
+      expect(json[0]["commit"]["author"]["name"]).to eq "Miranda Wilson"
+    end
+
+    it "gets issue labels from Github" do
+      json = @creator.fetch_issue_labels("snowplow", "snowplow-java-tracker", "286")
+      expect(json[0]["name"]).to eq "type:enhancement"
+    end
+
+    it "reads a CHANGELOG" do
+      filename = "./lib/example_CHANGELOG"
+      results = @creator.read_changelog(filename)
+      expect(results[0]).to eq "Java 0.11.0 (2021-12-14)"
+    end
   end
 
-  it "checks commits file extension is valid" do
-    filename = "./lib/changelog_creator.rb"
-    expect { @creator.read_commits(filename) }.to raise_error(StandardError)
-  end
-
-  it "gets commits from Github" do
-    json = @creator.fetch_commits("snowplow", "snowplow-java-tracker", "master")
-    expect(JSON.parse(json)[0]["commit"]["author"]["name"]).to eq "Miranda Wilson"
-  end
-
-  describe "extracting commit data" do
+  describe "extracts relevant commit data" do
       it "parses one of my commits into a hash" do
       filename = "./lib/single_commit_me.json"
       parsed_json = @creator.read_commits_from_file(filename)
@@ -55,13 +68,24 @@ describe ChangelogCreator do
     end
   end
 
+  describe "extracts relevant issue label data" do
 
+    it "parses a set of labels including 'type:enhancement'" do
+      json = @creator.fetch_issue_labels("snowplow", "snowplow-java-tracker", "286")
+      results = @creator.process_issue_labels(json)
+      expect(results[:type]).to eq "type:enhancement"
+      expect(results[:breaking_change?]).to be false
+    end
 
-  # it "reads an existing changelog" do
-  #   filename = "./lib/example_CHANGELOG"
-  #   results = @creator.read_changelog(filename)
-  #   expect(results[0]).to eq "Java 0.11.0 (2021-12-14)"
-  # end
+    xit "breaking change"
+    xit "the other types"
+  end
+
+  it "removes commits already in the CHANGELOG" do
+    changelog = "./lib/truncated_CHANGELOG"
+
+  end
+
 
   # # would be better to extract this from the tags
   # # use the GH API
@@ -83,4 +107,5 @@ describe ChangelogCreator do
   # xit "gets the commits using GH API"
   # xit "gets the version and date from tags using GH API"
   # xit "works if more than like 30 commits to add (GH API doesn't automatically show all the commits)"
+  # xit "works if someone put two type labels on there"
 end

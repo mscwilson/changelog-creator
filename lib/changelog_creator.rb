@@ -25,19 +25,34 @@ class ChangelogCreator
     uri = URI.parse("https://api.github.com/repos/#{owner_name}/#{repo_name}/commits?sha=#{branch_name}")
     response = Net::HTTP.get_response(uri)
 
-    response.body
+    JSON.parse(response.body)
   end
 
-  def process_single_commit(commit)
-    message_match = commit["commit"]["message"].match(COMMIT_MESSAGE_PATTERN)
+  def fetch_issue_labels(owner_name, repo_name, issue_number)
+    uri = URI.parse("https://api.github.com/repos/#{owner_name}/#{repo_name}/issues/#{issue_number}/labels")
+    response = Net::HTTP.get_response(uri)
+
+    JSON.parse(response.body)
+  end
+
+  def process_single_commit(commit_hash)
+    message_match = commit_hash["commit"]["message"].match(COMMIT_MESSAGE_PATTERN)
     return nil if message_match.nil?
 
-    email_match = commit["commit"]["author"]["email"].match(EMAIL_PATTERN)
+    email_match = commit_hash["commit"]["author"]["email"].match(EMAIL_PATTERN)
 
     { message: message_match[1].strip,
       issue: message_match[2],
-      author: commit["author"]["login"],
+      author: commit_hash["author"]["login"],
       snowplower?: email_match.nil? ? false : true }
+  end
+
+  def process_issue_labels(labels)
+    possible_types = ["type:enhancement", "type:defect", "type:admin"]
+    labels.map! { |label| label["name"] }
+
+    { type: (labels & possible_types)[0],
+      breaking_change?: labels.include?("category:breaking_change") ? true : false }
   end
 
   def make_header(version)
