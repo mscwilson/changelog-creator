@@ -1,5 +1,7 @@
 require "json"
 require "date"
+require 'net/http'
+require 'uri'
 
 # puts "Hello, #{ARGV[0]}"
 
@@ -7,7 +9,7 @@ class ChangelogCreator
   COMMIT_MESSAGE_PATTERN = /\A([\w\s.,'"-:`@]+)\((?:close|closes|fixes|fix) \#(\d+)\)$/
   EMAIL_PATTERN = /\w+@snowplowanalytics\.com/
 
-  def read_commits(file_path)
+  def read_commits_from_file(file_path)
     raise StandardError, "Must be a JSON file" if file_path[-5..] != ".json"
 
     JSON.parse(File.read(file_path))
@@ -19,10 +21,12 @@ class ChangelogCreator
     File.open(file_path).readlines.map(&:chomp)
   end
 
-  # def parse_commit_message(message)
-  #   match = message.match(COMMIT_MESSAGE_PATTERN)
-  #   match.nil? ? nil : "#{match[1]}(#{match[2]})"
-  # end
+  def fetch_commits(owner_name, repo_name, branch_name)
+    uri = URI.parse("https://api.github.com/repos/#{owner_name}/#{repo_name}/commits?sha=#{branch_name}")
+    response = Net::HTTP.get_response(uri)
+
+    response.body
+  end
 
   def process_single_commit(commit)
     message_match = commit["commit"]["message"].match(COMMIT_MESSAGE_PATTERN)

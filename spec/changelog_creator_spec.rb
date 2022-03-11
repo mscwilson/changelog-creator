@@ -9,7 +9,7 @@ describe ChangelogCreator do
 
   it "gets commits from a file" do
     filename = "./lib/example_commits.json"
-    results = @creator.read_commits(filename)
+    results = @creator.read_commits_from_file(filename)
     expect(results[0]["commit"]["author"]["name"]).to eq "Miranda Wilson"
   end
 
@@ -18,10 +18,15 @@ describe ChangelogCreator do
     expect { @creator.read_commits(filename) }.to raise_error(StandardError)
   end
 
+  it "gets commits from Github" do
+    json = @creator.fetch_commits("snowplow", "snowplow-java-tracker", "master")
+    expect(JSON.parse(json)[0]["commit"]["author"]["name"]).to eq "Miranda Wilson"
+  end
+
   describe "extracting commit data" do
       it "parses one of my commits into a hash" do
       filename = "./lib/single_commit_me.json"
-      parsed_json = @creator.read_commits(filename)
+      parsed_json = @creator.read_commits_from_file(filename)
 
       results = @creator.process_single_commit(parsed_json)
       expect(results[:message]).to eq "Remove logging of user supplied values"
@@ -32,7 +37,7 @@ describe ChangelogCreator do
 
     it "parses an external commit into a hash" do
       filename = "./lib/single_commit_ext.json"
-      parsed_json = @creator.read_commits(filename)
+      parsed_json = @creator.read_commits_from_file(filename)
 
       results = @creator.process_single_commit(parsed_json)
       expect(results[:message]).to eq "Allow Emitter to use a custom ExecutorService"
@@ -43,7 +48,7 @@ describe ChangelogCreator do
 
     it "returns nil for a commit without an issue number" do
       filename = "./lib/single_commit_not_for_changelog.json"
-      parsed_json = @creator.read_commits(filename)
+      parsed_json = @creator.read_commits_from_file(filename)
 
       results = @creator.process_single_commit(parsed_json)
       expect(results).to be nil
@@ -51,22 +56,6 @@ describe ChangelogCreator do
   end
 
 
-
-  # it "extracts the commit data from saved JSON" do
-  #   filename = "./lib/example_commits.json"
-  #   json = @creator.read_commits(filename)
-  #   messages = @creator.extract_commit_data(json)
-  #   expect(messages.length).to eq 25
-
-  #   expect(messages[0][:message]).to eq "Attribute community contributions in changelog (#289)"
-
-  #   expect(messages[1][:message]).to eq "Remove logging of user supplied values (#286)"
-  # end
-
-  # it "returns nil if the commit message doesn't have an issue number" do
-  #   message = "Prepare for release"
-  #   expect(@creator.parse_commit_message(message)).to be nil
-  # end
 
   # it "reads an existing changelog" do
   #   filename = "./lib/example_CHANGELOG"
