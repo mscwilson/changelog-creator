@@ -1,0 +1,2372 @@
+[
+  {
+    "sha": "38aba2410447faee08b9f0f71a2657338a6bd979",
+    "node_id": "C_kwDOAUAMJ9oAKDM4YWJhMjQxMDQ0N2ZhZWUwOGI5ZjBmNzFhMjY1NzMzOGE2YmQ5Nzk",
+    "commit": {
+      "author": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2022-03-08T11:15:53Z"
+      },
+      "committer": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2022-03-08T11:20:34Z"
+      },
+      "message": "Return eventId from Tracker.track() (close #304)\n\n* Remove deviceCreatedTimestamp and eventId from AbstractEvent builder\r\n\r\n* Set eid and dtm at TrackerPayload creation\r\n\r\n* Remove method calls from Tracker (tests failing)\r\n\r\n* Add tests to TrackerPayload\r\n\r\n* Remove Hamcrest dependency\r\n\r\n* Return eventId from Tracker.track()\r\n\r\n* Add eid and dtm to TrackerPayload map directly\r\n\r\n* Improve clarity of Tracker tests",
+      "tree": {
+        "sha": "e7648d4d03d77d44d5491ea933eb24fd0a9fe79c",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/e7648d4d03d77d44d5491ea933eb24fd0a9fe79c"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/38aba2410447faee08b9f0f71a2657338a6bd979",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/38aba2410447faee08b9f0f71a2657338a6bd979",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/38aba2410447faee08b9f0f71a2657338a6bd979",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/38aba2410447faee08b9f0f71a2657338a6bd979/comments",
+    "author": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "bd00fd3e887546e06a74cf037e53c79a73803d8f",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/bd00fd3e887546e06a74cf037e53c79a73803d8f",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/bd00fd3e887546e06a74cf037e53c79a73803d8f"
+      }
+    ]
+  },
+  {
+    "sha": "bd00fd3e887546e06a74cf037e53c79a73803d8f",
+    "node_id": "C_kwDOAUAMJ9oAKGJkMDBmZDNlODg3NTQ2ZTA2YTc0Y2YwMzdlNTNjNzlhNzM4MDNkOGY",
+    "commit": {
+      "author": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2022-03-03T11:35:26Z"
+      },
+      "committer": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2022-03-03T11:48:29Z"
+      },
+      "message": "Add retry to in-memory storage system (close #156)\n\n* Refactor InMemoryEventStore\n\n* Add a hashmap to eventStore for events currently being sent\n\n* Add basic retry\n\n* Add benchmarking test for InMemoryEventStore design\n\n* Use LinkedBlockingDeque in InMemoryEventStore\n\n* Alter simple-console for throughput test\n\n* Remove Tracker threadpool\n\n* Use scheduled request Runnable to add retry backoff time\n\n* Enclose Emitter request method in try catch block\n\n* Allow event buffer max capacity to be configured\n\n* Fix simple-console demo\n\n* Remove unused benchmark class\n\n* Restore SimpleEmitter functionality\n\n* Use atomicLong more effectively\n\n* Remove unnecessary 'this'es\n\n* Tidy up Emitter code\n\n* Update BatchEmitter javadoc comments\n\n* Remove implNote javadoc tags\n\n* Tidy up tests\n\n* Rename EventStore getEventBatch to getEventsBatch",
+      "tree": {
+        "sha": "1695a3a1d07eb27437c910f0e783aff43742ae12",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/1695a3a1d07eb27437c910f0e783aff43742ae12"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/bd00fd3e887546e06a74cf037e53c79a73803d8f",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/bd00fd3e887546e06a74cf037e53c79a73803d8f",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/bd00fd3e887546e06a74cf037e53c79a73803d8f",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/bd00fd3e887546e06a74cf037e53c79a73803d8f/comments",
+    "author": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "f7797ad513f476af59c2820d40d8b9de8e673bda",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/f7797ad513f476af59c2820d40d8b9de8e673bda",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/f7797ad513f476af59c2820d40d8b9de8e673bda"
+      }
+    ]
+  },
+  {
+    "sha": "f7797ad513f476af59c2820d40d8b9de8e673bda",
+    "node_id": "C_kwDOAUAMJ9oAKGY3Nzk3YWQ1MTNmNDc2YWY1OWMyODIwZDQwZDhiOWRlOGU2NzNiZGE",
+    "commit": {
+      "author": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2022-02-24T10:07:03Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2022-02-24T10:07:03Z"
+      },
+      "message": "Rename bufferSize to batchSize (close #306)\n\n* Rename bufferSize to batchSize (close #306)\r\n\r\n* Remove comment from simple-console demo",
+      "tree": {
+        "sha": "cc9d4898fe52d2404d7bdcb16b9221e706f6061b",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/cc9d4898fe52d2404d7bdcb16b9221e706f6061b"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/f7797ad513f476af59c2820d40d8b9de8e673bda",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJiF1jHCRBK7hj4Ov3rIwAAdswIAJE6kdYzsDwK2OJaVXYCycVX\nKah4qiMfP6igwLOT0XWlNl5GDuz79p5YOcMSHkq0xdKRwnpeCgyiBe9Ch76qtz3N\n2WTG/LYBSa/D+g8KU0nm+BgADh/ZX1Yw2ws9+T8vyADdWdlWhznJUJ1cpBKu933k\nimxuiF0DuhpnOMfBeutxJhcvwsxLO1l61HMH4ASQPrsVh2mILrMOMla9CDgaygmd\nMRu/4QhIj3pxBdlSj6qbE7bwgaAi9zZvqdn5YdK/nQQWfI0nurUK6pFrAy9X1XfJ\nOQuCQT4+Ty74WJzyUNnW/kfK81HsPYpUf1yMr8VsBL0g/38nYVmCAAvamGX5ctY=\n=cQbz\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree cc9d4898fe52d2404d7bdcb16b9221e706f6061b\nparent f9cab8c3dcfeabb0c63875dad5489cc25b35a9dc\nauthor Miranda Wilson <miranda@snowplowanalytics.com> 1645697223 +0000\ncommitter GitHub <noreply@github.com> 1645697223 +0000\n\nRename bufferSize to batchSize (close #306)\n\n* Rename bufferSize to batchSize (close #306)\r\n\r\n* Remove comment from simple-console demo"
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/f7797ad513f476af59c2820d40d8b9de8e673bda",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/f7797ad513f476af59c2820d40d8b9de8e673bda",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/f7797ad513f476af59c2820d40d8b9de8e673bda/comments",
+    "author": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "f9cab8c3dcfeabb0c63875dad5489cc25b35a9dc",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/f9cab8c3dcfeabb0c63875dad5489cc25b35a9dc",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/f9cab8c3dcfeabb0c63875dad5489cc25b35a9dc"
+      }
+    ]
+  },
+  {
+    "sha": "f9cab8c3dcfeabb0c63875dad5489cc25b35a9dc",
+    "node_id": "C_kwDOAUAMJ9oAKGY5Y2FiOGMzZGNmZWFiYjBjNjM4NzVkYWQ1NDg5Y2MyNWIzNWE5ZGM",
+    "commit": {
+      "author": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2022-02-10T15:16:59Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2022-02-10T15:16:59Z"
+      },
+      "message": "Add benchmarking tests (close #300)\n\n* Set up JMH testing in main project\r\n\r\n* Add benchmark test\r\n\r\n* Create separate project for jmh\r\n\r\n* Remove JMH from main project\r\n\r\n* Fix memory leaks\r\n\r\n* Add comments and readme",
+      "tree": {
+        "sha": "af7b8c4aab6aab1531cbf20529aa6d18c887e616",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/af7b8c4aab6aab1531cbf20529aa6d18c887e616"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/f9cab8c3dcfeabb0c63875dad5489cc25b35a9dc",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJiBSxrCRBK7hj4Ov3rIwAAWOkIAC23oBIvE2J3w1uFMW3eOZZy\nXejzK/0sEk469EKsbdcMrcoKgmhnpGMCIItt4ikQm5nt5X2WuhP2RIGDfrhRvdr8\nFTxEPn6VI1VkiLhiBFY7kO8Uq9FRs1A29CdK7LajifqdNjdxnxGLWbSHlStph/fr\nEODeoYwTIsWqcLtgsG+9XYiP7uOMKPr7lo3c2stMQ8Q9GIb6Snpp3SQ4CIYi/ToZ\nIhSf3CME7qBCN/DgNCOzMm/fRllrun5NDYZt2VYpxzenD6ao97FKQMST60ozyNdu\nAA5SnBAx3Z6U2UsnZEmx1g4kOHbGBvW7v3QA+aV8v6cIaVlv4Pid+QRDaZ2mG0k=\n=11Kq\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree af7b8c4aab6aab1531cbf20529aa6d18c887e616\nparent ad8b063797692447c416145417573b0fc9d3ddf3\nauthor Miranda Wilson <miranda@snowplowanalytics.com> 1644506219 +0000\ncommitter GitHub <noreply@github.com> 1644506219 +0000\n\nAdd benchmarking tests (close #300)\n\n* Set up JMH testing in main project\r\n\r\n* Add benchmark test\r\n\r\n* Create separate project for jmh\r\n\r\n* Remove JMH from main project\r\n\r\n* Fix memory leaks\r\n\r\n* Add comments and readme"
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/f9cab8c3dcfeabb0c63875dad5489cc25b35a9dc",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/f9cab8c3dcfeabb0c63875dad5489cc25b35a9dc",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/f9cab8c3dcfeabb0c63875dad5489cc25b35a9dc/comments",
+    "author": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "ad8b063797692447c416145417573b0fc9d3ddf3",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/ad8b063797692447c416145417573b0fc9d3ddf3",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/ad8b063797692447c416145417573b0fc9d3ddf3"
+      }
+    ]
+  },
+  {
+    "sha": "ad8b063797692447c416145417573b0fc9d3ddf3",
+    "node_id": "C_kwDOAUAMJ9oAKGFkOGIwNjM3OTc2OTI0NDdjNDE2MTQ1NDE3NTczYjBmYzlkM2RkZjM",
+    "commit": {
+      "author": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2022-01-31T10:53:12Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2022-01-31T10:53:12Z"
+      },
+      "message": "Update simple-console example (close #295)\n\n* Remove bintray from demo build.gradle\r\n\r\n* Add simple-console demo to Build CI workflow\r\n\r\n* Add structured event to demo\r\n\r\n* Add an example Subject\r\n\r\n* Close tracker threads\r\n\r\n* Build demo differently in  GH Build workflow\r\n\r\n* Remove sleep step",
+      "tree": {
+        "sha": "40cd8490ec53f9ac3a730a065fd437e0c2d1edd0",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/40cd8490ec53f9ac3a730a065fd437e0c2d1edd0"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/ad8b063797692447c416145417573b0fc9d3ddf3",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJh97+YCRBK7hj4Ov3rIwAAW6cIAAgtJANc3I4f467WKmz7kDSM\np3vyaiGPE5/SKE2oByLV9sJXdwzm9oYtvFbE4K6KwYhJkBO3J2hkgXvyucS0MF5T\nk5G3cs/+Oe+8Ywa41Q39ar3HToTE9LRPE9TYQFyw8czy/mZnkkCRSasmoFVkszKz\nzWi+UpAp1cM8xnLDAfeGZkTyf15tZ3xa3fQTQZAW6e0uYkT3492+dcql18s1S4S8\n9tB5E9QEkatAaH+89BLCidt+uhGJZI6aonJuGIxNeXYJqi4oczFP7ZFWIWUDK3+N\nRgSN5WjYcjNPq+mfqv2CVepJDV0D6meInixpvbWcK3YXA2b/NvqBFsLnspI5XPo=\n=LBaH\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 40cd8490ec53f9ac3a730a065fd437e0c2d1edd0\nparent 864432654461ed9ef5a6360794543b88731e1235\nauthor Miranda Wilson <miranda@snowplowanalytics.com> 1643626392 +0000\ncommitter GitHub <noreply@github.com> 1643626392 +0000\n\nUpdate simple-console example (close #295)\n\n* Remove bintray from demo build.gradle\r\n\r\n* Add simple-console demo to Build CI workflow\r\n\r\n* Add structured event to demo\r\n\r\n* Add an example Subject\r\n\r\n* Close tracker threads\r\n\r\n* Build demo differently in  GH Build workflow\r\n\r\n* Remove sleep step"
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/ad8b063797692447c416145417573b0fc9d3ddf3",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/ad8b063797692447c416145417573b0fc9d3ddf3",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/ad8b063797692447c416145417573b0fc9d3ddf3/comments",
+    "author": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "864432654461ed9ef5a6360794543b88731e1235",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/864432654461ed9ef5a6360794543b88731e1235",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/864432654461ed9ef5a6360794543b88731e1235"
+      }
+    ]
+  },
+  {
+    "sha": "864432654461ed9ef5a6360794543b88731e1235",
+    "node_id": "C_kwDOAUAMJ9oAKDg2NDQzMjY1NDQ2MWVkOWVmNWE2MzYwNzk0NTQzYjg4NzMxZTEyMzU",
+    "commit": {
+      "author": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2022-01-27T11:08:58Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2022-01-27T11:08:58Z"
+      },
+      "message": "Provide method for stopping Tracker executorService (close #297)",
+      "tree": {
+        "sha": "60d7441726ad182a29b78af799c3ab3fa24c12c1",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/60d7441726ad182a29b78af799c3ab3fa24c12c1"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/864432654461ed9ef5a6360794543b88731e1235",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJh8n1KCRBK7hj4Ov3rIwAAeQcIABvtyYbJylzlKv1N8Oxnr8vI\ntM3cAJ1O0EM1fN9pnqjaf3xHODEtH/6pO/TPUw8IfqtbD7rXV8CvQC6X8MxvmyhB\nfvO2QvxHWWag7voDWTQh6dpd02qPaMxLTl8kj4SKeEu5RdtFtfQdE0JNKO0n8r6/\nBBzHtB+WV+PSPbLSMOS+D5ND8jyzlJ8KM1uammfRJC1ojQyj99d4PwpSIK7cOBAR\ntox0BchDFdodnTCeQRp51ycN8gC+3vekaIvtWQRe44rl0jPxf3+Ng1tJnAnhIzs2\nwnzt3xBrA3aTBk+r3QwYOgHcvNdAbEMn3gNPaw+k3HbKAaJgDXHcPALOkoYKV50=\n=ld9k\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 60d7441726ad182a29b78af799c3ab3fa24c12c1\nparent 813203b72408b2246780fcade0d1273944e257c1\nauthor Miranda Wilson <miranda@snowplowanalytics.com> 1643281738 +0000\ncommitter GitHub <noreply@github.com> 1643281738 +0000\n\nProvide method for stopping Tracker executorService (close #297)\n\n"
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/864432654461ed9ef5a6360794543b88731e1235",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/864432654461ed9ef5a6360794543b88731e1235",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/864432654461ed9ef5a6360794543b88731e1235/comments",
+    "author": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "813203b72408b2246780fcade0d1273944e257c1",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/813203b72408b2246780fcade0d1273944e257c1",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/813203b72408b2246780fcade0d1273944e257c1"
+      }
+    ]
+  },
+  {
+    "sha": "813203b72408b2246780fcade0d1273944e257c1",
+    "node_id": "C_kwDOAUAMJ9oAKDgxMzIwM2I3MjQwOGIyMjQ2NzgwZmNhZGUwZDEyNzM5NDRlMjU3YzE",
+    "commit": {
+      "author": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2022-01-18T13:07:10Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2022-01-18T13:07:10Z"
+      },
+      "message": "Refactor TrackerEvents for event payload creation (close #291)\n\n* Start changing Tracker to create TrackerPayloads not TrackerEvents\r\n\r\n* Copy payload creation methods into Tracker\r\n\r\n* Refactor Emitter to use TrackerPayload\r\n\r\n* Remove TrackerEvent\r\n\r\n* Remove request callbacks\r\n\r\n* Use threadpool inside Tracker\r\n\r\n* Add comment about event ID and dtm timestamp",
+      "tree": {
+        "sha": "edced57fed5e56dc26ce4e37da2e769f53ae900f",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/edced57fed5e56dc26ce4e37da2e769f53ae900f"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/813203b72408b2246780fcade0d1273944e257c1",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJh5rt+CRBK7hj4Ov3rIwAAsUsIAJm54pEqGmOnOF/wbIeS2JCR\nx7jr4vn40hZfogihyNIAJJAIzmliPrPPC6qdq1k3hyT0FK7Jqoa3W+qd89VrXUbt\nSPMu+XDcmOJZdKOaoR95elQJ9ql4/paxMoyAKNRfbOVYss2C4Mix+peCX+oC0Mvi\nl+lEKpmXlloRAsS3UWEHsk5KimYHVTTSJY+AI8MpPsUjbr5SDLunfSO0wGtAbYY3\nB7cUvGjwPuydDB6NlDzpePoDPBJlB8NFjomXDf8jXx8l2IlkrjRTO/uL7cIv/Lp1\nmxMLh19LBSrW2LGkWUGHAuRHNGipJXLv8NPbl1Ff+PKEB9mGcUXTi5SQRwXgrfE=\n=jR3S\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree edced57fed5e56dc26ce4e37da2e769f53ae900f\nparent 273ad514cca69d4fd7d7e83f3822fe961413f88f\nauthor Miranda Wilson <miranda@snowplowanalytics.com> 1642511230 +0000\ncommitter GitHub <noreply@github.com> 1642511230 +0000\n\nRefactor TrackerEvents for event payload creation (close #291)\n\n* Start changing Tracker to create TrackerPayloads not TrackerEvents\r\n\r\n* Copy payload creation methods into Tracker\r\n\r\n* Refactor Emitter to use TrackerPayload\r\n\r\n* Remove TrackerEvent\r\n\r\n* Remove request callbacks\r\n\r\n* Use threadpool inside Tracker\r\n\r\n* Add comment about event ID and dtm timestamp"
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/813203b72408b2246780fcade0d1273944e257c1",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/813203b72408b2246780fcade0d1273944e257c1",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/813203b72408b2246780fcade0d1273944e257c1/comments",
+    "author": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "273ad514cca69d4fd7d7e83f3822fe961413f88f",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/273ad514cca69d4fd7d7e83f3822fe961413f88f",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/273ad514cca69d4fd7d7e83f3822fe961413f88f"
+      }
+    ]
+  },
+  {
+    "sha": "273ad514cca69d4fd7d7e83f3822fe961413f88f",
+    "node_id": "C_kwDOAUAMJ9oAKDI3M2FkNTE0Y2NhNjlkNGZkN2Q3ZTgzZjM4MjJmZTk2MTQxM2Y4OGY",
+    "commit": {
+      "author": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2022-01-12T15:15:34Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2022-01-12T15:15:34Z"
+      },
+      "message": "Extract event storage from Emitter (close #290)\n\n* Create EventStore interface, start moving methods\r\n\r\n* Move BufferConsumer thread to EventStore\r\n\r\n* Move event buffer event flushing to EventStore\r\n\r\n* Restore correct version of Tracker\r\n\r\n* Use a better thread name\r\n\r\n* Streamline EventStore interface\r\n\r\n* Improve EventStore method return type\r\n\r\n* Add unit tests for InMemoryEventStore\r\n\r\n* Remove unwanted comments and changes",
+      "tree": {
+        "sha": "8d65e81245aa690df2312619142982b4fe9405a7",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/8d65e81245aa690df2312619142982b4fe9405a7"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/273ad514cca69d4fd7d7e83f3822fe961413f88f",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJh3vCWCRBK7hj4Ov3rIwAACSUIACHmQ047ZjHbMW0sG2pFxVxy\nbUkdo3st3Xii1zpeJNWbuGGXZABQrnz1fGiBEe4tM8GiErARxmePOQunGcE5V5iQ\nvat5l4yGKMdDiWXlK7or0l0/Hy0+Nq51qzUUaG2IXD0jPMdZHW6kbDz285oax3B0\np1RCeUpQFsG4V3GfMxkbYNnsT+loPqeGyQtANlnXnD/GfJQUJoO66s9twAEaMQRo\nON/4zbCCepYOSptq9ni9jqsbsDYwYQGhpwDrL+44YKgvxfR4FRXubjbmqAvGuDPp\nRwXLXb/E07R2gZnLYW0kYptDieg19quWvRQ4Wq7w+u2jdJ49T/QBt+UHuwP1ORk=\n=dS9o\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 8d65e81245aa690df2312619142982b4fe9405a7\nparent 117995a1a5b551abcdbed015425282b30f4c79ea\nauthor Miranda Wilson <miranda@snowplowanalytics.com> 1642000534 +0000\ncommitter GitHub <noreply@github.com> 1642000534 +0000\n\nExtract event storage from Emitter (close #290)\n\n* Create EventStore interface, start moving methods\r\n\r\n* Move BufferConsumer thread to EventStore\r\n\r\n* Move event buffer event flushing to EventStore\r\n\r\n* Restore correct version of Tracker\r\n\r\n* Use a better thread name\r\n\r\n* Streamline EventStore interface\r\n\r\n* Improve EventStore method return type\r\n\r\n* Add unit tests for InMemoryEventStore\r\n\r\n* Remove unwanted comments and changes"
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/273ad514cca69d4fd7d7e83f3822fe961413f88f",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/273ad514cca69d4fd7d7e83f3822fe961413f88f",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/273ad514cca69d4fd7d7e83f3822fe961413f88f/comments",
+    "author": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "117995a1a5b551abcdbed015425282b30f4c79ea",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/117995a1a5b551abcdbed015425282b30f4c79ea",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/117995a1a5b551abcdbed015425282b30f4c79ea"
+      }
+    ]
+  },
+  {
+    "sha": "117995a1a5b551abcdbed015425282b30f4c79ea",
+    "node_id": "C_kwDOAUAMJ9oAKDExNzk5NWExYTViNTUxYWJjZGJlZDAxNTQyNTI4MmIzMGY0Yzc5ZWE",
+    "commit": {
+      "author": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2021-12-16T15:08:33Z"
+      },
+      "committer": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2021-12-16T17:21:22Z"
+      },
+      "message": "Attribute community contributions in changelog (close #289)",
+      "tree": {
+        "sha": "a4eadc7ddc8ede4e13d6bf32e7e1dac2a5cfb567",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/a4eadc7ddc8ede4e13d6bf32e7e1dac2a5cfb567"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/117995a1a5b551abcdbed015425282b30f4c79ea",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/117995a1a5b551abcdbed015425282b30f4c79ea",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/117995a1a5b551abcdbed015425282b30f4c79ea",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/117995a1a5b551abcdbed015425282b30f4c79ea/comments",
+    "author": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "e0d092684571e98078c4932e48af2550f5af17a9",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/e0d092684571e98078c4932e48af2550f5af17a9",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/e0d092684571e98078c4932e48af2550f5af17a9"
+      }
+    ]
+  },
+  {
+    "sha": "e0d092684571e98078c4932e48af2550f5af17a9",
+    "node_id": "C_kwDOAUAMJ9oAKGUwZDA5MjY4NDU3MWU5ODA3OGM0OTMyZTQ4YWYyNTUwZjVhZjE3YTk",
+    "commit": {
+      "author": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2021-12-13T18:42:29Z"
+      },
+      "committer": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2021-12-15T11:05:34Z"
+      },
+      "message": "Prepare for v0.11.0 release",
+      "tree": {
+        "sha": "a9527d117b7b4d573e67e7449d23b844da1d63fb",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/a9527d117b7b4d573e67e7449d23b844da1d63fb"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/e0d092684571e98078c4932e48af2550f5af17a9",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/e0d092684571e98078c4932e48af2550f5af17a9",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/e0d092684571e98078c4932e48af2550f5af17a9",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/e0d092684571e98078c4932e48af2550f5af17a9/comments",
+    "author": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "7aa80b24f12adfbe777c55542eb8ef90baa5a6cc",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/7aa80b24f12adfbe777c55542eb8ef90baa5a6cc",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/7aa80b24f12adfbe777c55542eb8ef90baa5a6cc"
+      }
+    ]
+  },
+  {
+    "sha": "7aa80b24f12adfbe777c55542eb8ef90baa5a6cc",
+    "node_id": "C_kwDOAUAMJ9oAKDdhYTgwYjI0ZjEyYWRmYmU3NzdjNTU1NDJlYjhlZjkwYmFhNWE2Y2M",
+    "commit": {
+      "author": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2021-12-13T18:32:08Z"
+      },
+      "committer": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2021-12-15T11:05:34Z"
+      },
+      "message": "Remove logging of user supplied values (close #286)\n\n* Remove logging of user supplied values (close #286)\r\n\r\n* Rearrange order of error and debug logging",
+      "tree": {
+        "sha": "457813e98a3c386eb72fcade24ef9b90b5d05c20",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/457813e98a3c386eb72fcade24ef9b90b5d05c20"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/7aa80b24f12adfbe777c55542eb8ef90baa5a6cc",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/7aa80b24f12adfbe777c55542eb8ef90baa5a6cc",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/7aa80b24f12adfbe777c55542eb8ef90baa5a6cc",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/7aa80b24f12adfbe777c55542eb8ef90baa5a6cc/comments",
+    "author": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "8e15c1c5dcd20508ba8a7185b8ea9384eea0c978",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/8e15c1c5dcd20508ba8a7185b8ea9384eea0c978",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/8e15c1c5dcd20508ba8a7185b8ea9384eea0c978"
+      }
+    ]
+  },
+  {
+    "sha": "8e15c1c5dcd20508ba8a7185b8ea9384eea0c978",
+    "node_id": "C_kwDOAUAMJ9oAKDhlMTVjMWM1ZGNkMjA1MDhiYThhNzE4NWI4ZWE5Mzg0ZWVhMGM5Nzg",
+    "commit": {
+      "author": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2021-12-13T16:22:17Z"
+      },
+      "committer": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2021-12-15T11:05:34Z"
+      },
+      "message": "Update Deploy action to remove Bintray (close #283)\n\n* Update deploy action to remove bintray\r\n\r\n* Update version of gh-release action",
+      "tree": {
+        "sha": "387c20594d52eb26a565c922befe21c274639d54",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/387c20594d52eb26a565c922befe21c274639d54"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/8e15c1c5dcd20508ba8a7185b8ea9384eea0c978",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/8e15c1c5dcd20508ba8a7185b8ea9384eea0c978",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/8e15c1c5dcd20508ba8a7185b8ea9384eea0c978",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/8e15c1c5dcd20508ba8a7185b8ea9384eea0c978/comments",
+    "author": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "c319f7ba5fdc30b210af25f38590e59c5c6a0774",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/c319f7ba5fdc30b210af25f38590e59c5c6a0774",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/c319f7ba5fdc30b210af25f38590e59c5c6a0774"
+      }
+    ]
+  },
+  {
+    "sha": "c319f7ba5fdc30b210af25f38590e59c5c6a0774",
+    "node_id": "C_kwDOAUAMJ9oAKGMzMTlmN2JhNWZkYzMwYjIxMGFmMjVmMzg1OTBlNTljNWM2YTA3NzQ",
+    "commit": {
+      "author": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2021-12-06T14:40:01Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2021-12-06T14:40:01Z"
+      },
+      "message": "Set Emitter's threads name for easier debugging (close #280)\n\n* Set Emitter's threads name for easier debugging (close #280)\r\n\r\nAdd a ThreadFactory to the Emitter executor service to set\r\na custom name for threads that are created when calling execute().\r\n\r\nSet a name for the buffer consumer thread in the BatchEmitter.\r\n\r\nNaming these threads can be useful when investigating a thread dump, or\r\nfor monitoring purpose.\r\n\r\nCo-authored-by: Paul Laturaze <paul.laturaze@zivver.com>\r\nCo-authored-by: Paul Laturaze <AcidFlow@users.noreply.github.com>\r\nCo-authored-by: Miranda Wilson <miranda@snowplowanalytics.com>\r\n\r\n* Add tests for thread names",
+      "tree": {
+        "sha": "d42aa765f4ed8fc46225ae3a698e877b1e98b7de",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/d42aa765f4ed8fc46225ae3a698e877b1e98b7de"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/c319f7ba5fdc30b210af25f38590e59c5c6a0774",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJhriDBCRBK7hj4Ov3rIwAAiHUIAIkV0sIPvQXOOIfPCpIxNBMK\nqYPO56X6rYg7jIZHB+JeQIM0wNYlS5omf1lx7Lcu4CPKm6PfHUbALqF9BNang8bW\n6iQ3n3Jy3sgVf3qep7ifnE6Smxwc+WcBQ0mdG4nOnK4b+5cPfG93WmNlEsRdM0og\nnUdA2zUCCUpjHnViLjSrWMms+o9ziOHclKxD0KjUD84u0VA0lQmEQUG29lv2Ewma\nMgfNuOJNm7pI4+Fz43uZbUPJgijiotv47PfUkD3QmP4Icbja0ZrhoKl8TswST62u\nu2fFpWrS84BfI1KAnMMUvkj+k2L3cvF/tjJlT7bF4u48+FmlR2RZkLeG01roVR8=\n=5jDj\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree d42aa765f4ed8fc46225ae3a698e877b1e98b7de\nparent c95e5740432e4d09d00e82e2629f0161b5759aac\nauthor Miranda Wilson <miranda@snowplowanalytics.com> 1638801601 +0000\ncommitter GitHub <noreply@github.com> 1638801601 +0000\n\nSet Emitter's threads name for easier debugging (close #280)\n\n* Set Emitter's threads name for easier debugging (close #280)\r\n\r\nAdd a ThreadFactory to the Emitter executor service to set\r\na custom name for threads that are created when calling execute().\r\n\r\nSet a name for the buffer consumer thread in the BatchEmitter.\r\n\r\nNaming these threads can be useful when investigating a thread dump, or\r\nfor monitoring purpose.\r\n\r\nCo-authored-by: Paul Laturaze <paul.laturaze@zivver.com>\r\nCo-authored-by: Paul Laturaze <AcidFlow@users.noreply.github.com>\r\nCo-authored-by: Miranda Wilson <miranda@snowplowanalytics.com>\r\n\r\n* Add tests for thread names"
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/c319f7ba5fdc30b210af25f38590e59c5c6a0774",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/c319f7ba5fdc30b210af25f38590e59c5c6a0774",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/c319f7ba5fdc30b210af25f38590e59c5c6a0774/comments",
+    "author": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "c95e5740432e4d09d00e82e2629f0161b5759aac",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/c95e5740432e4d09d00e82e2629f0161b5759aac",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/c95e5740432e4d09d00e82e2629f0161b5759aac"
+      }
+    ]
+  },
+  {
+    "sha": "c95e5740432e4d09d00e82e2629f0161b5759aac",
+    "node_id": "C_kwDOAUAMJ9oAKGM5NWU1NzQwNDMyZTRkMDlkMDBlODJlMjYyOWYwMTYxYjU3NTlhYWM",
+    "commit": {
+      "author": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2021-12-02T17:12:08Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2021-12-02T17:12:08Z"
+      },
+      "message": "Update all copyright notices (close #279)\n\n* Update copyright notices to 2021\r\n\r\n* Update LICENSE file",
+      "tree": {
+        "sha": "31f5dd09b6a288336da7a9da0024bd5b4af5f5dc",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/31f5dd09b6a288336da7a9da0024bd5b4af5f5dc"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/c95e5740432e4d09d00e82e2629f0161b5759aac",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJhqP5oCRBK7hj4Ov3rIwAA5DkIABNK6HxinC9r12WuJiRnLtEZ\niUbepe1nWQQIZj6pJaAR3AMDmsgmr6017pga7lV3Omme77S9Dlw27Jl7oASpoWyL\noSLkQYOpVwM+V47lXm0HWzLiM0DW6M1w9elV2az9fA2HdcRTRanVwI1mpkMfG/5z\nv0PEbj5y2rCouF6rhddhSDSWLV5d6Ux4+nbKOSrr0UVJK3mA0j6KFGpYgyGQJ86/\nJrxVJvh2q+Paatmheme2HSCRlT/1ZjJ2WZlixZTyBga6+wszA90to8N0ZRc2VItg\n1Huvhmc4bWqw2xhRwerTA++2IgjB6B+gE3tLNFhHVSd2CipFR5lZumFqH4qVxYA=\n=2Bsq\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 31f5dd09b6a288336da7a9da0024bd5b4af5f5dc\nparent ba2cd192168f78d41750e9f00faad66b9a35915a\nauthor Miranda Wilson <miranda@snowplowanalytics.com> 1638465128 +0000\ncommitter GitHub <noreply@github.com> 1638465128 +0000\n\nUpdate all copyright notices (close #279)\n\n* Update copyright notices to 2021\r\n\r\n* Update LICENSE file"
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/c95e5740432e4d09d00e82e2629f0161b5759aac",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/c95e5740432e4d09d00e82e2629f0161b5759aac",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/c95e5740432e4d09d00e82e2629f0161b5759aac/comments",
+    "author": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "ba2cd192168f78d41750e9f00faad66b9a35915a",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/ba2cd192168f78d41750e9f00faad66b9a35915a",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/ba2cd192168f78d41750e9f00faad66b9a35915a"
+      }
+    ]
+  },
+  {
+    "sha": "ba2cd192168f78d41750e9f00faad66b9a35915a",
+    "node_id": "C_kwDOAUAMJ9oAKGJhMmNkMTkyMTY4Zjc4ZDQxNzUwZTlmMDBmYWFkNjZiOWEzNTkxNWE",
+    "commit": {
+      "author": {
+        "name": "Paul Laturaze",
+        "email": "AcidFlow@users.noreply.github.com",
+        "date": "2021-11-30T11:19:04Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2021-11-30T11:19:04Z"
+      },
+      "message": "Allow Emitter to use a custom ExecutorService (close #278)\n\nThis commit allows a user to use its own ExecutorService in the Emitter\r\nto have a more granular control over threads created by an Emitter.\r\n\r\nCo-authored-by: Paul Laturaze <paul.laturaze@zivver.com>",
+      "tree": {
+        "sha": "3db76854d3d6dcefb2da6e47fd1166e62b4b417d",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/3db76854d3d6dcefb2da6e47fd1166e62b4b417d"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/ba2cd192168f78d41750e9f00faad66b9a35915a",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJhpgioCRBK7hj4Ov3rIwAAGboIADC1FP7oA5/vDUdUdiEcjNVN\nZj6lZAUpEt+N5H6Rkmh1iTUEQxfPEXVnOf5t3YNvsCBmN7BzKPaipaRUJfNPkhV/\nyv8oBL4xQ/vdlEEbsrLzurrZ6naDpj/lbLPOQsVbbhqeR2HmJx2f4tjkrAXGs/O5\nHDSs8KzF+ffH/Ac9znYntYy2DozH/iM+ikxjknIKLBlsI5CoLfHruurqTNqEWKmt\nYs4Lz2Sz1uktKuhKrWXWsE3fhvirDZ8qUWZzDzJuNCNDzcgDKjr9D8TFHbC+pCrM\nmm/ci5Gu5xmOj5hjXp0g8pyR/AJhD8Rpmf595azYaY64X3jFukxb7eVbrDBpEMw=\n=91Dp\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 3db76854d3d6dcefb2da6e47fd1166e62b4b417d\nparent f19fcb4c00f63db931c3775580278cc414015215\nauthor Paul Laturaze <AcidFlow@users.noreply.github.com> 1638271144 +0100\ncommitter GitHub <noreply@github.com> 1638271144 +0000\n\nAllow Emitter to use a custom ExecutorService (close #278)\n\nThis commit allows a user to use its own ExecutorService in the Emitter\r\nto have a more granular control over threads created by an Emitter.\r\n\r\nCo-authored-by: Paul Laturaze <paul.laturaze@zivver.com>"
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/ba2cd192168f78d41750e9f00faad66b9a35915a",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/ba2cd192168f78d41750e9f00faad66b9a35915a",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/ba2cd192168f78d41750e9f00faad66b9a35915a/comments",
+    "author": {
+      "login": "AcidFlow",
+      "id": 2779316,
+      "node_id": "MDQ6VXNlcjI3NzkzMTY=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2779316?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AcidFlow",
+      "html_url": "https://github.com/AcidFlow",
+      "followers_url": "https://api.github.com/users/AcidFlow/followers",
+      "following_url": "https://api.github.com/users/AcidFlow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AcidFlow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AcidFlow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AcidFlow/subscriptions",
+      "organizations_url": "https://api.github.com/users/AcidFlow/orgs",
+      "repos_url": "https://api.github.com/users/AcidFlow/repos",
+      "events_url": "https://api.github.com/users/AcidFlow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AcidFlow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "f19fcb4c00f63db931c3775580278cc414015215",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/f19fcb4c00f63db931c3775580278cc414015215",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/f19fcb4c00f63db931c3775580278cc414015215"
+      }
+    ]
+  },
+  {
+    "sha": "f19fcb4c00f63db931c3775580278cc414015215",
+    "node_id": "C_kwDOAUAMJ9oAKGYxOWZjYjRjMDBmNjNkYjkzMWMzNzc1NTgwMjc4Y2M0MTQwMTUyMTU",
+    "commit": {
+      "author": {
+        "name": "Buck Ryan",
+        "email": "buck@buckryan.com",
+        "date": "2021-11-30T11:08:53Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2021-11-30T11:08:53Z"
+      },
+      "message": "Specify the key for 'null or empty value detected' payload log (close #277)",
+      "tree": {
+        "sha": "57f019c4bc87436260425d09a8c3631096c64eb4",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/57f019c4bc87436260425d09a8c3631096c64eb4"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/f19fcb4c00f63db931c3775580278cc414015215",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJhpgZFCRBK7hj4Ov3rIwAAOEEIAEo+iGDKsMeFSXX/N/vasupq\no9ya4xO53xdAYeLjSvDuTOXmsQLh2hRdWLkW3kVymGEoc/p++EfZFjoFoJusKj57\neGCStQELMcuzLu1CJke4XJ+pa3epRgSYXLDMR1nQmAvY0sau+GvdnWFg3tR5LC0t\nXVo2QOb+dyNGjr4AjG7tkfGPQP0iI31ogqmiJbgkPFOO8gfRjnhYo6yvoS6qjTH8\noU7t3v3l8jdDqX6b0GyZ7+ln1cKGNPyBgnI1okziLcZzh/38kxjYGx66sUzXLGEL\nmaTySaUqqvjiWyLKrOSMKFFpO+Yj+OAX5wrgtpklw2V8dWqX5heJFEe6BGvnB/c=\n=0TTG\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 57f019c4bc87436260425d09a8c3631096c64eb4\nparent b5711c413050f3f3961e3875e3ef663ce62d24a9\nauthor Buck Ryan <buck@buckryan.com> 1638270533 -0500\ncommitter GitHub <noreply@github.com> 1638270533 +0000\n\nSpecify the key for 'null or empty value detected' payload log (close #277)\n\n"
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/f19fcb4c00f63db931c3775580278cc414015215",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/f19fcb4c00f63db931c3775580278cc414015215",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/f19fcb4c00f63db931c3775580278cc414015215/comments",
+    "author": {
+      "login": "b-ryan",
+      "id": 1183997,
+      "node_id": "MDQ6VXNlcjExODM5OTc=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1183997?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/b-ryan",
+      "html_url": "https://github.com/b-ryan",
+      "followers_url": "https://api.github.com/users/b-ryan/followers",
+      "following_url": "https://api.github.com/users/b-ryan/following{/other_user}",
+      "gists_url": "https://api.github.com/users/b-ryan/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/b-ryan/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/b-ryan/subscriptions",
+      "organizations_url": "https://api.github.com/users/b-ryan/orgs",
+      "repos_url": "https://api.github.com/users/b-ryan/repos",
+      "events_url": "https://api.github.com/users/b-ryan/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/b-ryan/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "b5711c413050f3f3961e3875e3ef663ce62d24a9",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/b5711c413050f3f3961e3875e3ef663ce62d24a9",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/b5711c413050f3f3961e3875e3ef663ce62d24a9"
+      }
+    ]
+  },
+  {
+    "sha": "b5711c413050f3f3961e3875e3ef663ce62d24a9",
+    "node_id": "C_kwDOAUAMJ9oAKGI1NzExYzQxMzA1MGYzZjM5NjFlMzg3NWUzZWY2NjNjZTYyZDI0YTk",
+    "commit": {
+      "author": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2021-11-29T15:46:20Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2021-11-29T15:46:20Z"
+      },
+      "message": "Remove Mockito and Wiremock dependencies (close #275)\n\n* Remove wiremock\r\n\r\n* Remove mockito\r\n\r\n* Replace deprecated Exception tests",
+      "tree": {
+        "sha": "221bcf2ab8dc15c8536bed238154789783354014",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/221bcf2ab8dc15c8536bed238154789783354014"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/b5711c413050f3f3961e3875e3ef663ce62d24a9",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJhpPXMCRBK7hj4Ov3rIwAAEUcIAGpldvPWScab09jGJhV2+MHu\nQoQp0gxOWlzsg7QlyKcF/Ahh5VIXnjAn/8abu9a8WeYCdSFZuKgjtcaxtWLaZBmZ\ndjIF3wGCLN6u2loUN3dMFhJWs0Po6ML03rWc6h4KPulJyGTUQMEBGs9GeM5GZtcK\nqrZWsZJ8wcnslg/GK/vZAuHbz6UDW0CGfwl25A0oVSqUsyjCiDQ7M4olFSVhQxGK\nnH/dLGsy5V4T1pCpNZgmxxmmFxOsVSvrG6VYyvI5YGZ545zQHnTHlgXdIqlpeTZL\nGHKXxM9WR+RzcuRRsx0BRmtT4mVPwZWsAuoU0BHB+q8MHXgPxxLV1TS+vhjbaVE=\n=xTC1\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 221bcf2ab8dc15c8536bed238154789783354014\nparent 7aff3c92338b3b642ea20d8b766891b326498c14\nauthor Miranda Wilson <miranda@snowplowanalytics.com> 1638200780 +0000\ncommitter GitHub <noreply@github.com> 1638200780 +0000\n\nRemove Mockito and Wiremock dependencies (close #275)\n\n* Remove wiremock\r\n\r\n* Remove mockito\r\n\r\n* Replace deprecated Exception tests"
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/b5711c413050f3f3961e3875e3ef663ce62d24a9",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/b5711c413050f3f3961e3875e3ef663ce62d24a9",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/b5711c413050f3f3961e3875e3ef663ce62d24a9/comments",
+    "author": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "7aff3c92338b3b642ea20d8b766891b326498c14",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/7aff3c92338b3b642ea20d8b766891b326498c14",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/7aff3c92338b3b642ea20d8b766891b326498c14"
+      }
+    ]
+  },
+  {
+    "sha": "7aff3c92338b3b642ea20d8b766891b326498c14",
+    "node_id": "C_kwDOAUAMJ9oAKDdhZmYzYzkyMzM4YjNiNjQyZWEyMGQ4Yjc2Njg5MWIzMjY0OThjMTQ",
+    "commit": {
+      "author": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2021-11-29T14:30:12Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2021-11-29T14:30:12Z"
+      },
+      "message": "Update dependencies guava, wiremock, and httpclient (close #269)\n\n* Update guava\r\n\r\n* Update wiremock and fix junit\r\n\r\n* Update httpclient\r\n\r\n* Update mockwebserver",
+      "tree": {
+        "sha": "fef7dffeceeea1667218f421a74e72ac2f290488",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/fef7dffeceeea1667218f421a74e72ac2f290488"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/7aff3c92338b3b642ea20d8b766891b326498c14",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJhpOP0CRBK7hj4Ov3rIwAAWBsIAI/sip5C2l1iUihtXAdOGu+/\nlV6yjVPEYFaVPW4VT62lAQgc3aR3dzy4fPaxSPkGklGmnz78NfEEScE1/vNZbPVF\nyjLueh1mW4C5+YkhXw68cNfnzQfqmuCIhiBFXeVVxY9UgTzmfnEezzVa+NF+cII0\nUS+ZNJxhxxs7G4ROWoHBNHY4hHvJbiMnNXWafO9AfZOlYJFgWWo2nTXP6YqD7JcN\nh1x6PaXVP7hz15NoZfJjMY5KaMOwUqZXkHzr1GjcPW/iz1kXTAK2k5WmPNmucsat\nUiqNnTOTatBQ50/jADHGCSlNd9RRHo1BHAbkAXEdwykQGxCbfux+LPTEdO0XYdA=\n=FycK\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree fef7dffeceeea1667218f421a74e72ac2f290488\nparent a7e7d3b79336a3b4005ef0ea8c32494cb33420f3\nauthor Miranda Wilson <miranda@snowplowanalytics.com> 1638196212 +0000\ncommitter GitHub <noreply@github.com> 1638196212 +0000\n\nUpdate dependencies guava, wiremock, and httpclient (close #269)\n\n* Update guava\r\n\r\n* Update wiremock and fix junit\r\n\r\n* Update httpclient\r\n\r\n* Update mockwebserver"
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/7aff3c92338b3b642ea20d8b766891b326498c14",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/7aff3c92338b3b642ea20d8b766891b326498c14",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/7aff3c92338b3b642ea20d8b766891b326498c14/comments",
+    "author": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "a7e7d3b79336a3b4005ef0ea8c32494cb33420f3",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/a7e7d3b79336a3b4005ef0ea8c32494cb33420f3",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/a7e7d3b79336a3b4005ef0ea8c32494cb33420f3"
+      }
+    ]
+  },
+  {
+    "sha": "a7e7d3b79336a3b4005ef0ea8c32494cb33420f3",
+    "node_id": "C_kwDOAUAMJ9oAKGE3ZTdkM2I3OTMzNmEzYjQwMDVlZjBlYThjMzI0OTRjYjMzNDIwZjM",
+    "commit": {
+      "author": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2021-11-25T14:00:04Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2021-11-25T14:00:04Z"
+      },
+      "message": "Manually set the session_id (close #265)\n\n* Manually set the session_id (close #265)\r\n\r\n* Make some test names more readable",
+      "tree": {
+        "sha": "097a4e0769dd16ca4aea043da18b409f26e22f97",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/097a4e0769dd16ca4aea043da18b409f26e22f97"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/a7e7d3b79336a3b4005ef0ea8c32494cb33420f3",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJhn5bkCRBK7hj4Ov3rIwAAuagIACTlreMuZudFhYTZOD+ujb2m\nk3EJlZxVjEmyqtIOc5ZwJ7yfVz+gM9R4NpMu+Wdjt+ncyOhZkMBnfZ3P9l3DmwC9\n7g6t0wSsAr1aPpjn8WihPbIhO6W07CWRd+LOTDs2J4hs2NCzk72HXGtml4KAwD7s\nuq9ZJLC5G3/Q1a1IP7cdoNJaivgBUbiN8wZVGE3SIwmLyJxiZfjJJhyZY2t6L9B4\nongIEmBZ7NJWTLSl/Qm6ZiFa82Jw8MYgFec+xZDx5cNKPKPO+sI1tuKNVhhtwQpO\nI5jH5JPep8UJPm4QMrf+2ejq6/PLAwkmtq/W5nBhHMoIPcIyMK/ruLiOEQSq1+A=\n=EHob\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 097a4e0769dd16ca4aea043da18b409f26e22f97\nparent d1a2768440d5be33c8973737ddfc07ab6fb9bbe3\nauthor Miranda Wilson <miranda@snowplowanalytics.com> 1637848804 +0000\ncommitter GitHub <noreply@github.com> 1637848804 +0000\n\nManually set the session_id (close #265)\n\n* Manually set the session_id (close #265)\r\n\r\n* Make some test names more readable"
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/a7e7d3b79336a3b4005ef0ea8c32494cb33420f3",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/a7e7d3b79336a3b4005ef0ea8c32494cb33420f3",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/a7e7d3b79336a3b4005ef0ea8c32494cb33420f3/comments",
+    "author": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "d1a2768440d5be33c8973737ddfc07ab6fb9bbe3",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/d1a2768440d5be33c8973737ddfc07ab6fb9bbe3",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/d1a2768440d5be33c8973737ddfc07ab6fb9bbe3"
+      }
+    ]
+  },
+  {
+    "sha": "d1a2768440d5be33c8973737ddfc07ab6fb9bbe3",
+    "node_id": "C_kwDOAUAMJ9oAKGQxYTI3Njg0NDBkNWJlMzNjODk3MzczN2RkZmMwN2FiNmZiOWJiZTM",
+    "commit": {
+      "author": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2021-11-25T13:49:47Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2021-11-25T13:49:47Z"
+      },
+      "message": "Update gradle GH Action to include Java 17 (close #273)",
+      "tree": {
+        "sha": "ac301ba66f1f2041f01e94a763167533f21a4bae",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/ac301ba66f1f2041f01e94a763167533f21a4bae"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/d1a2768440d5be33c8973737ddfc07ab6fb9bbe3",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJhn5R7CRBK7hj4Ov3rIwAALyoIAEsa0ULxDvy4VSrduPep87F1\nu7P0PqnrgY1r75n6GS3V6ijFPOi2Iq+a6XtIGgVJmXHmspZzKK5dw26PAV7jAh6Q\nIP/6+1EeBFC82FVipo4rXzUWIkCT9AT8Ukor55hqx6PfdEVnRyvHKpWEeEA/LezD\nsRyJv7xYtQuhTrW2piiRne8rnigRyVmUYqo9edOnlkqx3aXwgvt5nlsbmmiSPT4m\nTwJo/44zoB2QxgpLSnixT3zxtHf1YG7q2Q2gfzTFoWE5zSMnwxmh8D+cjU4pBoVS\nxGzRDR4tGgi1D261BKZ2b/iGPWKZoMqaSaIf/qCGL+1w7FaAjjHnIfBIbF5cFb8=\n=qEhl\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree ac301ba66f1f2041f01e94a763167533f21a4bae\nparent b4569c62c0aeb7aaf8b3080bab85ce412adff039\nauthor Miranda Wilson <miranda@snowplowanalytics.com> 1637848187 +0000\ncommitter GitHub <noreply@github.com> 1637848187 +0000\n\nUpdate gradle GH Action to include Java 17 (close #273)\n\n"
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/d1a2768440d5be33c8973737ddfc07ab6fb9bbe3",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/d1a2768440d5be33c8973737ddfc07ab6fb9bbe3",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/d1a2768440d5be33c8973737ddfc07ab6fb9bbe3/comments",
+    "author": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "b4569c62c0aeb7aaf8b3080bab85ce412adff039",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/b4569c62c0aeb7aaf8b3080bab85ce412adff039",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/b4569c62c0aeb7aaf8b3080bab85ce412adff039"
+      }
+    ]
+  },
+  {
+    "sha": "b4569c62c0aeb7aaf8b3080bab85ce412adff039",
+    "node_id": "C_kwDOAUAMJ9oAKGI0NTY5YzYyYzBhZWI3YWFmOGIzMDgwYmFiODVjZTQxMmFkZmYwMzk",
+    "commit": {
+      "author": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2021-11-25T13:49:06Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2021-11-25T13:49:06Z"
+      },
+      "message": "Remove HttpHeaders dependency in OkHttpClientAdapter (close #266)",
+      "tree": {
+        "sha": "c2a8fb0c401d3a01924242441b379e70931cc38a",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/c2a8fb0c401d3a01924242441b379e70931cc38a"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/b4569c62c0aeb7aaf8b3080bab85ce412adff039",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJhn5RSCRBK7hj4Ov3rIwAA83YIAGK6n5Q88bVrnaLEC1+UAl3b\nB0XHoObD/glVp+EEaHc+0EW7tns9k6r9Jm0v2VNdMBjyxjzu/HmJL0Mk3FqCO+p0\nsHwX3rmwOvKGf88VTJ0GlA7p8Qn/dLO5hdVvrK4OiQlZj3dENzRsAH466HEuDQhw\n3EXP4H/MHZlSSX1V7hfSIIPWG5ptTtSbszNvWyAtUTV1DVfeMKmWnYRQ9L9ORco5\nln195mRyCH/7sGjImhYvzlGTLm+G6Qyawc3POFsNZf6IsSTeLCJgr7OvdqBPK4A0\nh+nNTZPpiPkxfIUyr8gKbr6V7MWdr1vbekgXMNBlO7+iINJbAXjTlaQTweMPT6o=\n=O9T1\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree c2a8fb0c401d3a01924242441b379e70931cc38a\nparent 9df6c166ff5b08a0e5b9b1df6e93454376d24d7b\nauthor Miranda Wilson <miranda@snowplowanalytics.com> 1637848146 +0000\ncommitter GitHub <noreply@github.com> 1637848146 +0000\n\nRemove HttpHeaders dependency in OkHttpClientAdapter (close #266)\n\n"
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/b4569c62c0aeb7aaf8b3080bab85ce412adff039",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/b4569c62c0aeb7aaf8b3080bab85ce412adff039",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/b4569c62c0aeb7aaf8b3080bab85ce412adff039/comments",
+    "author": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "9df6c166ff5b08a0e5b9b1df6e93454376d24d7b",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/9df6c166ff5b08a0e5b9b1df6e93454376d24d7b",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/9df6c166ff5b08a0e5b9b1df6e93454376d24d7b"
+      }
+    ]
+  },
+  {
+    "sha": "9df6c166ff5b08a0e5b9b1df6e93454376d24d7b",
+    "node_id": "C_kwDOAUAMJ9oAKDlkZjZjMTY2ZmY1YjA4YTBlNWI5YjFkZjZlOTM0NTQzNzZkMjRkN2I",
+    "commit": {
+      "author": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2021-11-17T11:45:24Z"
+      },
+      "committer": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2021-11-22T17:01:23Z"
+      },
+      "message": "Replace Vagrant with Docker (close #267)",
+      "tree": {
+        "sha": "5f02f8af65660f5bea74ea4ab2d3b128b045494d",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/5f02f8af65660f5bea74ea4ab2d3b128b045494d"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/9df6c166ff5b08a0e5b9b1df6e93454376d24d7b",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/9df6c166ff5b08a0e5b9b1df6e93454376d24d7b",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/9df6c166ff5b08a0e5b9b1df6e93454376d24d7b",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/9df6c166ff5b08a0e5b9b1df6e93454376d24d7b/comments",
+    "author": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "73cd5a496212fd38771c3f0d64a9ecba92f490e2",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/73cd5a496212fd38771c3f0d64a9ecba92f490e2",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/73cd5a496212fd38771c3f0d64a9ecba92f490e2"
+      }
+    ]
+  },
+  {
+    "sha": "73cd5a496212fd38771c3f0d64a9ecba92f490e2",
+    "node_id": "MDY6Q29tbWl0MjA5NzQ2MzE6NzNjZDVhNDk2MjEyZmQzODc3MWMzZjBkNjRhOWVjYmE5MmY0OTBlMg==",
+    "commit": {
+      "author": {
+        "name": "Paul Boocock",
+        "email": "paul@snowplowanalytics.com",
+        "date": "2020-07-14T11:15:58Z"
+      },
+      "committer": {
+        "name": "Paul Boocock",
+        "email": "mail@paulboocock.net",
+        "date": "2020-07-14T11:18:33Z"
+      },
+      "message": "Add Snowplow Maintenance Badge (closes #261)",
+      "tree": {
+        "sha": "be1b1cf79e2cdf63eec7a223f381f48b302c711b",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/be1b1cf79e2cdf63eec7a223f381f48b302c711b"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/73cd5a496212fd38771c3f0d64a9ecba92f490e2",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/73cd5a496212fd38771c3f0d64a9ecba92f490e2",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/73cd5a496212fd38771c3f0d64a9ecba92f490e2",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/73cd5a496212fd38771c3f0d64a9ecba92f490e2/comments",
+    "author": {
+      "login": "paulboocock",
+      "id": 8820009,
+      "node_id": "MDQ6VXNlcjg4MjAwMDk=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8820009?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/paulboocock",
+      "html_url": "https://github.com/paulboocock",
+      "followers_url": "https://api.github.com/users/paulboocock/followers",
+      "following_url": "https://api.github.com/users/paulboocock/following{/other_user}",
+      "gists_url": "https://api.github.com/users/paulboocock/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/paulboocock/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/paulboocock/subscriptions",
+      "organizations_url": "https://api.github.com/users/paulboocock/orgs",
+      "repos_url": "https://api.github.com/users/paulboocock/repos",
+      "events_url": "https://api.github.com/users/paulboocock/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/paulboocock/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "paulboocock",
+      "id": 8820009,
+      "node_id": "MDQ6VXNlcjg4MjAwMDk=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8820009?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/paulboocock",
+      "html_url": "https://github.com/paulboocock",
+      "followers_url": "https://api.github.com/users/paulboocock/followers",
+      "following_url": "https://api.github.com/users/paulboocock/following{/other_user}",
+      "gists_url": "https://api.github.com/users/paulboocock/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/paulboocock/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/paulboocock/subscriptions",
+      "organizations_url": "https://api.github.com/users/paulboocock/orgs",
+      "repos_url": "https://api.github.com/users/paulboocock/repos",
+      "events_url": "https://api.github.com/users/paulboocock/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/paulboocock/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "8e785ad7ae95f0e7148406224fb4abc1f9218682",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/8e785ad7ae95f0e7148406224fb4abc1f9218682",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/8e785ad7ae95f0e7148406224fb4abc1f9218682"
+      }
+    ]
+  },
+  {
+    "sha": "8e785ad7ae95f0e7148406224fb4abc1f9218682",
+    "node_id": "MDY6Q29tbWl0MjA5NzQ2MzE6OGU3ODVhZDdhZTk1ZjBlNzE0ODQwNjIyNGZiNGFiYzFmOTIxODY4Mg==",
+    "commit": {
+      "author": {
+        "name": "Paul Boocock",
+        "email": "paul@snowplowanalytics.com",
+        "date": "2020-07-14T11:15:43Z"
+      },
+      "committer": {
+        "name": "Paul Boocock",
+        "email": "mail@paulboocock.net",
+        "date": "2020-07-14T11:18:33Z"
+      },
+      "message": "Add CONTRIBUTING.md (closes #260)",
+      "tree": {
+        "sha": "801ee9b291ceb89911828f358847512ea70b6924",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/801ee9b291ceb89911828f358847512ea70b6924"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/8e785ad7ae95f0e7148406224fb4abc1f9218682",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/8e785ad7ae95f0e7148406224fb4abc1f9218682",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/8e785ad7ae95f0e7148406224fb4abc1f9218682",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/8e785ad7ae95f0e7148406224fb4abc1f9218682/comments",
+    "author": {
+      "login": "paulboocock",
+      "id": 8820009,
+      "node_id": "MDQ6VXNlcjg4MjAwMDk=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8820009?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/paulboocock",
+      "html_url": "https://github.com/paulboocock",
+      "followers_url": "https://api.github.com/users/paulboocock/followers",
+      "following_url": "https://api.github.com/users/paulboocock/following{/other_user}",
+      "gists_url": "https://api.github.com/users/paulboocock/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/paulboocock/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/paulboocock/subscriptions",
+      "organizations_url": "https://api.github.com/users/paulboocock/orgs",
+      "repos_url": "https://api.github.com/users/paulboocock/repos",
+      "events_url": "https://api.github.com/users/paulboocock/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/paulboocock/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "paulboocock",
+      "id": 8820009,
+      "node_id": "MDQ6VXNlcjg4MjAwMDk=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8820009?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/paulboocock",
+      "html_url": "https://github.com/paulboocock",
+      "followers_url": "https://api.github.com/users/paulboocock/followers",
+      "following_url": "https://api.github.com/users/paulboocock/following{/other_user}",
+      "gists_url": "https://api.github.com/users/paulboocock/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/paulboocock/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/paulboocock/subscriptions",
+      "organizations_url": "https://api.github.com/users/paulboocock/orgs",
+      "repos_url": "https://api.github.com/users/paulboocock/repos",
+      "events_url": "https://api.github.com/users/paulboocock/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/paulboocock/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "d1cde4fa5de76c60604560586efd94192a24073b",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/d1cde4fa5de76c60604560586efd94192a24073b",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/d1cde4fa5de76c60604560586efd94192a24073b"
+      }
+    ]
+  },
+  {
+    "sha": "d1cde4fa5de76c60604560586efd94192a24073b",
+    "node_id": "MDY6Q29tbWl0MjA5NzQ2MzE6ZDFjZGU0ZmE1ZGU3NmM2MDYwNDU2MDU4NmVmZDk0MTkyYTI0MDczYg==",
+    "commit": {
+      "author": {
+        "name": "Paul Boocock",
+        "email": "mail@paulboocock.net",
+        "date": "2020-07-10T15:22:52Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2020-07-10T15:22:52Z"
+      },
+      "message": "Update issue templates",
+      "tree": {
+        "sha": "645a350baf08489290cf6410ed11068cb8ca0a12",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/645a350baf08489290cf6410ed11068cb8ca0a12"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/d1cde4fa5de76c60604560586efd94192a24073b",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/d1cde4fa5de76c60604560586efd94192a24073b",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/d1cde4fa5de76c60604560586efd94192a24073b",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/d1cde4fa5de76c60604560586efd94192a24073b/comments",
+    "author": {
+      "login": "paulboocock",
+      "id": 8820009,
+      "node_id": "MDQ6VXNlcjg4MjAwMDk=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8820009?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/paulboocock",
+      "html_url": "https://github.com/paulboocock",
+      "followers_url": "https://api.github.com/users/paulboocock/followers",
+      "following_url": "https://api.github.com/users/paulboocock/following{/other_user}",
+      "gists_url": "https://api.github.com/users/paulboocock/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/paulboocock/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/paulboocock/subscriptions",
+      "organizations_url": "https://api.github.com/users/paulboocock/orgs",
+      "repos_url": "https://api.github.com/users/paulboocock/repos",
+      "events_url": "https://api.github.com/users/paulboocock/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/paulboocock/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "09caf007e781aaf9dadd1738dc013f9988fdc14e",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/09caf007e781aaf9dadd1738dc013f9988fdc14e",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/09caf007e781aaf9dadd1738dc013f9988fdc14e"
+      }
+    ]
+  },
+  {
+    "sha": "09caf007e781aaf9dadd1738dc013f9988fdc14e",
+    "node_id": "MDY6Q29tbWl0MjA5NzQ2MzE6MDljYWYwMDdlNzgxYWFmOWRhZGQxNzM4ZGMwMTNmOTk4OGZkYzE0ZQ==",
+    "commit": {
+      "author": {
+        "name": "Paul Boocock",
+        "email": "mail@paulboocock.net",
+        "date": "2020-07-10T15:20:58Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2020-07-10T15:20:58Z"
+      },
+      "message": "Update issue templates",
+      "tree": {
+        "sha": "d3e6843108ce67bce89648027a60960cba3128d2",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/d3e6843108ce67bce89648027a60960cba3128d2"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/09caf007e781aaf9dadd1738dc013f9988fdc14e",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/09caf007e781aaf9dadd1738dc013f9988fdc14e",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/09caf007e781aaf9dadd1738dc013f9988fdc14e",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/09caf007e781aaf9dadd1738dc013f9988fdc14e/comments",
+    "author": {
+      "login": "paulboocock",
+      "id": 8820009,
+      "node_id": "MDQ6VXNlcjg4MjAwMDk=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8820009?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/paulboocock",
+      "html_url": "https://github.com/paulboocock",
+      "followers_url": "https://api.github.com/users/paulboocock/followers",
+      "following_url": "https://api.github.com/users/paulboocock/following{/other_user}",
+      "gists_url": "https://api.github.com/users/paulboocock/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/paulboocock/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/paulboocock/subscriptions",
+      "organizations_url": "https://api.github.com/users/paulboocock/orgs",
+      "repos_url": "https://api.github.com/users/paulboocock/repos",
+      "events_url": "https://api.github.com/users/paulboocock/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/paulboocock/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "65d3a0cca839ed6dbc111afcaf4bac639fd41c25",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/65d3a0cca839ed6dbc111afcaf4bac639fd41c25",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/65d3a0cca839ed6dbc111afcaf4bac639fd41c25"
+      }
+    ]
+  },
+  {
+    "sha": "65d3a0cca839ed6dbc111afcaf4bac639fd41c25",
+    "node_id": "MDY6Q29tbWl0MjA5NzQ2MzE6NjVkM2EwY2NhODM5ZWQ2ZGJjMTExYWZjYWY0YmFjNjM5ZmQ0MWMyNQ==",
+    "commit": {
+      "author": {
+        "name": "Paul Boocock",
+        "email": "paul@snowplowanalytics.com",
+        "date": "2020-06-11T11:16:32Z"
+      },
+      "committer": {
+        "name": "Paul Boocock",
+        "email": "mail@paulboocock.net",
+        "date": "2020-06-11T11:17:52Z"
+      },
+      "message": "Prepare for release",
+      "tree": {
+        "sha": "2a5e88fe9fa139f14828d3e605daac47d88fc882",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/2a5e88fe9fa139f14828d3e605daac47d88fc882"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/65d3a0cca839ed6dbc111afcaf4bac639fd41c25",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/65d3a0cca839ed6dbc111afcaf4bac639fd41c25",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/65d3a0cca839ed6dbc111afcaf4bac639fd41c25",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/65d3a0cca839ed6dbc111afcaf4bac639fd41c25/comments",
+    "author": {
+      "login": "paulboocock",
+      "id": 8820009,
+      "node_id": "MDQ6VXNlcjg4MjAwMDk=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8820009?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/paulboocock",
+      "html_url": "https://github.com/paulboocock",
+      "followers_url": "https://api.github.com/users/paulboocock/followers",
+      "following_url": "https://api.github.com/users/paulboocock/following{/other_user}",
+      "gists_url": "https://api.github.com/users/paulboocock/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/paulboocock/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/paulboocock/subscriptions",
+      "organizations_url": "https://api.github.com/users/paulboocock/orgs",
+      "repos_url": "https://api.github.com/users/paulboocock/repos",
+      "events_url": "https://api.github.com/users/paulboocock/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/paulboocock/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "paulboocock",
+      "id": 8820009,
+      "node_id": "MDQ6VXNlcjg4MjAwMDk=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8820009?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/paulboocock",
+      "html_url": "https://github.com/paulboocock",
+      "followers_url": "https://api.github.com/users/paulboocock/followers",
+      "following_url": "https://api.github.com/users/paulboocock/following{/other_user}",
+      "gists_url": "https://api.github.com/users/paulboocock/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/paulboocock/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/paulboocock/subscriptions",
+      "organizations_url": "https://api.github.com/users/paulboocock/orgs",
+      "repos_url": "https://api.github.com/users/paulboocock/repos",
+      "events_url": "https://api.github.com/users/paulboocock/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/paulboocock/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "832b2d05193e81575e629c1f4118c9bbd255d2ba",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/832b2d05193e81575e629c1f4118c9bbd255d2ba",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/832b2d05193e81575e629c1f4118c9bbd255d2ba"
+      }
+    ]
+  },
+  {
+    "sha": "832b2d05193e81575e629c1f4118c9bbd255d2ba",
+    "node_id": "MDY6Q29tbWl0MjA5NzQ2MzE6ODMyYjJkMDUxOTNlODE1NzVlNjI5YzFmNDExOGM5YmJkMjU1ZDJiYQ==",
+    "commit": {
+      "author": {
+        "name": "Paul Boocock",
+        "email": "paul@snowplowanalytics.com",
+        "date": "2020-06-11T11:13:24Z"
+      },
+      "committer": {
+        "name": "Paul Boocock",
+        "email": "mail@paulboocock.net",
+        "date": "2020-06-11T11:17:52Z"
+      },
+      "message": "Publish Gradle module file with bintrayUpload (close #255)",
+      "tree": {
+        "sha": "edb1f3aac3cb483e89600940ee02d516d1f4b360",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/edb1f3aac3cb483e89600940ee02d516d1f4b360"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/832b2d05193e81575e629c1f4118c9bbd255d2ba",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/832b2d05193e81575e629c1f4118c9bbd255d2ba",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/832b2d05193e81575e629c1f4118c9bbd255d2ba",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/832b2d05193e81575e629c1f4118c9bbd255d2ba/comments",
+    "author": {
+      "login": "paulboocock",
+      "id": 8820009,
+      "node_id": "MDQ6VXNlcjg4MjAwMDk=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8820009?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/paulboocock",
+      "html_url": "https://github.com/paulboocock",
+      "followers_url": "https://api.github.com/users/paulboocock/followers",
+      "following_url": "https://api.github.com/users/paulboocock/following{/other_user}",
+      "gists_url": "https://api.github.com/users/paulboocock/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/paulboocock/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/paulboocock/subscriptions",
+      "organizations_url": "https://api.github.com/users/paulboocock/orgs",
+      "repos_url": "https://api.github.com/users/paulboocock/repos",
+      "events_url": "https://api.github.com/users/paulboocock/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/paulboocock/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "paulboocock",
+      "id": 8820009,
+      "node_id": "MDQ6VXNlcjg4MjAwMDk=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8820009?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/paulboocock",
+      "html_url": "https://github.com/paulboocock",
+      "followers_url": "https://api.github.com/users/paulboocock/followers",
+      "following_url": "https://api.github.com/users/paulboocock/following{/other_user}",
+      "gists_url": "https://api.github.com/users/paulboocock/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/paulboocock/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/paulboocock/subscriptions",
+      "organizations_url": "https://api.github.com/users/paulboocock/orgs",
+      "repos_url": "https://api.github.com/users/paulboocock/repos",
+      "events_url": "https://api.github.com/users/paulboocock/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/paulboocock/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "8261bca9b22267ea3a6b8efed4faa8556d9399c5",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/8261bca9b22267ea3a6b8efed4faa8556d9399c5",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/8261bca9b22267ea3a6b8efed4faa8556d9399c5"
+      }
+    ]
+  },
+  {
+    "sha": "8261bca9b22267ea3a6b8efed4faa8556d9399c5",
+    "node_id": "MDY6Q29tbWl0MjA5NzQ2MzE6ODI2MWJjYTliMjIyNjdlYTNhNmI4ZWZlZDRmYWE4NTU2ZDkzOTljNQ==",
+    "commit": {
+      "author": {
+        "name": "Paul Boocock",
+        "email": "paul@snowplowanalytics.com",
+        "date": "2020-06-11T10:58:05Z"
+      },
+      "committer": {
+        "name": "Paul Boocock",
+        "email": "mail@paulboocock.net",
+        "date": "2020-06-11T11:17:52Z"
+      },
+      "message": "Update snyk integration to include project name in GitHub action (close #256)",
+      "tree": {
+        "sha": "8297fdf9a6d9ca206691043272fbaa61b928e876",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/8297fdf9a6d9ca206691043272fbaa61b928e876"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/8261bca9b22267ea3a6b8efed4faa8556d9399c5",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/8261bca9b22267ea3a6b8efed4faa8556d9399c5",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/8261bca9b22267ea3a6b8efed4faa8556d9399c5",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/8261bca9b22267ea3a6b8efed4faa8556d9399c5/comments",
+    "author": {
+      "login": "paulboocock",
+      "id": 8820009,
+      "node_id": "MDQ6VXNlcjg4MjAwMDk=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8820009?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/paulboocock",
+      "html_url": "https://github.com/paulboocock",
+      "followers_url": "https://api.github.com/users/paulboocock/followers",
+      "following_url": "https://api.github.com/users/paulboocock/following{/other_user}",
+      "gists_url": "https://api.github.com/users/paulboocock/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/paulboocock/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/paulboocock/subscriptions",
+      "organizations_url": "https://api.github.com/users/paulboocock/orgs",
+      "repos_url": "https://api.github.com/users/paulboocock/repos",
+      "events_url": "https://api.github.com/users/paulboocock/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/paulboocock/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "paulboocock",
+      "id": 8820009,
+      "node_id": "MDQ6VXNlcjg4MjAwMDk=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8820009?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/paulboocock",
+      "html_url": "https://github.com/paulboocock",
+      "followers_url": "https://api.github.com/users/paulboocock/followers",
+      "following_url": "https://api.github.com/users/paulboocock/following{/other_user}",
+      "gists_url": "https://api.github.com/users/paulboocock/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/paulboocock/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/paulboocock/subscriptions",
+      "organizations_url": "https://api.github.com/users/paulboocock/orgs",
+      "repos_url": "https://api.github.com/users/paulboocock/repos",
+      "events_url": "https://api.github.com/users/paulboocock/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/paulboocock/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "f07d7f5aaf34fa6e14711537f5b239bc063856e1",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/f07d7f5aaf34fa6e14711537f5b239bc063856e1",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/f07d7f5aaf34fa6e14711537f5b239bc063856e1"
+      }
+    ]
+  },
+  {
+    "sha": "f07d7f5aaf34fa6e14711537f5b239bc063856e1",
+    "node_id": "MDY6Q29tbWl0MjA5NzQ2MzE6ZjA3ZDdmNWFhZjM0ZmE2ZTE0NzExNTM3ZjViMjM5YmMwNjM4NTZlMQ==",
+    "commit": {
+      "author": {
+        "name": "Paul Boocock",
+        "email": "paul@snowplowanalytics.com",
+        "date": "2020-06-09T21:13:47Z"
+      },
+      "committer": {
+        "name": "Paul Boocock",
+        "email": "mail@paulboocock.net",
+        "date": "2020-06-10T13:18:48Z"
+      },
+      "message": "Prepare for release",
+      "tree": {
+        "sha": "81c34469cc4bc352ff65467617f41445f3226027",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/81c34469cc4bc352ff65467617f41445f3226027"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/f07d7f5aaf34fa6e14711537f5b239bc063856e1",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/f07d7f5aaf34fa6e14711537f5b239bc063856e1",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/f07d7f5aaf34fa6e14711537f5b239bc063856e1",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/f07d7f5aaf34fa6e14711537f5b239bc063856e1/comments",
+    "author": {
+      "login": "paulboocock",
+      "id": 8820009,
+      "node_id": "MDQ6VXNlcjg4MjAwMDk=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8820009?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/paulboocock",
+      "html_url": "https://github.com/paulboocock",
+      "followers_url": "https://api.github.com/users/paulboocock/followers",
+      "following_url": "https://api.github.com/users/paulboocock/following{/other_user}",
+      "gists_url": "https://api.github.com/users/paulboocock/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/paulboocock/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/paulboocock/subscriptions",
+      "organizations_url": "https://api.github.com/users/paulboocock/orgs",
+      "repos_url": "https://api.github.com/users/paulboocock/repos",
+      "events_url": "https://api.github.com/users/paulboocock/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/paulboocock/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "paulboocock",
+      "id": 8820009,
+      "node_id": "MDQ6VXNlcjg4MjAwMDk=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8820009?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/paulboocock",
+      "html_url": "https://github.com/paulboocock",
+      "followers_url": "https://api.github.com/users/paulboocock/followers",
+      "following_url": "https://api.github.com/users/paulboocock/following{/other_user}",
+      "gists_url": "https://api.github.com/users/paulboocock/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/paulboocock/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/paulboocock/subscriptions",
+      "organizations_url": "https://api.github.com/users/paulboocock/orgs",
+      "repos_url": "https://api.github.com/users/paulboocock/repos",
+      "events_url": "https://api.github.com/users/paulboocock/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/paulboocock/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "d3e6c3feb9b8a26b5bf46921a48393918e2ab27a",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/d3e6c3feb9b8a26b5bf46921a48393918e2ab27a",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/d3e6c3feb9b8a26b5bf46921a48393918e2ab27a"
+      }
+    ]
+  }
+]
