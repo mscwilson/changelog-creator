@@ -4,6 +4,12 @@ inputs:
   number:
     description: "Issue number"
     required: true
+  other:
+    description: "Misc"
+    required: false
 runs:
   using: "docker"
   image: "Dockerfile"
+  args:
+    - ${{ inputs.number }}
+    - ${{ inputs.other }}
