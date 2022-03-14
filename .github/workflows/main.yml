@@ -1,4 +1,4 @@
-name: walkthrough
+name: test
 
 on: [create, push]
 
@@ -11,6 +11,6 @@ jobs:
 
       - name: Test
         id: test
-        uses: mscwilson/changelog-test/issue_labels@v2
+        uses: mscwilson/changelog-test/issue_labels@v1.1
         with:
           number: ${ GITHUB_REF }
