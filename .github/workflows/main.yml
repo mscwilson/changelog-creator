@@ -1,6 +1,6 @@
 name: walkthrough
 
-on: create
+on: [create, push]
 
 jobs:
   test:
