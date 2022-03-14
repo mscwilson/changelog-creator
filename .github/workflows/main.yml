@@ -1,20 +1,42 @@
-name: walkthrough
+name: test
 
-on: [push]
+on:
+  create:
+  push:
+  pull_request:
+    types: [opened, merged]
 
 jobs:
-  hello_world_job:
+  test:
     runs-on: ubuntu-latest
-    name: A job to say hello
 
     steps:
       - uses: actions/checkout@v2
 
-      - name: Hello world action step
-        id: hello
-        uses: mscwilson/changelog-test@v2
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
+      - name: Extract issue number from branch name
+        id: issue_number
+        run: |
+          echo $GITHUB_REF_NAME
+          echo ${GITHUB_REF_NAME}
+          echo $GITHUB_REF_NAME | grep -oE "[0-9]+"
+          echo "::set-output name=issue_number::$(echo $GITHUB_REF_NAME | grep -oE '[0-9]+')"
+          echo issue_number
+
+      - name: Setting whatever
+        id: whatever
+        run: echo "::set-output name=whatever::'a lovely string'"
+
+      - name: Test
+        id: test
+        uses: mscwilson/changelog-test/issue_labels@1.1
+        env:
+          MY_ENV: "this is my_env"
+          OTHER_ENV: ${{ github.ref }}
         with:
-          who-to-greet: "Ace"
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+          number: ${{ steps.issue_number.outputs.issue_number }}
+          other: ${{ steps.whatever.outputs.whatever }}
