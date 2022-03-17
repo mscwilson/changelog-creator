@@ -13,5 +13,5 @@ jobs:
         id: test
         uses: mscwilson/changelog-test/issue_labels@1.1
         with:
-          number: ${ GITHUB_REF }
-          other: "a string"
+          number: ${{ GITHUB_REF }}
+          other: ${{ github }}
