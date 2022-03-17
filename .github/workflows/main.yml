@@ -9,9 +9,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
       - name: Test
         id: test
         uses: mscwilson/changelog-test/issue_labels@1.1
         with:
-          number: ${{ GITHUB_REF }}
+          number: ${ github.ref }
           other: ${{ github }}
