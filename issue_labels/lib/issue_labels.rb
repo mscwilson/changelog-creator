@@ -14,10 +14,5 @@ puts events.size
 
 recent_event = events[0]
 puts recent_event.fields
-puts recent_event[:actor]
-puts recent_event.actor
+puts recent_event.to_h
 
-content = recent_event.content
-puts content
-puts "hmm"
-puts content.to_h
