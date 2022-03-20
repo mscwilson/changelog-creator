@@ -1,0 +1,79 @@
+{
+  "sha": "ba2cd192168f78d41750e9f00faad66b9a35915a",
+  "node_id": "C_kwDOAUAMJ9oAKGJhMmNkMTkyMTY4Zjc4ZDQxNzUwZTlmMDBmYWFkNjZiOWEzNTkxNWE",
+  "commit": {
+    "author": {
+      "name": "Paul Laturaze",
+      "email": "AcidFlow@users.noreply.github.com",
+      "date": "2021-11-30T11:19:04Z"
+    },
+    "committer": {
+      "name": "GitHub",
+      "email": "noreply@github.com",
+      "date": "2021-11-30T11:19:04Z"
+    },
+    "message": "Allow Emitter to use a custom ExecutorService (close #278)\n\nThis commit allows a user to use its own ExecutorService in the Emitter\r\nto have a more granular control over threads created by an Emitter.\r\n\r\nCo-authored-by: Paul Laturaze <paul.laturaze@zivver.com>",
+    "tree": {
+      "sha": "3db76854d3d6dcefb2da6e47fd1166e62b4b417d",
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/3db76854d3d6dcefb2da6e47fd1166e62b4b417d"
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/ba2cd192168f78d41750e9f00faad66b9a35915a",
+    "comment_count": 0,
+    "verification": {
+      "verified": true,
+      "reason": "valid",
+      "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJhpgioCRBK7hj4Ov3rIwAAGboIADC1FP7oA5/vDUdUdiEcjNVN\nZj6lZAUpEt+N5H6Rkmh1iTUEQxfPEXVnOf5t3YNvsCBmN7BzKPaipaRUJfNPkhV/\nyv8oBL4xQ/vdlEEbsrLzurrZ6naDpj/lbLPOQsVbbhqeR2HmJx2f4tjkrAXGs/O5\nHDSs8KzF+ffH/Ac9znYntYy2DozH/iM+ikxjknIKLBlsI5CoLfHruurqTNqEWKmt\nYs4Lz2Sz1uktKuhKrWXWsE3fhvirDZ8qUWZzDzJuNCNDzcgDKjr9D8TFHbC+pCrM\nmm/ci5Gu5xmOj5hjXp0g8pyR/AJhD8Rpmf595azYaY64X3jFukxb7eVbrDBpEMw=\n=91Dp\n-----END PGP SIGNATURE-----\n",
+      "payload": "tree 3db76854d3d6dcefb2da6e47fd1166e62b4b417d\nparent f19fcb4c00f63db931c3775580278cc414015215\nauthor Paul Laturaze <AcidFlow@users.noreply.github.com> 1638271144 +0100\ncommitter GitHub <noreply@github.com> 1638271144 +0000\n\nAllow Emitter to use a custom ExecutorService (close #278)\n\nThis commit allows a user to use its own ExecutorService in the Emitter\r\nto have a more granular control over threads created by an Emitter.\r\n\r\nCo-authored-by: Paul Laturaze <paul.laturaze@zivver.com>"
+    }
+  },
+  "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/ba2cd192168f78d41750e9f00faad66b9a35915a",
+  "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/ba2cd192168f78d41750e9f00faad66b9a35915a",
+  "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/ba2cd192168f78d41750e9f00faad66b9a35915a/comments",
+  "author": {
+    "login": "AcidFlow",
+    "id": 2779316,
+    "node_id": "MDQ6VXNlcjI3NzkzMTY=",
+    "avatar_url": "https://avatars.githubusercontent.com/u/2779316?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/AcidFlow",
+    "html_url": "https://github.com/AcidFlow",
+    "followers_url": "https://api.github.com/users/AcidFlow/followers",
+    "following_url": "https://api.github.com/users/AcidFlow/following{/other_user}",
+    "gists_url": "https://api.github.com/users/AcidFlow/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/AcidFlow/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/AcidFlow/subscriptions",
+    "organizations_url": "https://api.github.com/users/AcidFlow/orgs",
+    "repos_url": "https://api.github.com/users/AcidFlow/repos",
+    "events_url": "https://api.github.com/users/AcidFlow/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/AcidFlow/received_events",
+    "type": "User",
+    "site_admin": false
+  },
+  "committer": {
+    "login": "web-flow",
+    "id": 19864447,
+    "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+    "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/web-flow",
+    "html_url": "https://github.com/web-flow",
+    "followers_url": "https://api.github.com/users/web-flow/followers",
+    "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+    "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+    "organizations_url": "https://api.github.com/users/web-flow/orgs",
+    "repos_url": "https://api.github.com/users/web-flow/repos",
+    "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/web-flow/received_events",
+    "type": "User",
+    "site_admin": false
+  },
+  "parents": [
+    {
+      "sha": "f19fcb4c00f63db931c3775580278cc414015215",
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/f19fcb4c00f63db931c3775580278cc414015215",
+      "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/f19fcb4c00f63db931c3775580278cc414015215"
+    }
+  ]
+}
