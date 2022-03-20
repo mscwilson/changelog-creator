@@ -6,12 +6,7 @@ on:
   pull_request:
     types: [opened, merged]
 
-permissions:
-  actions: read|write|none
-  issues: read|write|none
-  discussions: read|write|none
-  pull-requests: read|write|none
-  statuses: read|write|none
+permissions: write-all
 
 jobs:
   build:
