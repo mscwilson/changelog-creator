@@ -19,8 +19,8 @@ jobs:
         with:
           bundler-cache: true # runs ‘bundle install’ and caches installed gems automatically
 
-      - name: Where am I?
-        run: pwd
+      - name: Print ENV
+        run: ENV
 
       - name: Run ruby script
         uses: mscwilson/changelog-test/issue_labels@1.3
