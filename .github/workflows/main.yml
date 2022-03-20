@@ -23,7 +23,7 @@ jobs:
         run: pwd
 
       - name: Run ruby script
-        uses: mscwilson/changelog-test/issue_labels@1.2
+        uses: mscwilson/changelog-test/issue_labels@1.3
         env:
           ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MY_ENV: "this is my_env"
