@@ -37,7 +37,7 @@ describe ChangelogCreator do
   end
 
   describe "extracts relevant commit data" do
-      it "parses one of my commits into a hash" do
+    it "parses one of my commits into a hash" do
       filename = "./lib/single_commit_me.json"
       parsed_json = @creator.read_commits_from_file(filename)
 
@@ -69,7 +69,6 @@ describe ChangelogCreator do
   end
 
   describe "extracts relevant issue label data" do
-
     it "parses a set of labels including 'type:enhancement'" do
       json = @creator.fetch_issue_labels("snowplow", "snowplow-java-tracker", "286")
       results = @creator.process_issue_labels(json)
@@ -83,9 +82,7 @@ describe ChangelogCreator do
 
   it "removes commits already in the CHANGELOG" do
     changelog = "./lib/truncated_CHANGELOG"
-
   end
-
 
   # # would be better to extract this from the tags
   # # use the GH API
