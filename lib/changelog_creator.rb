@@ -1,7 +1,7 @@
 require "json"
 require "date"
-require 'net/http'
-require 'uri'
+require "net/http"
+require "uri"
 
 # puts "Hello, #{ARGV[0]}"
 
