@@ -20,4 +20,4 @@ puts recent_event.actor
 content = recent_event.content
 puts content
 puts "hmm"
-puts Base64.decode64(content)
+puts content.to_h
