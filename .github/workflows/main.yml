@@ -1,4 +1,4 @@
-name: test
+name: "my Ruby workflow"
 
 on:
   create:
@@ -6,37 +6,27 @@ on:
   pull_request:
     types: [opened, merged]
 
+permissions: read-all|write-all
+
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true # runs ‘bundle install’ and caches installed gems automatically
 
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: echo "$GITHUB_CONTEXT"
 
-      - name: Extract issue number from branch name
-        id: issue_number
-        run: |
-          echo $GITHUB_REF_NAME
-          echo ${GITHUB_REF_NAME}
-          echo $GITHUB_REF_NAME | grep -oE "[0-9]+"
-          echo "::set-output name=issue_number::$(echo $GITHUB_REF_NAME | grep -oE '[0-9]+')"
-          echo issue_number
-
-      - name: Setting whatever
-        id: whatever
-        run: echo "::set-output name=whatever::'a lovely string'"
-
-      - name: Test
-        id: test
-        uses: mscwilson/changelog-test/issue_labels@1.1
+      - name: Run ruby script
+        uses: mscwilson/changelog-test/issue_labels@1.2
         env:
+          ACESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MY_ENV: "this is my_env"
-          OTHER_ENV: ${{ github.ref }}
-        with:
-          number: ${{ steps.issue_number.outputs.issue_number }}
-          other: ${{ steps.whatever.outputs.whatever }}
+          OTHER_ENV: ${{ toJSON(github) }}
