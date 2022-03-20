@@ -19,9 +19,7 @@ if recent_event[:type] == "CreateEvent"
     puts "added in progress label"
   end
 
-end
-
-if recent_event[:type] == "PullRequestEvent"
+elsif recent_event[:type] == "PullRequestEvent"
   action = recent_event[:payload][:action]
   title = recent_event[:payload][:pull_request][:title]
   issue_number = title.match(PR_COMMIT_PATTERN)[2]
@@ -33,5 +31,8 @@ if recent_event[:type] == "PullRequestEvent"
     client.add_labels_to_an_issue(ENV["GITHUB_REPOSITORY"], issue_number, ["status:completed"])
     puts "added completed label"
   end
+
+else
+  puts "not a relevant type of event"
 
 end
