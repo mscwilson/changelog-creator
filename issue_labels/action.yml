@@ -1,15 +1,10 @@
 name: "Issue Labeller"
 description: "Adds appropriate status label to issue"
-inputs:
-  number:
-    description: "Issue number"
-    required: true
-  other:
-    description: "Misc"
-    required: false
+branding:
+  icon: filter
+  color: red
 runs:
-  using: "docker"
-  image: "Dockerfile"
-  args:
-    - ${{ inputs.number }}
-    - ${{ inputs.other }}
+  using: "composite"
+  steps:
+    - run: bundle exec ruby lib/issue_labels.rb
+      shell: bash
