@@ -16,6 +16,7 @@ if recent_event[:type] == "CreateEvent"
   if type == "branch"
     issue_number = branch_name.match(BRANCH_NAME_PATTERN)[0]
     client.add_labels_to_an_issue(ENV["GITHUB_REPOSITORY"], issue_number, ["status:in_progress"])
+    puts "added in progress label"
   end
 
 end
@@ -27,8 +28,10 @@ if recent_event[:type] == "PullRequestEvent"
 
   if action == "opened"
     client.add_labels_to_an_issue(ENV["GITHUB_REPOSITORY"], issue_number, ["status:has_pr"])
+    puts "added has pr label"
   elsif action == "closed"
     client.add_labels_to_an_issue(ENV["GITHUB_REPOSITORY"], issue_number, ["status:completed"])
+    puts "added completed label"
   end
 
 end
