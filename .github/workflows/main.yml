@@ -19,14 +19,12 @@ jobs:
         with:
           bundler-cache: true # runs ‘bundle install’ and caches installed gems automatically
 
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
+      - name: Where am I?
+        run: pwd
 
       - name: Run ruby script
         uses: mscwilson/changelog-test/issue_labels@1.2
         env:
-          ACESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MY_ENV: "this is my_env"
           OTHER_ENV: ${{ toJSON(github) }}
