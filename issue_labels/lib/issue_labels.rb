@@ -1,3 +1,3 @@
 puts "Hello from issue_labels"
-puts "Maybe this is? #{MY_ENV}"
-puts "And this is? #{ARGV[1]}"
+puts "Maybe this is? #{ENV['MY_ENV']}"
+puts "And this is? #{ENV['OTHER_ENV']}"
