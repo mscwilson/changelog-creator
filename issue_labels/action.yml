@@ -6,5 +6,7 @@ branding:
 runs:
   using: "composite"
   steps:
-    - run: bundle exec ruby ./changelog-test/issue_labels/lib/issue_labels.rb
+    - run: |
+        pwd
+        ls
       shell: bash
