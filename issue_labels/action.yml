@@ -1,4 +1,4 @@
-name: "Issue Labeller"
+name: "Update status labels"
 description: "Adds appropriate status label to issue"
 branding:
   icon: filter
@@ -6,5 +6,5 @@ branding:
 runs:
   using: "composite"
   steps:
-    - run: bundle exec ruby ./issue_labels/lib/issue_labels.rb
+    - run: bundle exec ruby ./changelog-test/issue_labels/lib/issue_labels.rb
       shell: bash
