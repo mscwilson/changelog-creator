@@ -6,7 +6,7 @@ branding:
 runs:
   using: "composite"
   steps:
-    - run: |
-        pwd
-        ls
+    - run: pwd
       shell: bash
+
+    - run: ls
