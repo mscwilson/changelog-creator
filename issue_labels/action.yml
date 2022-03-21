@@ -10,3 +10,4 @@ runs:
       shell: bash
 
     - run: ls
+      shell: bash
