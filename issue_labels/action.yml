@@ -6,7 +6,10 @@ branding:
 runs:
   using: "composite"
   steps:
-    - run: pwd
+    - name: print pwd
+      env:
+        PWD: ${{ pwd }}
+      run: echo "$PWD"
       shell: bash
 
     - run: ls
