@@ -60,7 +60,8 @@ class ChangelogCreator
   end
 
   def generate_log_for_new_commits(commits_path, changelog_path, version)
-    commits = extract_commit_data(read_commits(commits_path))
+    p "hello"
+    commits = extract_commit_data(read_commits_from_file(commits_path))
     existing_changelog = read_changelog(changelog_path)
 
     # Commits for the new version won't be in the changelog already
@@ -73,5 +74,7 @@ class ChangelogCreator
   end
 end
 
-# creator = ChangelogCreator.new
+creator = ChangelogCreator.new
 # puts creator.generate_log_for_new_commits(ARGV[0], ARGV[1], "0.12.0")
+
+api_results = creator.read_commits_from_file(ARGV[0])
