@@ -2,23 +2,30 @@ require "octokit"
 require "json"
 
 class GithubApiConnection
-
-  def initialize
-    @client = Octokit::Client.new(access_token: ENV["ACCESS_TOKEN"])
+  def initialize(client = Octokit::Client)
+    @client = client.new(access_token: ENV["ACCESS_TOKEN"])
+    @repo_name = ENV["GITHUB_REPOSITORY"]
   end
 
-  def pr_opened?(client = @client)
-    events = client.repository_events(ENV["GITHUB_REPOSITORY"])
+  def pr_opened?
+    events = @client.repository_events(@repo_name)
     parsed_events = JSON.parse(events)
     return nil if parsed_events[0]["type"] != "PullRequestEvent"
     return nil if parsed_events[0]["payload"]["action"] != "opened"
 
     head_ref = parsed_events[0]["payload"]["pull_request"]["head"]["ref"]
     base_ref = parsed_events[0]["payload"]["pull_request"]["base"]["ref"]
-    { head_ref: head_ref, base_ref: base_ref }
+    { head_ref:, base_ref: }
+  end
+
+  def commits_from_branch(branch_name)
+    @client.commits(@repo_name, sha: branch_name)
   end
 
 end
+
+
+
 
 # client = Octokit::Client.new(access_token: ENV["ACCESS_TOKEN"])
 

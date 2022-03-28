@@ -1,0 +1,323 @@
+[
+  {
+    "sha": "4c8931570962d9d3287f16a711d425f48ee51116",
+    "node_id": "C_kwDOAUAMJ9oAKDRjODkzMTU3MDk2MmQ5ZDMyODdmMTZhNzExZDQyNWY0OGVlNTExMTY",
+    "commit": {
+      "author": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2022-03-17T16:40:57Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2022-03-17T16:40:57Z"
+      },
+      "message": "Choose HTTP response codes not to retry (close #316)\n\n* Set response codes for no retry\r\n\r\n* Don't add retry delay after a specified no retry code\r\n\r\n* Correctly retry after sending attempt catch\r\n\r\n* Return null from getBatchEvents() if there aren't enough events",
+      "tree": {
+        "sha": "7c792515765286d5324bb708ee2ba87886bf0367",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/7c792515765286d5324bb708ee2ba87886bf0367"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/4c8931570962d9d3287f16a711d425f48ee51116",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJiM2SZCRBK7hj4Ov3rIwAAbN8IAB43jk9wUnBMMAjq1pm+N958\nvWnzakz91KCXlUQbI3SVX7XfxDOVNDqBKzplW9QRHg25oZ8gqqQjwQzzJdo5oYDp\nBFXpKYdLvYjk2GZMpixHEmKHSmnNTgz9QJlhTvBXvAOYpLZpI4FZKd4uhbndn1mL\nkkFTBd93ycHMKMC7cdudh8Ptb0IjnEemvZMa+VPTFbyWXFqE9xQ79jhQjCrIL5cL\ngVJC3oN8WktK06vi4YJPAgEeviyqEb1nfY7camhdfD1lqY+Vt6UStcNJ4QLV3HMo\nYgbKsF5NO2IR4/N+UKX8xRrlitGdt8okQ3Lx4w/lONJaEgYH81mAO8p9ITzGBco=\n=ioKM\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 7c792515765286d5324bb708ee2ba87886bf0367\nparent 71ee001ae3dfca25d2dbb321aa697b616c485487\nauthor Miranda Wilson <miranda@snowplowanalytics.com> 1647535257 +0000\ncommitter GitHub <noreply@github.com> 1647535257 +0000\n\nChoose HTTP response codes not to retry (close #316)\n\n* Set response codes for no retry\r\n\r\n* Don't add retry delay after a specified no retry code\r\n\r\n* Correctly retry after sending attempt catch\r\n\r\n* Return null from getBatchEvents() if there aren't enough events"
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/4c8931570962d9d3287f16a711d425f48ee51116",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/4c8931570962d9d3287f16a711d425f48ee51116",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/4c8931570962d9d3287f16a711d425f48ee51116/comments",
+    "author": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "71ee001ae3dfca25d2dbb321aa697b616c485487",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/71ee001ae3dfca25d2dbb321aa697b616c485487",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/71ee001ae3dfca25d2dbb321aa697b616c485487"
+      }
+    ]
+  },
+  {
+    "sha": "b3c6b1176c1b8768915a168c8096dc045a2243e6",
+    "node_id": "C_kwDOAUAMJ9oAKGIzYzZiMTE3NmMxYjg3Njg5MTVhMTY4YzgwOTZkYzA0NWEyMjQzZTY",
+    "commit": {
+      "author": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2022-03-25T09:49:54Z"
+      },
+      "committer": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2022-03-25T09:49:54Z"
+      },
+      "message": "Merge branch 'release/0.12.0'",
+      "tree": {
+        "sha": "8c9cc1960d9a11c2b5f0f3a3b834548ce2bc6ae4",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/8c9cc1960d9a11c2b5f0f3a3b834548ce2bc6ae4"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/b3c6b1176c1b8768915a168c8096dc045a2243e6",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/b3c6b1176c1b8768915a168c8096dc045a2243e6",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/b3c6b1176c1b8768915a168c8096dc045a2243e6",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/b3c6b1176c1b8768915a168c8096dc045a2243e6/comments",
+    "author": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "117995a1a5b551abcdbed015425282b30f4c79ea",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/117995a1a5b551abcdbed015425282b30f4c79ea",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/117995a1a5b551abcdbed015425282b30f4c79ea"
+      },
+      {
+        "sha": "f4dbc060707f685f28da25986b6775c0067d8bb0",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/f4dbc060707f685f28da25986b6775c0067d8bb0",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/f4dbc060707f685f28da25986b6775c0067d8bb0"
+      }
+    ]
+  },
+  {
+    "sha": "ba2cd192168f78d41750e9f00faad66b9a35915a",
+    "node_id": "C_kwDOAUAMJ9oAKGJhMmNkMTkyMTY4Zjc4ZDQxNzUwZTlmMDBmYWFkNjZiOWEzNTkxNWE",
+    "commit": {
+      "author": {
+        "name": "Paul Laturaze",
+        "email": "AcidFlow@users.noreply.github.com",
+        "date": "2021-11-30T11:19:04Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2021-11-30T11:19:04Z"
+      },
+      "message": "Allow Emitter to use a custom ExecutorService (close #278)\n\nThis commit allows a user to use its own ExecutorService in the Emitter\r\nto have a more granular control over threads created by an Emitter.\r\n\r\nCo-authored-by: Paul Laturaze <paul.laturaze@zivver.com>",
+      "tree": {
+        "sha": "3db76854d3d6dcefb2da6e47fd1166e62b4b417d",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/3db76854d3d6dcefb2da6e47fd1166e62b4b417d"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/ba2cd192168f78d41750e9f00faad66b9a35915a",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJhpgioCRBK7hj4Ov3rIwAAGboIADC1FP7oA5/vDUdUdiEcjNVN\nZj6lZAUpEt+N5H6Rkmh1iTUEQxfPEXVnOf5t3YNvsCBmN7BzKPaipaRUJfNPkhV/\nyv8oBL4xQ/vdlEEbsrLzurrZ6naDpj/lbLPOQsVbbhqeR2HmJx2f4tjkrAXGs/O5\nHDSs8KzF+ffH/Ac9znYntYy2DozH/iM+ikxjknIKLBlsI5CoLfHruurqTNqEWKmt\nYs4Lz2Sz1uktKuhKrWXWsE3fhvirDZ8qUWZzDzJuNCNDzcgDKjr9D8TFHbC+pCrM\nmm/ci5Gu5xmOj5hjXp0g8pyR/AJhD8Rpmf595azYaY64X3jFukxb7eVbrDBpEMw=\n=91Dp\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 3db76854d3d6dcefb2da6e47fd1166e62b4b417d\nparent f19fcb4c00f63db931c3775580278cc414015215\nauthor Paul Laturaze <AcidFlow@users.noreply.github.com> 1638271144 +0100\ncommitter GitHub <noreply@github.com> 1638271144 +0000\n\nAllow Emitter to use a custom ExecutorService (close #278)\n\nThis commit allows a user to use its own ExecutorService in the Emitter\r\nto have a more granular control over threads created by an Emitter.\r\n\r\nCo-authored-by: Paul Laturaze <paul.laturaze@zivver.com>"
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/ba2cd192168f78d41750e9f00faad66b9a35915a",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/ba2cd192168f78d41750e9f00faad66b9a35915a",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/ba2cd192168f78d41750e9f00faad66b9a35915a/comments",
+    "author": {
+      "login": "AcidFlow",
+      "id": 2779316,
+      "node_id": "MDQ6VXNlcjI3NzkzMTY=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2779316?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/AcidFlow",
+      "html_url": "https://github.com/AcidFlow",
+      "followers_url": "https://api.github.com/users/AcidFlow/followers",
+      "following_url": "https://api.github.com/users/AcidFlow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/AcidFlow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/AcidFlow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/AcidFlow/subscriptions",
+      "organizations_url": "https://api.github.com/users/AcidFlow/orgs",
+      "repos_url": "https://api.github.com/users/AcidFlow/repos",
+      "events_url": "https://api.github.com/users/AcidFlow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/AcidFlow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "f19fcb4c00f63db931c3775580278cc414015215",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/f19fcb4c00f63db931c3775580278cc414015215",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/f19fcb4c00f63db931c3775580278cc414015215"
+      }
+    ]
+  },
+  {
+    "sha": "f4dbc060707f685f28da25986b6775c0067d8bb0",
+    "node_id": "C_kwDOAUAMJ9oAKGY0ZGJjMDYwNzA3ZjY4NWYyOGRhMjU5ODZiNjc3NWMwMDY3ZDhiYjA",
+    "commit": {
+      "author": {
+        "name": "Miranda Wilson",
+        "email": "miranda@snowplowanalytics.com",
+        "date": "2022-03-24T17:41:07Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2022-03-24T17:41:07Z"
+      },
+      "message": "Prepare for 0.12.0 release\n\n* Remove unused imports in simple-console\r\n\r\n* Update version number\r\n\r\n* Note which Event.Builder methods are required\r\n\r\n* Add link to Javadocs to README\r\n\r\n* Update CHANGELOG",
+      "tree": {
+        "sha": "8c9cc1960d9a11c2b5f0f3a3b834548ce2bc6ae4",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/trees/8c9cc1960d9a11c2b5f0f3a3b834548ce2bc6ae4"
+      },
+      "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/git/commits/f4dbc060707f685f28da25986b6775c0067d8bb0",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJiPK0zCRBK7hj4Ov3rIwAANusIAIHs2b/WllclcMO+RIsV1jZO\nysxn9fiRKxJuBwogPiWgJ9jIGeksMlyQEhHKN7n6SU/5TY59yzS7ue97ICI97v+e\n3Xvb0pI/BjHqDkjPqCPbcKJWqI6BbCUdrgyDFKeDKkVhcbacCD7oNgMxw6cjOx2U\nLFdwD+gndJPTa72YCXlzbrJk0Pf4gFM2Vv6Lq/mwsg56w+FjJQXzitD9uwAm8BK4\nKyJJkGDzh6zyzf3guNSTLwntfWhWUnSaUIsPx8aGau8nsK476HULDJDGKO7TVzXq\ni7+cYfnIXzO6ba7RcItjrdJFNVBXtoIpu8qPwTxRRvTGFZyq5Llwwl6Z+pmsYg0=\n=JkhQ\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 8c9cc1960d9a11c2b5f0f3a3b834548ce2bc6ae4\nparent 4c8931570962d9d3287f16a711d425f48ee51116\nauthor Miranda Wilson <miranda@snowplowanalytics.com> 1648143667 +0000\ncommitter GitHub <noreply@github.com> 1648143667 +0000\n\nPrepare for 0.12.0 release\n\n* Remove unused imports in simple-console\r\n\r\n* Update version number\r\n\r\n* Note which Event.Builder methods are required\r\n\r\n* Add link to Javadocs to README\r\n\r\n* Update CHANGELOG"
+      }
+    },
+    "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/f4dbc060707f685f28da25986b6775c0067d8bb0",
+    "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/f4dbc060707f685f28da25986b6775c0067d8bb0",
+    "comments_url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/f4dbc060707f685f28da25986b6775c0067d8bb0/comments",
+    "author": {
+      "login": "mscwilson",
+      "id": 10324709,
+      "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "html_url": "https://github.com/mscwilson",
+      "followers_url": "https://api.github.com/users/mscwilson/followers",
+      "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+      "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+      "repos_url": "https://api.github.com/users/mscwilson/repos",
+      "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "4c8931570962d9d3287f16a711d425f48ee51116",
+        "url": "https://api.github.com/repos/snowplow/snowplow-java-tracker/commits/4c8931570962d9d3287f16a711d425f48ee51116",
+        "html_url": "https://github.com/snowplow/snowplow-java-tracker/commit/4c8931570962d9d3287f16a711d425f48ee51116"
+      }
+    ]
+  }
+]
