@@ -5,13 +5,36 @@ require "uri"
 
 class ChangelogCreator
   COMMIT_MESSAGE_PATTERN = /\A([\w\s.,'"-:`@]+) \((?:close|closes|fixes|fix) \#(\d+)\)$/
+  RELEASE_BRANCH_PATTERN = /release\/(\d*\.*\d*\.*\d*\.*)/
   RELEASE_COMMIT_PATTERN = /Prepare for \d*\.*\d*\.*\d*\.*\ *release/
   EMAIL_PATTERN = /\w+@snowplowanalytics\.com/
+
+  def simple_changelog_block(branch_name, commits_json)
+    version = extract_version_number(branch_name)
+    return nil if version.nil?
+
+    relevant_commits = extract_relevant_commit_data(commits_json)
+    title = "#{version} (#{Date.today.strftime('%Y-%m-%d')})"
+
+    relevant_commits.map! do |commit|
+      if commit[:snowplower?]
+        "#{commit[:message]} (##{commit[:issue]})"
+      else
+        "#{commit[:message]} (##{commit[:issue]}) - thanks @#{commit[:author]}!"
+      end
+    end
+    "Version #{title}\n-----------------------\n#{relevant_commits.join("\n")}\n"
+  end
 
   def extract_relevant_commit_data(commits_json)
     parsed_commits = JSON.parse(commits_json)
     new_commits = parsed_commits.take_while { |commit| !RELEASE_COMMIT_PATTERN.match(commit["commit"]["message"]) }
     new_commits.map { |commit| process_single_commit(commit) }.compact
+  end
+
+  def extract_version_number(branch_name)
+    version = branch_name.match(RELEASE_BRANCH_PATTERN)[1]
+    version.count(".") == 1 ? "#{version}.0" : version
   end
 
   private # ------------------------------
@@ -28,46 +51,8 @@ class ChangelogCreator
       snowplower?: email_match.nil? ? false : true }
   end
 
-  # COMMIT_MESSAGE_PATTERN = /\A([\w\s.,'"-:`@]+)\((?:close|closes|fixes|fix) \#(\d+)\)$/
-  # EMAIL_PATTERN = /\w+@snowplowanalytics\.com/
 
-  # def read_commits_from_file(file_path)
-  #   raise StandardError, "Must be a JSON file" if file_path[-5..] != ".json"
 
-  #   JSON.parse(File.read(file_path))
-  # end
-
-  # def read_changelog(file_path)
-  #   raise StandardError, "Must be a changelog file" if file_path[-9..] != "CHANGELOG"
-
-  #   File.open(file_path).readlines.map(&:chomp)
-  # end
-
-  # def fetch_commits(owner_name, repo_name, branch_name)
-  #   uri = URI.parse("https://api.github.com/repos/#{owner_name}/#{repo_name}/commits?sha=#{branch_name}")
-  #   response = Net::HTTP.get_response(uri)
-
-  #   JSON.parse(response.body)
-  # end
-
-  # def fetch_issue_labels(owner_name, repo_name, issue_number)
-  #   uri = URI.parse("https://api.github.com/repos/#{owner_name}/#{repo_name}/issues/#{issue_number}/labels")
-  #   response = Net::HTTP.get_response(uri)
-
-  #   JSON.parse(response.body)
-  # end
-
-  # def process_single_commit(commit_hash)
-  #   message_match = commit_hash["commit"]["message"].match(COMMIT_MESSAGE_PATTERN)
-  #   return nil if message_match.nil?
-
-  #   email_match = commit_hash["commit"]["author"]["email"].match(EMAIL_PATTERN)
-
-  #   { message: message_match[1].strip,
-  #     issue: message_match[2],
-  #     author: commit_hash["author"]["login"],
-  #     snowplower?: email_match.nil? ? false : true }
-  # end
 
   # def process_issue_labels(labels)
   #   possible_types = ["type:enhancement", "type:defect", "type:admin"]
