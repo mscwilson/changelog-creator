@@ -1,19 +1,19 @@
 require "./lib/github_api_connection"
+require "./lib/changelog_creator"
 require "octokit"
-require "base64"
 
-puts "hello from changelog-creator"
 
-client = Octokit::Client.new(access_token: "hello")
+puts "Starting Changelog Creator"
 
-# connection = GithubApiConnection.new(client: client, repo_name: "mscwilson/try-out-actions-here")
-# # connection.add_file
-# p connection.get_file(path: "./add_me_to_repo.md")
-# p content = file[:content]
-# p Base64.decode64(file)
+client = Octokit::Client.new(access_token: "secret")
 
-connection = GithubApiConnection.new(client: client, repo_name: "snowplow/snowplow-java-tracker")
-p connection.get_file(path: "CHANGELOG")
-# # connection.add_file
-# content = connection.get_file[:content]
-# p Base64.decode64(content)
+connection = GithubApiConnection.new(client: client, repo_name: "mscwilson/changelog-creator")
+creator = ChangelogCreator.new
+
+
+# connection.update_file(commit_message: "Testing update_contents",
+#    file_contents: "adding stuff to a file on a branch",
+#     file_path: "./new_file",
+#      branch: "this-is-a-branch")
+
+connection.pr_opened_to_main?

@@ -8,14 +8,28 @@ class GithubApiConnection
     @repo_name = repo_name
   end
 
-  def pr_opened?
-    events = @client.repository_events(@repo_name)
-    parsed_events = JSON.parse(events)
-    return nil if parsed_events[0]["type"] != "PullRequestEvent"
-    return nil if parsed_events[0]["payload"]["action"] != "opened"
+  def repo_events
+    @client.repository_events(@repo_name)
+  end
 
-    head_ref = parsed_events[0]["payload"]["pull_request"]["head"]["ref"]
-    base_ref = parsed_events[0]["payload"]["pull_request"]["base"]["ref"]
+  def pr_opened_to_main?
+    recent_event = repo_events[0]
+    if recent_event["type"] != "PullRequestEvent" || recent_event["payload"]["action"] != "opened"
+      puts "The most recent event was not PR creation"
+      return false
+    end
+
+    base_ref = recent_event["payload"]["pull_request"]["base"]["ref"]
+    return true if %w[main master].include?(base_ref)
+
+    puts "This PR was not opened against main/master branch"
+    false
+  end
+
+  def pr_branches
+    pr = repo_events[0]["payload"]["pull_request"]
+    head_ref = pr["head"]["ref"]
+    base_ref = pr["base"]["ref"]
     { head_ref:, base_ref: }
   end
 
@@ -25,26 +39,10 @@ class GithubApiConnection
 
   def get_file(path:)
     file = @client.contents(@repo_name, path:)
-    Base64.decode64(file[:content])
+    { sha: file[:sha], contents: Base64.decode64(file[:content]) }
   end
 
-  def add_file
-    addition = @client.create_contents(@repo_name, "./add_me_to_repo.md", "Adding content", "contents of file???")
-    p addition.to_h
-
+  def update_file(commit_message:, file_contents:, file_path:, sha: nil, branch: nil)
+    @client.update_contents(@repo_name, file_path, commit_message, sha, file_contents, { branch: })
   end
-
 end
-
-# client = Octokit::Client.new(access_token: ENV["ACCESS_TOKEN"])
-
-# events = client.repository_events(ENV["GITHUB_REPOSITORY"])
-
-# List events for a repo
-# #repository_events(repo, options = {})
-
-# if a PR was just created, most recent event has the details??
-
-# probably one of these methods to add the file
-# #create_commit(repo, message, tree, parents = nil, options = {})
-# #update_contents(repo, path, message, sha, content = nil, options = {})
