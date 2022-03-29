@@ -1,5 +1,6 @@
 require "octokit"
 require "json"
+require "base64"
 
 class GithubApiConnection
   def initialize(client: Octokit::Client.new(access_token: ENV["ACCESS_TOKEN"]), repo_name: ENV["GITHUB_REPOSITORY"])
@@ -22,11 +23,17 @@ class GithubApiConnection
     @client.commits(@repo_name, sha: branch_name)
   end
 
+  def get_file(path:)
+    file = @client.contents(@repo_name, path:)
+    Base64.decode64(file[:content])
+  end
+
   def add_file
-    addition = @client.create_contents(@repo_name, "add_me_to_repo.md", "Adding content")
+    addition = @client.create_contents(@repo_name, "./add_me_to_repo.md", "Adding content", "contents of file???")
     p addition.to_h
 
   end
+
 end
 
 # client = Octokit::Client.new(access_token: ENV["ACCESS_TOKEN"])
