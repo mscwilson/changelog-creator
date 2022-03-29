@@ -9,11 +9,11 @@ class ChangelogCreator
   RELEASE_COMMIT_PATTERN = /Prepare for \d*\.*\d*\.*\d*\.*\ *release/
   EMAIL_PATTERN = /\w+@snowplowanalytics\.com/
 
-  def simple_changelog_block(branch_name, commits_json)
+  def simple_changelog_block(branch_name:, commits:)
     version = extract_version_number(branch_name)
-    return nil if version.nil?
+    return "" if version.nil?
 
-    relevant_commits = extract_relevant_commit_data(commits_json)
+    relevant_commits = extract_relevant_commit_data(commits)
     title = "#{version} (#{Date.today.strftime('%Y-%m-%d')})"
 
     relevant_commits.map! do |commit|
@@ -26,9 +26,8 @@ class ChangelogCreator
     "Version #{title}\n-----------------------\n#{relevant_commits.join("\n")}\n"
   end
 
-  def extract_relevant_commit_data(commits_json)
-    parsed_commits = JSON.parse(commits_json)
-    new_commits = parsed_commits.take_while { |commit| !RELEASE_COMMIT_PATTERN.match(commit["commit"]["message"]) }
+  def extract_relevant_commit_data(commits)
+    new_commits = commits.take_while { |commit| !RELEASE_COMMIT_PATTERN.match(commit["commit"]["message"]) }
     new_commits.map { |commit| process_single_commit(commit) }.compact
   end
 

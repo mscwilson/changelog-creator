@@ -69,8 +69,8 @@
         "comments_url": "https://api.github.com/repos/mscwilson/changelog-creator/issues/22/comments",
         "statuses_url": "https://api.github.com/repos/mscwilson/changelog-creator/statuses/1cb9e296ccaa7dec00c2c2e6cfc15fe9e59d4214",
         "head": {
-          "label": "mscwilson:issue/19-hello",
-          "ref": "issue/19-hello",
+          "label": "mscwilson:release/1.2.3",
+          "ref": "release/1.2.3",
           "sha": "1cb9e296ccaa7dec00c2c2e6cfc15fe9e59d4214",
           "user": {
             "login": "mscwilson",
@@ -1824,7 +1824,7 @@
       "url": "https://api.github.com/repos/mscwilson/changelog-test"
     },
     "payload": {
-      "ref": "issue/19-hello",
+      "ref": "release/1.2.3",
       "ref_type": "branch",
       "master_branch": "main",
       "description": "Testing auto changelog generation",

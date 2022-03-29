@@ -12,28 +12,35 @@ class GithubApiConnection
     @client.repository_events(@repo_name)
   end
 
-  def pr_opened_to_main?
-    recent_event = repo_events[0]
+  def pr_opened_to_main?(events)
+    recent_event = events[0]
     if recent_event["type"] != "PullRequestEvent" || recent_event["payload"]["action"] != "opened"
       puts "The most recent event was not PR creation"
       return false
     end
 
-    base_ref = recent_event["payload"]["pull_request"]["base"]["ref"]
-    return true if %w[main master].include?(base_ref)
+    branches = pr_branches(recent_event)
+    unless %w[main master].include?(branches[:base_ref])
+      puts "This PR was not opened against main/master branch"
+      return false
+    end
 
-    puts "This PR was not opened against main/master branch"
-    false
+    unless branches[:head_ref][0..6] == "release"
+      puts "This PR was not opened from a release branch"
+      return false
+    end
+
+    true
   end
 
-  def pr_branches
-    pr = repo_events[0]["payload"]["pull_request"]
+  def pr_branches(pull_request_event)
+    pr = pull_request_event["payload"]["pull_request"]
     head_ref = pr["head"]["ref"]
     base_ref = pr["base"]["ref"]
     { head_ref:, base_ref: }
   end
 
-  def commits_from_branch(branch_name)
+  def commits_from_branch(branch_name:)
     @client.commits(@repo_name, sha: branch_name)
   end
 
