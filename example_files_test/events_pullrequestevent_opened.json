@@ -1,0 +1,2347 @@
+[
+  {
+    "id": "20921689549",
+    "type": "PullRequestEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-creator",
+      "url": "https://api.github.com/repos/mscwilson/changelog-creator"
+    },
+    "payload": {
+      "action": "opened",
+      "number": 22,
+      "pull_request": {
+        "url": "https://api.github.com/repos/mscwilson/changelog-creator/pulls/22",
+        "id": 888666173,
+        "node_id": "PR_kwDOG-Ycns409_g9",
+        "html_url": "https://github.com/mscwilson/changelog-creator/pull/22",
+        "diff_url": "https://github.com/mscwilson/changelog-creator/pull/22.diff",
+        "patch_url": "https://github.com/mscwilson/changelog-creator/pull/22.patch",
+        "issue_url": "https://api.github.com/repos/mscwilson/changelog-creator/issues/22",
+        "number": 22,
+        "state": "open",
+        "locked": false,
+        "title": "just to see what events are generated when I open this",
+        "user": {
+          "login": "mscwilson",
+          "id": 10324709,
+          "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+          "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/mscwilson",
+          "html_url": "https://github.com/mscwilson",
+          "followers_url": "https://api.github.com/users/mscwilson/followers",
+          "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+          "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+          "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+          "repos_url": "https://api.github.com/users/mscwilson/repos",
+          "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+          "type": "User",
+          "site_admin": false
+        },
+        "body": null,
+        "created_at": "2022-03-24T18:00:18Z",
+        "updated_at": "2022-03-24T18:00:18Z",
+        "closed_at": null,
+        "merged_at": null,
+        "merge_commit_sha": null,
+        "assignee": null,
+        "assignees": [],
+        "requested_reviewers": [],
+        "requested_teams": [],
+        "labels": [],
+        "milestone": null,
+        "draft": false,
+        "commits_url": "https://api.github.com/repos/mscwilson/changelog-creator/pulls/22/commits",
+        "review_comments_url": "https://api.github.com/repos/mscwilson/changelog-creator/pulls/22/comments",
+        "review_comment_url": "https://api.github.com/repos/mscwilson/changelog-creator/pulls/comments{/number}",
+        "comments_url": "https://api.github.com/repos/mscwilson/changelog-creator/issues/22/comments",
+        "statuses_url": "https://api.github.com/repos/mscwilson/changelog-creator/statuses/1cb9e296ccaa7dec00c2c2e6cfc15fe9e59d4214",
+        "head": {
+          "label": "mscwilson:release/1.2.3",
+          "ref": "release/1.2.3",
+          "sha": "1cb9e296ccaa7dec00c2c2e6cfc15fe9e59d4214",
+          "user": {
+            "login": "mscwilson",
+            "id": 10324709,
+            "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+            "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/mscwilson",
+            "html_url": "https://github.com/mscwilson",
+            "followers_url": "https://api.github.com/users/mscwilson/followers",
+            "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+            "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+            "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+            "repos_url": "https://api.github.com/users/mscwilson/repos",
+            "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "repo": {
+            "id": 468065438,
+            "node_id": "R_kgDOG-Ycng",
+            "name": "changelog-creator",
+            "full_name": "mscwilson/changelog-creator",
+            "private": false,
+            "owner": {
+              "login": "mscwilson",
+              "id": 10324709,
+              "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+              "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+              "gravatar_id": "",
+              "url": "https://api.github.com/users/mscwilson",
+              "html_url": "https://github.com/mscwilson",
+              "followers_url": "https://api.github.com/users/mscwilson/followers",
+              "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+              "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+              "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+              "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+              "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+              "repos_url": "https://api.github.com/users/mscwilson/repos",
+              "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+              "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+              "type": "User",
+              "site_admin": false
+            },
+            "html_url": "https://github.com/mscwilson/changelog-creator",
+            "description": "Testing auto changelog generation",
+            "fork": false,
+            "url": "https://api.github.com/repos/mscwilson/changelog-creator",
+            "forks_url": "https://api.github.com/repos/mscwilson/changelog-creator/forks",
+            "keys_url": "https://api.github.com/repos/mscwilson/changelog-creator/keys{/key_id}",
+            "collaborators_url": "https://api.github.com/repos/mscwilson/changelog-creator/collaborators{/collaborator}",
+            "teams_url": "https://api.github.com/repos/mscwilson/changelog-creator/teams",
+            "hooks_url": "https://api.github.com/repos/mscwilson/changelog-creator/hooks",
+            "issue_events_url": "https://api.github.com/repos/mscwilson/changelog-creator/issues/events{/number}",
+            "events_url": "https://api.github.com/repos/mscwilson/changelog-creator/events",
+            "assignees_url": "https://api.github.com/repos/mscwilson/changelog-creator/assignees{/user}",
+            "branches_url": "https://api.github.com/repos/mscwilson/changelog-creator/branches{/branch}",
+            "tags_url": "https://api.github.com/repos/mscwilson/changelog-creator/tags",
+            "blobs_url": "https://api.github.com/repos/mscwilson/changelog-creator/git/blobs{/sha}",
+            "git_tags_url": "https://api.github.com/repos/mscwilson/changelog-creator/git/tags{/sha}",
+            "git_refs_url": "https://api.github.com/repos/mscwilson/changelog-creator/git/refs{/sha}",
+            "trees_url": "https://api.github.com/repos/mscwilson/changelog-creator/git/trees{/sha}",
+            "statuses_url": "https://api.github.com/repos/mscwilson/changelog-creator/statuses/{sha}",
+            "languages_url": "https://api.github.com/repos/mscwilson/changelog-creator/languages",
+            "stargazers_url": "https://api.github.com/repos/mscwilson/changelog-creator/stargazers",
+            "contributors_url": "https://api.github.com/repos/mscwilson/changelog-creator/contributors",
+            "subscribers_url": "https://api.github.com/repos/mscwilson/changelog-creator/subscribers",
+            "subscription_url": "https://api.github.com/repos/mscwilson/changelog-creator/subscription",
+            "commits_url": "https://api.github.com/repos/mscwilson/changelog-creator/commits{/sha}",
+            "git_commits_url": "https://api.github.com/repos/mscwilson/changelog-creator/git/commits{/sha}",
+            "comments_url": "https://api.github.com/repos/mscwilson/changelog-creator/comments{/number}",
+            "issue_comment_url": "https://api.github.com/repos/mscwilson/changelog-creator/issues/comments{/number}",
+            "contents_url": "https://api.github.com/repos/mscwilson/changelog-creator/contents/{+path}",
+            "compare_url": "https://api.github.com/repos/mscwilson/changelog-creator/compare/{base}...{head}",
+            "merges_url": "https://api.github.com/repos/mscwilson/changelog-creator/merges",
+            "archive_url": "https://api.github.com/repos/mscwilson/changelog-creator/{archive_format}{/ref}",
+            "downloads_url": "https://api.github.com/repos/mscwilson/changelog-creator/downloads",
+            "issues_url": "https://api.github.com/repos/mscwilson/changelog-creator/issues{/number}",
+            "pulls_url": "https://api.github.com/repos/mscwilson/changelog-creator/pulls{/number}",
+            "milestones_url": "https://api.github.com/repos/mscwilson/changelog-creator/milestones{/number}",
+            "notifications_url": "https://api.github.com/repos/mscwilson/changelog-creator/notifications{?since,all,participating}",
+            "labels_url": "https://api.github.com/repos/mscwilson/changelog-creator/labels{/name}",
+            "releases_url": "https://api.github.com/repos/mscwilson/changelog-creator/releases{/id}",
+            "deployments_url": "https://api.github.com/repos/mscwilson/changelog-creator/deployments",
+            "created_at": "2022-03-09T19:27:02Z",
+            "updated_at": "2022-03-23T12:17:37Z",
+            "pushed_at": "2022-03-23T12:29:08Z",
+            "git_url": "git://github.com/mscwilson/changelog-creator.git",
+            "ssh_url": "git@github.com:mscwilson/changelog-creator.git",
+            "clone_url": "https://github.com/mscwilson/changelog-creator.git",
+            "svn_url": "https://github.com/mscwilson/changelog-creator",
+            "homepage": null,
+            "size": 83,
+            "stargazers_count": 0,
+            "watchers_count": 0,
+            "language": "Ruby",
+            "has_issues": true,
+            "has_projects": true,
+            "has_downloads": true,
+            "has_wiki": true,
+            "has_pages": false,
+            "forks_count": 0,
+            "mirror_url": null,
+            "archived": false,
+            "disabled": false,
+            "open_issues_count": 8,
+            "license": null,
+            "allow_forking": true,
+            "is_template": false,
+            "topics": [],
+            "visibility": "public",
+            "forks": 0,
+            "open_issues": 8,
+            "watchers": 0,
+            "default_branch": "main"
+          }
+        },
+        "base": {
+          "label": "mscwilson:main",
+          "ref": "main",
+          "sha": "2c5ba726dd03dc357e43a0d29e8df52fb71e1305",
+          "user": {
+            "login": "mscwilson",
+            "id": 10324709,
+            "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+            "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/mscwilson",
+            "html_url": "https://github.com/mscwilson",
+            "followers_url": "https://api.github.com/users/mscwilson/followers",
+            "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+            "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+            "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+            "repos_url": "https://api.github.com/users/mscwilson/repos",
+            "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "repo": {
+            "id": 468065438,
+            "node_id": "R_kgDOG-Ycng",
+            "name": "changelog-creator",
+            "full_name": "mscwilson/changelog-creator",
+            "private": false,
+            "owner": {
+              "login": "mscwilson",
+              "id": 10324709,
+              "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+              "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+              "gravatar_id": "",
+              "url": "https://api.github.com/users/mscwilson",
+              "html_url": "https://github.com/mscwilson",
+              "followers_url": "https://api.github.com/users/mscwilson/followers",
+              "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+              "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+              "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+              "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+              "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+              "repos_url": "https://api.github.com/users/mscwilson/repos",
+              "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+              "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+              "type": "User",
+              "site_admin": false
+            },
+            "html_url": "https://github.com/mscwilson/changelog-creator",
+            "description": "Testing auto changelog generation",
+            "fork": false,
+            "url": "https://api.github.com/repos/mscwilson/changelog-creator",
+            "forks_url": "https://api.github.com/repos/mscwilson/changelog-creator/forks",
+            "keys_url": "https://api.github.com/repos/mscwilson/changelog-creator/keys{/key_id}",
+            "collaborators_url": "https://api.github.com/repos/mscwilson/changelog-creator/collaborators{/collaborator}",
+            "teams_url": "https://api.github.com/repos/mscwilson/changelog-creator/teams",
+            "hooks_url": "https://api.github.com/repos/mscwilson/changelog-creator/hooks",
+            "issue_events_url": "https://api.github.com/repos/mscwilson/changelog-creator/issues/events{/number}",
+            "events_url": "https://api.github.com/repos/mscwilson/changelog-creator/events",
+            "assignees_url": "https://api.github.com/repos/mscwilson/changelog-creator/assignees{/user}",
+            "branches_url": "https://api.github.com/repos/mscwilson/changelog-creator/branches{/branch}",
+            "tags_url": "https://api.github.com/repos/mscwilson/changelog-creator/tags",
+            "blobs_url": "https://api.github.com/repos/mscwilson/changelog-creator/git/blobs{/sha}",
+            "git_tags_url": "https://api.github.com/repos/mscwilson/changelog-creator/git/tags{/sha}",
+            "git_refs_url": "https://api.github.com/repos/mscwilson/changelog-creator/git/refs{/sha}",
+            "trees_url": "https://api.github.com/repos/mscwilson/changelog-creator/git/trees{/sha}",
+            "statuses_url": "https://api.github.com/repos/mscwilson/changelog-creator/statuses/{sha}",
+            "languages_url": "https://api.github.com/repos/mscwilson/changelog-creator/languages",
+            "stargazers_url": "https://api.github.com/repos/mscwilson/changelog-creator/stargazers",
+            "contributors_url": "https://api.github.com/repos/mscwilson/changelog-creator/contributors",
+            "subscribers_url": "https://api.github.com/repos/mscwilson/changelog-creator/subscribers",
+            "subscription_url": "https://api.github.com/repos/mscwilson/changelog-creator/subscription",
+            "commits_url": "https://api.github.com/repos/mscwilson/changelog-creator/commits{/sha}",
+            "git_commits_url": "https://api.github.com/repos/mscwilson/changelog-creator/git/commits{/sha}",
+            "comments_url": "https://api.github.com/repos/mscwilson/changelog-creator/comments{/number}",
+            "issue_comment_url": "https://api.github.com/repos/mscwilson/changelog-creator/issues/comments{/number}",
+            "contents_url": "https://api.github.com/repos/mscwilson/changelog-creator/contents/{+path}",
+            "compare_url": "https://api.github.com/repos/mscwilson/changelog-creator/compare/{base}...{head}",
+            "merges_url": "https://api.github.com/repos/mscwilson/changelog-creator/merges",
+            "archive_url": "https://api.github.com/repos/mscwilson/changelog-creator/{archive_format}{/ref}",
+            "downloads_url": "https://api.github.com/repos/mscwilson/changelog-creator/downloads",
+            "issues_url": "https://api.github.com/repos/mscwilson/changelog-creator/issues{/number}",
+            "pulls_url": "https://api.github.com/repos/mscwilson/changelog-creator/pulls{/number}",
+            "milestones_url": "https://api.github.com/repos/mscwilson/changelog-creator/milestones{/number}",
+            "notifications_url": "https://api.github.com/repos/mscwilson/changelog-creator/notifications{?since,all,participating}",
+            "labels_url": "https://api.github.com/repos/mscwilson/changelog-creator/labels{/name}",
+            "releases_url": "https://api.github.com/repos/mscwilson/changelog-creator/releases{/id}",
+            "deployments_url": "https://api.github.com/repos/mscwilson/changelog-creator/deployments",
+            "created_at": "2022-03-09T19:27:02Z",
+            "updated_at": "2022-03-23T12:17:37Z",
+            "pushed_at": "2022-03-23T12:29:08Z",
+            "git_url": "git://github.com/mscwilson/changelog-creator.git",
+            "ssh_url": "git@github.com:mscwilson/changelog-creator.git",
+            "clone_url": "https://github.com/mscwilson/changelog-creator.git",
+            "svn_url": "https://github.com/mscwilson/changelog-creator",
+            "homepage": null,
+            "size": 83,
+            "stargazers_count": 0,
+            "watchers_count": 0,
+            "language": "Ruby",
+            "has_issues": true,
+            "has_projects": true,
+            "has_downloads": true,
+            "has_wiki": true,
+            "has_pages": false,
+            "forks_count": 0,
+            "mirror_url": null,
+            "archived": false,
+            "disabled": false,
+            "open_issues_count": 8,
+            "license": null,
+            "allow_forking": true,
+            "is_template": false,
+            "topics": [],
+            "visibility": "public",
+            "forks": 0,
+            "open_issues": 8,
+            "watchers": 0,
+            "default_branch": "main"
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://api.github.com/repos/mscwilson/changelog-creator/pulls/22"
+          },
+          "html": {
+            "href": "https://github.com/mscwilson/changelog-creator/pull/22"
+          },
+          "issue": {
+            "href": "https://api.github.com/repos/mscwilson/changelog-creator/issues/22"
+          },
+          "comments": {
+            "href": "https://api.github.com/repos/mscwilson/changelog-creator/issues/22/comments"
+          },
+          "review_comments": {
+            "href": "https://api.github.com/repos/mscwilson/changelog-creator/pulls/22/comments"
+          },
+          "review_comment": {
+            "href": "https://api.github.com/repos/mscwilson/changelog-creator/pulls/comments{/number}"
+          },
+          "commits": {
+            "href": "https://api.github.com/repos/mscwilson/changelog-creator/pulls/22/commits"
+          },
+          "statuses": {
+            "href": "https://api.github.com/repos/mscwilson/changelog-creator/statuses/1cb9e296ccaa7dec00c2c2e6cfc15fe9e59d4214"
+          }
+        },
+        "author_association": "OWNER",
+        "auto_merge": null,
+        "active_lock_reason": null,
+        "merged": false,
+        "mergeable": null,
+        "rebaseable": null,
+        "mergeable_state": "unknown",
+        "merged_by": null,
+        "comments": 0,
+        "review_comments": 0,
+        "maintainer_can_modify": false,
+        "commits": 13,
+        "additions": 77,
+        "deletions": 16,
+        "changed_files": 7
+      }
+    },
+    "public": true,
+    "created_at": "2022-03-24T18:00:19Z"
+  },
+  {
+    "id": "20921598007",
+    "type": "IssuesEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-creator",
+      "url": "https://api.github.com/repos/mscwilson/changelog-creator"
+    },
+    "payload": {
+      "action": "opened",
+      "issue": {
+        "url": "https://api.github.com/repos/mscwilson/changelog-creator/issues/21",
+        "repository_url": "https://api.github.com/repos/mscwilson/changelog-creator",
+        "labels_url": "https://api.github.com/repos/mscwilson/changelog-creator/issues/21/labels{/name}",
+        "comments_url": "https://api.github.com/repos/mscwilson/changelog-creator/issues/21/comments",
+        "events_url": "https://api.github.com/repos/mscwilson/changelog-creator/issues/21/events",
+        "html_url": "https://github.com/mscwilson/changelog-creator/issues/21",
+        "id": 1179844373,
+        "node_id": "I_kwDOG-Ycns5GUv8V",
+        "number": 21,
+        "title": "Start again from scratch",
+        "user": {
+          "login": "mscwilson",
+          "id": 10324709,
+          "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+          "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/mscwilson",
+          "html_url": "https://github.com/mscwilson",
+          "followers_url": "https://api.github.com/users/mscwilson/followers",
+          "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+          "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+          "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+          "repos_url": "https://api.github.com/users/mscwilson/repos",
+          "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+          "type": "User",
+          "site_admin": false
+        },
+        "labels": [],
+        "state": "open",
+        "locked": false,
+        "assignee": null,
+        "assignees": [],
+        "milestone": null,
+        "comments": 0,
+        "created_at": "2022-03-24T17:55:07Z",
+        "updated_at": "2022-03-24T17:55:07Z",
+        "closed_at": null,
+        "author_association": "OWNER",
+        "active_lock_reason": null,
+        "body": null,
+        "reactions": {
+          "url": "https://api.github.com/repos/mscwilson/changelog-creator/issues/21/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "timeline_url": "https://api.github.com/repos/mscwilson/changelog-creator/issues/21/timeline",
+        "performed_via_github_app": null
+      }
+    },
+    "public": true,
+    "created_at": "2022-03-24T17:55:07Z"
+  },
+  {
+    "id": "20892830836",
+    "type": "PushEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-creator",
+      "url": "https://api.github.com/repos/mscwilson/changelog-creator"
+    },
+    "payload": {
+      "push_id": 9426192559,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/main",
+      "head": "2c5ba726dd03dc357e43a0d29e8df52fb71e1305",
+      "before": "ba2cdb4ddf4b58ff2566e9d5367e274cad8f7a9e",
+      "commits": [
+        {
+          "sha": "2c5ba726dd03dc357e43a0d29e8df52fb71e1305",
+          "author": {
+            "email": "miranda@snowplowanalytics.com",
+            "name": "Miranda Wilson"
+          },
+          "message": "Delete unused stuff",
+          "distinct": true,
+          "url": "https://api.github.com/repos/mscwilson/changelog-creator/commits/2c5ba726dd03dc357e43a0d29e8df52fb71e1305"
+        }
+      ]
+    },
+    "public": true,
+    "created_at": "2022-03-23T12:29:09Z"
+  },
+  {
+    "id": "20860436414",
+    "type": "PushEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "push_id": 9410185852,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/main",
+      "head": "ba2cdb4ddf4b58ff2566e9d5367e274cad8f7a9e",
+      "before": "a86e80bff98c31ad1f957c3db4435b87e295b8ae",
+      "commits": [
+        {
+          "sha": "ba2cdb4ddf4b58ff2566e9d5367e274cad8f7a9e",
+          "author": {
+            "email": "miranda@snowplowanalytics.com",
+            "name": "Miranda Wilson"
+          },
+          "message": "Try again pwd",
+          "distinct": true,
+          "url": "https://api.github.com/repos/mscwilson/changelog-test/commits/ba2cdb4ddf4b58ff2566e9d5367e274cad8f7a9e"
+        }
+      ]
+    },
+    "public": true,
+    "created_at": "2022-03-21T21:56:54Z"
+  },
+  {
+    "id": "20860404203",
+    "type": "PushEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "push_id": 9410170532,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/main",
+      "head": "a86e80bff98c31ad1f957c3db4435b87e295b8ae",
+      "before": "91074198452bd39d11a3e8aae043e171a6cd9a12",
+      "commits": [
+        {
+          "sha": "a86e80bff98c31ad1f957c3db4435b87e295b8ae",
+          "author": {
+            "email": "miranda@snowplowanalytics.com",
+            "name": "Miranda Wilson"
+          },
+          "message": "Add 'bash'",
+          "distinct": true,
+          "url": "https://api.github.com/repos/mscwilson/changelog-test/commits/a86e80bff98c31ad1f957c3db4435b87e295b8ae"
+        }
+      ]
+    },
+    "public": true,
+    "created_at": "2022-03-21T21:54:29Z"
+  },
+  {
+    "id": "20860393732",
+    "type": "PushEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "push_id": 9410165604,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/main",
+      "head": "91074198452bd39d11a3e8aae043e171a6cd9a12",
+      "before": "c720cc43d7e4920530050d2281626462238ba252",
+      "commits": [
+        {
+          "sha": "91074198452bd39d11a3e8aae043e171a6cd9a12",
+          "author": {
+            "email": "miranda@snowplowanalytics.com",
+            "name": "Miranda Wilson"
+          },
+          "message": "Print pwd maybe",
+          "distinct": true,
+          "url": "https://api.github.com/repos/mscwilson/changelog-test/commits/91074198452bd39d11a3e8aae043e171a6cd9a12"
+        }
+      ]
+    },
+    "public": true,
+    "created_at": "2022-03-21T21:53:41Z"
+  },
+  {
+    "id": "20860360161",
+    "type": "PushEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "push_id": 9410148952,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/main",
+      "head": "c720cc43d7e4920530050d2281626462238ba252",
+      "before": "9f0a6984dce7e4967a9c90a711771aef1c8d6797",
+      "commits": [
+        {
+          "sha": "c720cc43d7e4920530050d2281626462238ba252",
+          "author": {
+            "email": "miranda@snowplowanalytics.com",
+            "name": "Miranda Wilson"
+          },
+          "message": "Pwd and ls",
+          "distinct": true,
+          "url": "https://api.github.com/repos/mscwilson/changelog-test/commits/c720cc43d7e4920530050d2281626462238ba252"
+        }
+      ]
+    },
+    "public": true,
+    "created_at": "2022-03-21T21:50:59Z"
+  },
+  {
+    "id": "20860337093",
+    "type": "PushEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "push_id": 9410137706,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/main",
+      "head": "9f0a6984dce7e4967a9c90a711771aef1c8d6797",
+      "before": "e558d5e3fb1137596be64af82f3a5a93b57ad3ec",
+      "commits": [
+        {
+          "sha": "9f0a6984dce7e4967a9c90a711771aef1c8d6797",
+          "author": {
+            "email": "miranda@snowplowanalytics.com",
+            "name": "Miranda Wilson"
+          },
+          "message": "Put a Gemfile inside the folder",
+          "distinct": true,
+          "url": "https://api.github.com/repos/mscwilson/changelog-test/commits/9f0a6984dce7e4967a9c90a711771aef1c8d6797"
+        }
+      ]
+    },
+    "public": true,
+    "created_at": "2022-03-21T21:49:08Z"
+  },
+  {
+    "id": "20860209799",
+    "type": "CreateEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "ref": "1.4",
+      "ref_type": "tag",
+      "master_branch": "main",
+      "description": "Testing auto changelog generation",
+      "pusher_type": "user"
+    },
+    "public": true,
+    "created_at": "2022-03-21T21:39:25Z"
+  },
+  {
+    "id": "20860198943",
+    "type": "PushEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "push_id": 9410069479,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/main",
+      "head": "e558d5e3fb1137596be64af82f3a5a93b57ad3ec",
+      "before": "bf04714912ddca176f93af81c61ae7d043b8bc2d",
+      "commits": [
+        {
+          "sha": "e558d5e3fb1137596be64af82f3a5a93b57ad3ec",
+          "author": {
+            "email": "miranda@snowplowanalytics.com",
+            "name": "Miranda Wilson"
+          },
+          "message": "Add to path",
+          "distinct": true,
+          "url": "https://api.github.com/repos/mscwilson/changelog-test/commits/e558d5e3fb1137596be64af82f3a5a93b57ad3ec"
+        }
+      ]
+    },
+    "public": true,
+    "created_at": "2022-03-21T21:38:36Z"
+  },
+  {
+    "id": "20838775831",
+    "type": "DeleteEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "ref": "issue/17-octokit",
+      "ref_type": "branch",
+      "pusher_type": "user"
+    },
+    "public": true,
+    "created_at": "2022-03-20T16:21:05Z"
+  },
+  {
+    "id": "20838775713",
+    "type": "PushEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "push_id": 9399149792,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/main",
+      "head": "bf04714912ddca176f93af81c61ae7d043b8bc2d",
+      "before": "0b005814b0af7a7420f23e5ec57ee61cc305c73c",
+      "commits": [
+        {
+          "sha": "bf04714912ddca176f93af81c61ae7d043b8bc2d",
+          "author": {
+            "email": "miranda@snowplowanalytics.com",
+            "name": "Miranda Wilson"
+          },
+          "message": "Set up Octokit (close #17)\n\n* Add Octokit\r\n\r\n* Add appropriate status labels",
+          "distinct": true,
+          "url": "https://api.github.com/repos/mscwilson/changelog-test/commits/bf04714912ddca176f93af81c61ae7d043b8bc2d"
+        }
+      ]
+    },
+    "public": true,
+    "created_at": "2022-03-20T16:21:04Z"
+  },
+  {
+    "id": "20838775675",
+    "type": "IssuesEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "action": "closed",
+      "issue": {
+        "url": "https://api.github.com/repos/mscwilson/changelog-test/issues/17",
+        "repository_url": "https://api.github.com/repos/mscwilson/changelog-test",
+        "labels_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/17/labels{/name}",
+        "comments_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/17/comments",
+        "events_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/17/events",
+        "html_url": "https://github.com/mscwilson/changelog-test/issues/17",
+        "id": 1174516354,
+        "node_id": "I_kwDOG-Ycns5GAbKC",
+        "number": 17,
+        "title": "Set up Octokit",
+        "user": {
+          "login": "mscwilson",
+          "id": 10324709,
+          "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+          "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/mscwilson",
+          "html_url": "https://github.com/mscwilson",
+          "followers_url": "https://api.github.com/users/mscwilson/followers",
+          "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+          "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+          "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+          "repos_url": "https://api.github.com/users/mscwilson/repos",
+          "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+          "type": "User",
+          "site_admin": false
+        },
+        "labels": [
+          {
+            "id": 3939654906,
+            "node_id": "LA_kwDOG-Ycns7q0lz6",
+            "url": "https://api.github.com/repos/mscwilson/changelog-test/labels/status:has_pr",
+            "name": "status:has_pr",
+            "color": "0ea462",
+            "default": false,
+            "description": "A PR exists for this issue."
+          }
+        ],
+        "state": "closed",
+        "locked": false,
+        "assignee": null,
+        "assignees": [],
+        "milestone": null,
+        "comments": 0,
+        "created_at": "2022-03-20T11:31:30Z",
+        "updated_at": "2022-03-20T16:21:03Z",
+        "closed_at": "2022-03-20T16:21:03Z",
+        "author_association": "OWNER",
+        "active_lock_reason": null,
+        "body": null,
+        "reactions": {
+          "url": "https://api.github.com/repos/mscwilson/changelog-test/issues/17/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "timeline_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/17/timeline",
+        "performed_via_github_app": null
+      }
+    },
+    "public": true,
+    "created_at": "2022-03-20T16:21:03Z"
+  },
+  {
+    "id": "20838775608",
+    "type": "PullRequestEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "action": "closed",
+      "number": 20,
+      "pull_request": {
+        "url": "https://api.github.com/repos/mscwilson/changelog-test/pulls/20",
+        "id": 884205692,
+        "node_id": "PR_kwDOG-Ycns40s-h8",
+        "html_url": "https://github.com/mscwilson/changelog-test/pull/20",
+        "diff_url": "https://github.com/mscwilson/changelog-test/pull/20.diff",
+        "patch_url": "https://github.com/mscwilson/changelog-test/pull/20.patch",
+        "issue_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/20",
+        "number": 20,
+        "state": "closed",
+        "locked": false,
+        "title": "Set up Octokit (close #17)",
+        "user": {
+          "login": "mscwilson",
+          "id": 10324709,
+          "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+          "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/mscwilson",
+          "html_url": "https://github.com/mscwilson",
+          "followers_url": "https://api.github.com/users/mscwilson/followers",
+          "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+          "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+          "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+          "repos_url": "https://api.github.com/users/mscwilson/repos",
+          "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+          "type": "User",
+          "site_admin": false
+        },
+        "body": null,
+        "created_at": "2022-03-20T16:18:40Z",
+        "updated_at": "2022-03-20T16:21:02Z",
+        "closed_at": "2022-03-20T16:21:02Z",
+        "merged_at": "2022-03-20T16:21:02Z",
+        "merge_commit_sha": "bf04714912ddca176f93af81c61ae7d043b8bc2d",
+        "assignee": null,
+        "assignees": [],
+        "requested_reviewers": [],
+        "requested_teams": [],
+        "labels": [],
+        "milestone": null,
+        "draft": false,
+        "commits_url": "https://api.github.com/repos/mscwilson/changelog-test/pulls/20/commits",
+        "review_comments_url": "https://api.github.com/repos/mscwilson/changelog-test/pulls/20/comments",
+        "review_comment_url": "https://api.github.com/repos/mscwilson/changelog-test/pulls/comments{/number}",
+        "comments_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/20/comments",
+        "statuses_url": "https://api.github.com/repos/mscwilson/changelog-test/statuses/cea4db91ee4237de0ae8b7f10da88868c1f9fc8f",
+        "head": {
+          "label": "mscwilson:issue/17-octokit",
+          "ref": "issue/17-octokit",
+          "sha": "cea4db91ee4237de0ae8b7f10da88868c1f9fc8f",
+          "user": {
+            "login": "mscwilson",
+            "id": 10324709,
+            "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+            "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/mscwilson",
+            "html_url": "https://github.com/mscwilson",
+            "followers_url": "https://api.github.com/users/mscwilson/followers",
+            "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+            "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+            "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+            "repos_url": "https://api.github.com/users/mscwilson/repos",
+            "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "repo": {
+            "id": 468065438,
+            "node_id": "R_kgDOG-Ycng",
+            "name": "changelog-test",
+            "full_name": "mscwilson/changelog-test",
+            "private": false,
+            "owner": {
+              "login": "mscwilson",
+              "id": 10324709,
+              "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+              "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+              "gravatar_id": "",
+              "url": "https://api.github.com/users/mscwilson",
+              "html_url": "https://github.com/mscwilson",
+              "followers_url": "https://api.github.com/users/mscwilson/followers",
+              "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+              "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+              "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+              "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+              "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+              "repos_url": "https://api.github.com/users/mscwilson/repos",
+              "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+              "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+              "type": "User",
+              "site_admin": false
+            },
+            "html_url": "https://github.com/mscwilson/changelog-test",
+            "description": "Testing auto changelog generation",
+            "fork": false,
+            "url": "https://api.github.com/repos/mscwilson/changelog-test",
+            "forks_url": "https://api.github.com/repos/mscwilson/changelog-test/forks",
+            "keys_url": "https://api.github.com/repos/mscwilson/changelog-test/keys{/key_id}",
+            "collaborators_url": "https://api.github.com/repos/mscwilson/changelog-test/collaborators{/collaborator}",
+            "teams_url": "https://api.github.com/repos/mscwilson/changelog-test/teams",
+            "hooks_url": "https://api.github.com/repos/mscwilson/changelog-test/hooks",
+            "issue_events_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/events{/number}",
+            "events_url": "https://api.github.com/repos/mscwilson/changelog-test/events",
+            "assignees_url": "https://api.github.com/repos/mscwilson/changelog-test/assignees{/user}",
+            "branches_url": "https://api.github.com/repos/mscwilson/changelog-test/branches{/branch}",
+            "tags_url": "https://api.github.com/repos/mscwilson/changelog-test/tags",
+            "blobs_url": "https://api.github.com/repos/mscwilson/changelog-test/git/blobs{/sha}",
+            "git_tags_url": "https://api.github.com/repos/mscwilson/changelog-test/git/tags{/sha}",
+            "git_refs_url": "https://api.github.com/repos/mscwilson/changelog-test/git/refs{/sha}",
+            "trees_url": "https://api.github.com/repos/mscwilson/changelog-test/git/trees{/sha}",
+            "statuses_url": "https://api.github.com/repos/mscwilson/changelog-test/statuses/{sha}",
+            "languages_url": "https://api.github.com/repos/mscwilson/changelog-test/languages",
+            "stargazers_url": "https://api.github.com/repos/mscwilson/changelog-test/stargazers",
+            "contributors_url": "https://api.github.com/repos/mscwilson/changelog-test/contributors",
+            "subscribers_url": "https://api.github.com/repos/mscwilson/changelog-test/subscribers",
+            "subscription_url": "https://api.github.com/repos/mscwilson/changelog-test/subscription",
+            "commits_url": "https://api.github.com/repos/mscwilson/changelog-test/commits{/sha}",
+            "git_commits_url": "https://api.github.com/repos/mscwilson/changelog-test/git/commits{/sha}",
+            "comments_url": "https://api.github.com/repos/mscwilson/changelog-test/comments{/number}",
+            "issue_comment_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/comments{/number}",
+            "contents_url": "https://api.github.com/repos/mscwilson/changelog-test/contents/{+path}",
+            "compare_url": "https://api.github.com/repos/mscwilson/changelog-test/compare/{base}...{head}",
+            "merges_url": "https://api.github.com/repos/mscwilson/changelog-test/merges",
+            "archive_url": "https://api.github.com/repos/mscwilson/changelog-test/{archive_format}{/ref}",
+            "downloads_url": "https://api.github.com/repos/mscwilson/changelog-test/downloads",
+            "issues_url": "https://api.github.com/repos/mscwilson/changelog-test/issues{/number}",
+            "pulls_url": "https://api.github.com/repos/mscwilson/changelog-test/pulls{/number}",
+            "milestones_url": "https://api.github.com/repos/mscwilson/changelog-test/milestones{/number}",
+            "notifications_url": "https://api.github.com/repos/mscwilson/changelog-test/notifications{?since,all,participating}",
+            "labels_url": "https://api.github.com/repos/mscwilson/changelog-test/labels{/name}",
+            "releases_url": "https://api.github.com/repos/mscwilson/changelog-test/releases{/id}",
+            "deployments_url": "https://api.github.com/repos/mscwilson/changelog-test/deployments",
+            "created_at": "2022-03-09T19:27:02Z",
+            "updated_at": "2022-03-20T11:31:14Z",
+            "pushed_at": "2022-03-20T16:21:02Z",
+            "git_url": "git://github.com/mscwilson/changelog-test.git",
+            "ssh_url": "git@github.com:mscwilson/changelog-test.git",
+            "clone_url": "https://github.com/mscwilson/changelog-test.git",
+            "svn_url": "https://github.com/mscwilson/changelog-test",
+            "homepage": null,
+            "size": 73,
+            "stargazers_count": 0,
+            "watchers_count": 0,
+            "language": "Ruby",
+            "has_issues": true,
+            "has_projects": true,
+            "has_downloads": true,
+            "has_wiki": true,
+            "has_pages": false,
+            "forks_count": 0,
+            "mirror_url": null,
+            "archived": false,
+            "disabled": false,
+            "open_issues_count": 7,
+            "license": null,
+            "allow_forking": true,
+            "is_template": false,
+            "topics": [],
+            "visibility": "public",
+            "forks": 0,
+            "open_issues": 7,
+            "watchers": 0,
+            "default_branch": "main"
+          }
+        },
+        "base": {
+          "label": "mscwilson:main",
+          "ref": "main",
+          "sha": "0b005814b0af7a7420f23e5ec57ee61cc305c73c",
+          "user": {
+            "login": "mscwilson",
+            "id": 10324709,
+            "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+            "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/mscwilson",
+            "html_url": "https://github.com/mscwilson",
+            "followers_url": "https://api.github.com/users/mscwilson/followers",
+            "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+            "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+            "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+            "repos_url": "https://api.github.com/users/mscwilson/repos",
+            "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "repo": {
+            "id": 468065438,
+            "node_id": "R_kgDOG-Ycng",
+            "name": "changelog-test",
+            "full_name": "mscwilson/changelog-test",
+            "private": false,
+            "owner": {
+              "login": "mscwilson",
+              "id": 10324709,
+              "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+              "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+              "gravatar_id": "",
+              "url": "https://api.github.com/users/mscwilson",
+              "html_url": "https://github.com/mscwilson",
+              "followers_url": "https://api.github.com/users/mscwilson/followers",
+              "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+              "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+              "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+              "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+              "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+              "repos_url": "https://api.github.com/users/mscwilson/repos",
+              "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+              "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+              "type": "User",
+              "site_admin": false
+            },
+            "html_url": "https://github.com/mscwilson/changelog-test",
+            "description": "Testing auto changelog generation",
+            "fork": false,
+            "url": "https://api.github.com/repos/mscwilson/changelog-test",
+            "forks_url": "https://api.github.com/repos/mscwilson/changelog-test/forks",
+            "keys_url": "https://api.github.com/repos/mscwilson/changelog-test/keys{/key_id}",
+            "collaborators_url": "https://api.github.com/repos/mscwilson/changelog-test/collaborators{/collaborator}",
+            "teams_url": "https://api.github.com/repos/mscwilson/changelog-test/teams",
+            "hooks_url": "https://api.github.com/repos/mscwilson/changelog-test/hooks",
+            "issue_events_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/events{/number}",
+            "events_url": "https://api.github.com/repos/mscwilson/changelog-test/events",
+            "assignees_url": "https://api.github.com/repos/mscwilson/changelog-test/assignees{/user}",
+            "branches_url": "https://api.github.com/repos/mscwilson/changelog-test/branches{/branch}",
+            "tags_url": "https://api.github.com/repos/mscwilson/changelog-test/tags",
+            "blobs_url": "https://api.github.com/repos/mscwilson/changelog-test/git/blobs{/sha}",
+            "git_tags_url": "https://api.github.com/repos/mscwilson/changelog-test/git/tags{/sha}",
+            "git_refs_url": "https://api.github.com/repos/mscwilson/changelog-test/git/refs{/sha}",
+            "trees_url": "https://api.github.com/repos/mscwilson/changelog-test/git/trees{/sha}",
+            "statuses_url": "https://api.github.com/repos/mscwilson/changelog-test/statuses/{sha}",
+            "languages_url": "https://api.github.com/repos/mscwilson/changelog-test/languages",
+            "stargazers_url": "https://api.github.com/repos/mscwilson/changelog-test/stargazers",
+            "contributors_url": "https://api.github.com/repos/mscwilson/changelog-test/contributors",
+            "subscribers_url": "https://api.github.com/repos/mscwilson/changelog-test/subscribers",
+            "subscription_url": "https://api.github.com/repos/mscwilson/changelog-test/subscription",
+            "commits_url": "https://api.github.com/repos/mscwilson/changelog-test/commits{/sha}",
+            "git_commits_url": "https://api.github.com/repos/mscwilson/changelog-test/git/commits{/sha}",
+            "comments_url": "https://api.github.com/repos/mscwilson/changelog-test/comments{/number}",
+            "issue_comment_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/comments{/number}",
+            "contents_url": "https://api.github.com/repos/mscwilson/changelog-test/contents/{+path}",
+            "compare_url": "https://api.github.com/repos/mscwilson/changelog-test/compare/{base}...{head}",
+            "merges_url": "https://api.github.com/repos/mscwilson/changelog-test/merges",
+            "archive_url": "https://api.github.com/repos/mscwilson/changelog-test/{archive_format}{/ref}",
+            "downloads_url": "https://api.github.com/repos/mscwilson/changelog-test/downloads",
+            "issues_url": "https://api.github.com/repos/mscwilson/changelog-test/issues{/number}",
+            "pulls_url": "https://api.github.com/repos/mscwilson/changelog-test/pulls{/number}",
+            "milestones_url": "https://api.github.com/repos/mscwilson/changelog-test/milestones{/number}",
+            "notifications_url": "https://api.github.com/repos/mscwilson/changelog-test/notifications{?since,all,participating}",
+            "labels_url": "https://api.github.com/repos/mscwilson/changelog-test/labels{/name}",
+            "releases_url": "https://api.github.com/repos/mscwilson/changelog-test/releases{/id}",
+            "deployments_url": "https://api.github.com/repos/mscwilson/changelog-test/deployments",
+            "created_at": "2022-03-09T19:27:02Z",
+            "updated_at": "2022-03-20T11:31:14Z",
+            "pushed_at": "2022-03-20T16:21:02Z",
+            "git_url": "git://github.com/mscwilson/changelog-test.git",
+            "ssh_url": "git@github.com:mscwilson/changelog-test.git",
+            "clone_url": "https://github.com/mscwilson/changelog-test.git",
+            "svn_url": "https://github.com/mscwilson/changelog-test",
+            "homepage": null,
+            "size": 73,
+            "stargazers_count": 0,
+            "watchers_count": 0,
+            "language": "Ruby",
+            "has_issues": true,
+            "has_projects": true,
+            "has_downloads": true,
+            "has_wiki": true,
+            "has_pages": false,
+            "forks_count": 0,
+            "mirror_url": null,
+            "archived": false,
+            "disabled": false,
+            "open_issues_count": 7,
+            "license": null,
+            "allow_forking": true,
+            "is_template": false,
+            "topics": [],
+            "visibility": "public",
+            "forks": 0,
+            "open_issues": 7,
+            "watchers": 0,
+            "default_branch": "main"
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://api.github.com/repos/mscwilson/changelog-test/pulls/20"
+          },
+          "html": {
+            "href": "https://github.com/mscwilson/changelog-test/pull/20"
+          },
+          "issue": {
+            "href": "https://api.github.com/repos/mscwilson/changelog-test/issues/20"
+          },
+          "comments": {
+            "href": "https://api.github.com/repos/mscwilson/changelog-test/issues/20/comments"
+          },
+          "review_comments": {
+            "href": "https://api.github.com/repos/mscwilson/changelog-test/pulls/20/comments"
+          },
+          "review_comment": {
+            "href": "https://api.github.com/repos/mscwilson/changelog-test/pulls/comments{/number}"
+          },
+          "commits": {
+            "href": "https://api.github.com/repos/mscwilson/changelog-test/pulls/20/commits"
+          },
+          "statuses": {
+            "href": "https://api.github.com/repos/mscwilson/changelog-test/statuses/cea4db91ee4237de0ae8b7f10da88868c1f9fc8f"
+          }
+        },
+        "author_association": "OWNER",
+        "auto_merge": null,
+        "active_lock_reason": null,
+        "merged": true,
+        "mergeable": null,
+        "rebaseable": null,
+        "mergeable_state": "unknown",
+        "merged_by": {
+          "login": "mscwilson",
+          "id": 10324709,
+          "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+          "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/mscwilson",
+          "html_url": "https://github.com/mscwilson",
+          "followers_url": "https://api.github.com/users/mscwilson/followers",
+          "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+          "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+          "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+          "repos_url": "https://api.github.com/users/mscwilson/repos",
+          "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+          "type": "User",
+          "site_admin": false
+        },
+        "comments": 1,
+        "review_comments": 0,
+        "maintainer_can_modify": false,
+        "commits": 2,
+        "additions": 77,
+        "deletions": 16,
+        "changed_files": 7
+      }
+    },
+    "public": true,
+    "created_at": "2022-03-20T16:21:03Z"
+  },
+  {
+    "id": "20838771901",
+    "type": "PushEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "push_id": 9399147336,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/issue/17-octokit",
+      "head": "cea4db91ee4237de0ae8b7f10da88868c1f9fc8f",
+      "before": "1cb9e296ccaa7dec00c2c2e6cfc15fe9e59d4214",
+      "commits": [
+        {
+          "sha": "cea4db91ee4237de0ae8b7f10da88868c1f9fc8f",
+          "author": {
+            "email": "miranda@snowplowanalytics.com",
+            "name": "Miranda Wilson"
+          },
+          "message": "Add appropriate status labels",
+          "distinct": true,
+          "url": "https://api.github.com/repos/mscwilson/changelog-test/commits/cea4db91ee4237de0ae8b7f10da88868c1f9fc8f"
+        }
+      ]
+    },
+    "public": true,
+    "created_at": "2022-03-20T16:20:24Z"
+  },
+  {
+    "id": "20838765954",
+    "type": "IssueCommentEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "action": "created",
+      "issue": {
+        "url": "https://api.github.com/repos/mscwilson/changelog-test/issues/20",
+        "repository_url": "https://api.github.com/repos/mscwilson/changelog-test",
+        "labels_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/20/labels{/name}",
+        "comments_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/20/comments",
+        "events_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/20/events",
+        "html_url": "https://github.com/mscwilson/changelog-test/pull/20",
+        "id": 1174601941,
+        "node_id": "PR_kwDOG-Ycns40s-h8",
+        "number": 20,
+        "title": "Set up Octokit (close #17)",
+        "user": {
+          "login": "mscwilson",
+          "id": 10324709,
+          "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+          "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/mscwilson",
+          "html_url": "https://github.com/mscwilson",
+          "followers_url": "https://api.github.com/users/mscwilson/followers",
+          "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+          "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+          "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+          "repos_url": "https://api.github.com/users/mscwilson/repos",
+          "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+          "type": "User",
+          "site_admin": false
+        },
+        "labels": [],
+        "state": "open",
+        "locked": false,
+        "assignee": null,
+        "assignees": [],
+        "milestone": null,
+        "comments": 1,
+        "created_at": "2022-03-20T16:18:40Z",
+        "updated_at": "2022-03-20T16:19:24Z",
+        "closed_at": null,
+        "author_association": "OWNER",
+        "active_lock_reason": null,
+        "draft": false,
+        "pull_request": {
+          "url": "https://api.github.com/repos/mscwilson/changelog-test/pulls/20",
+          "html_url": "https://github.com/mscwilson/changelog-test/pull/20",
+          "diff_url": "https://github.com/mscwilson/changelog-test/pull/20.diff",
+          "patch_url": "https://github.com/mscwilson/changelog-test/pull/20.patch",
+          "merged_at": null
+        },
+        "body": null,
+        "reactions": {
+          "url": "https://api.github.com/repos/mscwilson/changelog-test/issues/20/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "timeline_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/20/timeline",
+        "performed_via_github_app": null
+      },
+      "comment": {
+        "url": "https://api.github.com/repos/mscwilson/changelog-test/issues/comments/1073284377",
+        "html_url": "https://github.com/mscwilson/changelog-test/pull/20#issuecomment-1073284377",
+        "issue_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/20",
+        "id": 1073284377,
+        "node_id": "IC_kwDOG-Ycns4_-QUZ",
+        "user": {
+          "login": "mscwilson",
+          "id": 10324709,
+          "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+          "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/mscwilson",
+          "html_url": "https://github.com/mscwilson",
+          "followers_url": "https://api.github.com/users/mscwilson/followers",
+          "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+          "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+          "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+          "repos_url": "https://api.github.com/users/mscwilson/repos",
+          "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+          "type": "User",
+          "site_admin": false
+        },
+        "created_at": "2022-03-20T16:19:24Z",
+        "updated_at": "2022-03-20T16:19:24Z",
+        "author_association": "OWNER",
+        "body": "it's working!",
+        "reactions": {
+          "url": "https://api.github.com/repos/mscwilson/changelog-test/issues/comments/1073284377/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "performed_via_github_app": null
+      }
+    },
+    "public": true,
+    "created_at": "2022-03-20T16:19:24Z"
+  },
+  {
+    "id": "20838761924",
+    "type": "PullRequestEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "action": "opened",
+      "number": 20,
+      "pull_request": {
+        "url": "https://api.github.com/repos/mscwilson/changelog-test/pulls/20",
+        "id": 884205692,
+        "node_id": "PR_kwDOG-Ycns40s-h8",
+        "html_url": "https://github.com/mscwilson/changelog-test/pull/20",
+        "diff_url": "https://github.com/mscwilson/changelog-test/pull/20.diff",
+        "patch_url": "https://github.com/mscwilson/changelog-test/pull/20.patch",
+        "issue_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/20",
+        "number": 20,
+        "state": "open",
+        "locked": false,
+        "title": "Set up Octokit (close #17)",
+        "user": {
+          "login": "mscwilson",
+          "id": 10324709,
+          "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+          "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/mscwilson",
+          "html_url": "https://github.com/mscwilson",
+          "followers_url": "https://api.github.com/users/mscwilson/followers",
+          "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+          "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+          "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+          "repos_url": "https://api.github.com/users/mscwilson/repos",
+          "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+          "type": "User",
+          "site_admin": false
+        },
+        "body": null,
+        "created_at": "2022-03-20T16:18:40Z",
+        "updated_at": "2022-03-20T16:18:40Z",
+        "closed_at": null,
+        "merged_at": null,
+        "merge_commit_sha": null,
+        "assignee": null,
+        "assignees": [],
+        "requested_reviewers": [],
+        "requested_teams": [],
+        "labels": [],
+        "milestone": null,
+        "draft": false,
+        "commits_url": "https://api.github.com/repos/mscwilson/changelog-test/pulls/20/commits",
+        "review_comments_url": "https://api.github.com/repos/mscwilson/changelog-test/pulls/20/comments",
+        "review_comment_url": "https://api.github.com/repos/mscwilson/changelog-test/pulls/comments{/number}",
+        "comments_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/20/comments",
+        "statuses_url": "https://api.github.com/repos/mscwilson/changelog-test/statuses/1cb9e296ccaa7dec00c2c2e6cfc15fe9e59d4214",
+        "head": {
+          "label": "mscwilson:issue/17-octokit",
+          "ref": "issue/17-octokit",
+          "sha": "1cb9e296ccaa7dec00c2c2e6cfc15fe9e59d4214",
+          "user": {
+            "login": "mscwilson",
+            "id": 10324709,
+            "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+            "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/mscwilson",
+            "html_url": "https://github.com/mscwilson",
+            "followers_url": "https://api.github.com/users/mscwilson/followers",
+            "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+            "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+            "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+            "repos_url": "https://api.github.com/users/mscwilson/repos",
+            "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "repo": {
+            "id": 468065438,
+            "node_id": "R_kgDOG-Ycng",
+            "name": "changelog-test",
+            "full_name": "mscwilson/changelog-test",
+            "private": false,
+            "owner": {
+              "login": "mscwilson",
+              "id": 10324709,
+              "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+              "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+              "gravatar_id": "",
+              "url": "https://api.github.com/users/mscwilson",
+              "html_url": "https://github.com/mscwilson",
+              "followers_url": "https://api.github.com/users/mscwilson/followers",
+              "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+              "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+              "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+              "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+              "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+              "repos_url": "https://api.github.com/users/mscwilson/repos",
+              "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+              "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+              "type": "User",
+              "site_admin": false
+            },
+            "html_url": "https://github.com/mscwilson/changelog-test",
+            "description": "Testing auto changelog generation",
+            "fork": false,
+            "url": "https://api.github.com/repos/mscwilson/changelog-test",
+            "forks_url": "https://api.github.com/repos/mscwilson/changelog-test/forks",
+            "keys_url": "https://api.github.com/repos/mscwilson/changelog-test/keys{/key_id}",
+            "collaborators_url": "https://api.github.com/repos/mscwilson/changelog-test/collaborators{/collaborator}",
+            "teams_url": "https://api.github.com/repos/mscwilson/changelog-test/teams",
+            "hooks_url": "https://api.github.com/repos/mscwilson/changelog-test/hooks",
+            "issue_events_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/events{/number}",
+            "events_url": "https://api.github.com/repos/mscwilson/changelog-test/events",
+            "assignees_url": "https://api.github.com/repos/mscwilson/changelog-test/assignees{/user}",
+            "branches_url": "https://api.github.com/repos/mscwilson/changelog-test/branches{/branch}",
+            "tags_url": "https://api.github.com/repos/mscwilson/changelog-test/tags",
+            "blobs_url": "https://api.github.com/repos/mscwilson/changelog-test/git/blobs{/sha}",
+            "git_tags_url": "https://api.github.com/repos/mscwilson/changelog-test/git/tags{/sha}",
+            "git_refs_url": "https://api.github.com/repos/mscwilson/changelog-test/git/refs{/sha}",
+            "trees_url": "https://api.github.com/repos/mscwilson/changelog-test/git/trees{/sha}",
+            "statuses_url": "https://api.github.com/repos/mscwilson/changelog-test/statuses/{sha}",
+            "languages_url": "https://api.github.com/repos/mscwilson/changelog-test/languages",
+            "stargazers_url": "https://api.github.com/repos/mscwilson/changelog-test/stargazers",
+            "contributors_url": "https://api.github.com/repos/mscwilson/changelog-test/contributors",
+            "subscribers_url": "https://api.github.com/repos/mscwilson/changelog-test/subscribers",
+            "subscription_url": "https://api.github.com/repos/mscwilson/changelog-test/subscription",
+            "commits_url": "https://api.github.com/repos/mscwilson/changelog-test/commits{/sha}",
+            "git_commits_url": "https://api.github.com/repos/mscwilson/changelog-test/git/commits{/sha}",
+            "comments_url": "https://api.github.com/repos/mscwilson/changelog-test/comments{/number}",
+            "issue_comment_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/comments{/number}",
+            "contents_url": "https://api.github.com/repos/mscwilson/changelog-test/contents/{+path}",
+            "compare_url": "https://api.github.com/repos/mscwilson/changelog-test/compare/{base}...{head}",
+            "merges_url": "https://api.github.com/repos/mscwilson/changelog-test/merges",
+            "archive_url": "https://api.github.com/repos/mscwilson/changelog-test/{archive_format}{/ref}",
+            "downloads_url": "https://api.github.com/repos/mscwilson/changelog-test/downloads",
+            "issues_url": "https://api.github.com/repos/mscwilson/changelog-test/issues{/number}",
+            "pulls_url": "https://api.github.com/repos/mscwilson/changelog-test/pulls{/number}",
+            "milestones_url": "https://api.github.com/repos/mscwilson/changelog-test/milestones{/number}",
+            "notifications_url": "https://api.github.com/repos/mscwilson/changelog-test/notifications{?since,all,participating}",
+            "labels_url": "https://api.github.com/repos/mscwilson/changelog-test/labels{/name}",
+            "releases_url": "https://api.github.com/repos/mscwilson/changelog-test/releases{/id}",
+            "deployments_url": "https://api.github.com/repos/mscwilson/changelog-test/deployments",
+            "created_at": "2022-03-09T19:27:02Z",
+            "updated_at": "2022-03-20T11:31:14Z",
+            "pushed_at": "2022-03-20T16:16:26Z",
+            "git_url": "git://github.com/mscwilson/changelog-test.git",
+            "ssh_url": "git@github.com:mscwilson/changelog-test.git",
+            "clone_url": "https://github.com/mscwilson/changelog-test.git",
+            "svn_url": "https://github.com/mscwilson/changelog-test",
+            "homepage": null,
+            "size": 73,
+            "stargazers_count": 0,
+            "watchers_count": 0,
+            "language": "Ruby",
+            "has_issues": true,
+            "has_projects": true,
+            "has_downloads": true,
+            "has_wiki": true,
+            "has_pages": false,
+            "forks_count": 0,
+            "mirror_url": null,
+            "archived": false,
+            "disabled": false,
+            "open_issues_count": 8,
+            "license": null,
+            "allow_forking": true,
+            "is_template": false,
+            "topics": [],
+            "visibility": "public",
+            "forks": 0,
+            "open_issues": 8,
+            "watchers": 0,
+            "default_branch": "main"
+          }
+        },
+        "base": {
+          "label": "mscwilson:main",
+          "ref": "main",
+          "sha": "0b005814b0af7a7420f23e5ec57ee61cc305c73c",
+          "user": {
+            "login": "mscwilson",
+            "id": 10324709,
+            "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+            "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/mscwilson",
+            "html_url": "https://github.com/mscwilson",
+            "followers_url": "https://api.github.com/users/mscwilson/followers",
+            "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+            "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+            "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+            "repos_url": "https://api.github.com/users/mscwilson/repos",
+            "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "repo": {
+            "id": 468065438,
+            "node_id": "R_kgDOG-Ycng",
+            "name": "changelog-test",
+            "full_name": "mscwilson/changelog-test",
+            "private": false,
+            "owner": {
+              "login": "mscwilson",
+              "id": 10324709,
+              "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+              "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+              "gravatar_id": "",
+              "url": "https://api.github.com/users/mscwilson",
+              "html_url": "https://github.com/mscwilson",
+              "followers_url": "https://api.github.com/users/mscwilson/followers",
+              "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+              "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+              "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+              "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+              "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+              "repos_url": "https://api.github.com/users/mscwilson/repos",
+              "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+              "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+              "type": "User",
+              "site_admin": false
+            },
+            "html_url": "https://github.com/mscwilson/changelog-test",
+            "description": "Testing auto changelog generation",
+            "fork": false,
+            "url": "https://api.github.com/repos/mscwilson/changelog-test",
+            "forks_url": "https://api.github.com/repos/mscwilson/changelog-test/forks",
+            "keys_url": "https://api.github.com/repos/mscwilson/changelog-test/keys{/key_id}",
+            "collaborators_url": "https://api.github.com/repos/mscwilson/changelog-test/collaborators{/collaborator}",
+            "teams_url": "https://api.github.com/repos/mscwilson/changelog-test/teams",
+            "hooks_url": "https://api.github.com/repos/mscwilson/changelog-test/hooks",
+            "issue_events_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/events{/number}",
+            "events_url": "https://api.github.com/repos/mscwilson/changelog-test/events",
+            "assignees_url": "https://api.github.com/repos/mscwilson/changelog-test/assignees{/user}",
+            "branches_url": "https://api.github.com/repos/mscwilson/changelog-test/branches{/branch}",
+            "tags_url": "https://api.github.com/repos/mscwilson/changelog-test/tags",
+            "blobs_url": "https://api.github.com/repos/mscwilson/changelog-test/git/blobs{/sha}",
+            "git_tags_url": "https://api.github.com/repos/mscwilson/changelog-test/git/tags{/sha}",
+            "git_refs_url": "https://api.github.com/repos/mscwilson/changelog-test/git/refs{/sha}",
+            "trees_url": "https://api.github.com/repos/mscwilson/changelog-test/git/trees{/sha}",
+            "statuses_url": "https://api.github.com/repos/mscwilson/changelog-test/statuses/{sha}",
+            "languages_url": "https://api.github.com/repos/mscwilson/changelog-test/languages",
+            "stargazers_url": "https://api.github.com/repos/mscwilson/changelog-test/stargazers",
+            "contributors_url": "https://api.github.com/repos/mscwilson/changelog-test/contributors",
+            "subscribers_url": "https://api.github.com/repos/mscwilson/changelog-test/subscribers",
+            "subscription_url": "https://api.github.com/repos/mscwilson/changelog-test/subscription",
+            "commits_url": "https://api.github.com/repos/mscwilson/changelog-test/commits{/sha}",
+            "git_commits_url": "https://api.github.com/repos/mscwilson/changelog-test/git/commits{/sha}",
+            "comments_url": "https://api.github.com/repos/mscwilson/changelog-test/comments{/number}",
+            "issue_comment_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/comments{/number}",
+            "contents_url": "https://api.github.com/repos/mscwilson/changelog-test/contents/{+path}",
+            "compare_url": "https://api.github.com/repos/mscwilson/changelog-test/compare/{base}...{head}",
+            "merges_url": "https://api.github.com/repos/mscwilson/changelog-test/merges",
+            "archive_url": "https://api.github.com/repos/mscwilson/changelog-test/{archive_format}{/ref}",
+            "downloads_url": "https://api.github.com/repos/mscwilson/changelog-test/downloads",
+            "issues_url": "https://api.github.com/repos/mscwilson/changelog-test/issues{/number}",
+            "pulls_url": "https://api.github.com/repos/mscwilson/changelog-test/pulls{/number}",
+            "milestones_url": "https://api.github.com/repos/mscwilson/changelog-test/milestones{/number}",
+            "notifications_url": "https://api.github.com/repos/mscwilson/changelog-test/notifications{?since,all,participating}",
+            "labels_url": "https://api.github.com/repos/mscwilson/changelog-test/labels{/name}",
+            "releases_url": "https://api.github.com/repos/mscwilson/changelog-test/releases{/id}",
+            "deployments_url": "https://api.github.com/repos/mscwilson/changelog-test/deployments",
+            "created_at": "2022-03-09T19:27:02Z",
+            "updated_at": "2022-03-20T11:31:14Z",
+            "pushed_at": "2022-03-20T16:16:26Z",
+            "git_url": "git://github.com/mscwilson/changelog-test.git",
+            "ssh_url": "git@github.com:mscwilson/changelog-test.git",
+            "clone_url": "https://github.com/mscwilson/changelog-test.git",
+            "svn_url": "https://github.com/mscwilson/changelog-test",
+            "homepage": null,
+            "size": 73,
+            "stargazers_count": 0,
+            "watchers_count": 0,
+            "language": "Ruby",
+            "has_issues": true,
+            "has_projects": true,
+            "has_downloads": true,
+            "has_wiki": true,
+            "has_pages": false,
+            "forks_count": 0,
+            "mirror_url": null,
+            "archived": false,
+            "disabled": false,
+            "open_issues_count": 8,
+            "license": null,
+            "allow_forking": true,
+            "is_template": false,
+            "topics": [],
+            "visibility": "public",
+            "forks": 0,
+            "open_issues": 8,
+            "watchers": 0,
+            "default_branch": "main"
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://api.github.com/repos/mscwilson/changelog-test/pulls/20"
+          },
+          "html": {
+            "href": "https://github.com/mscwilson/changelog-test/pull/20"
+          },
+          "issue": {
+            "href": "https://api.github.com/repos/mscwilson/changelog-test/issues/20"
+          },
+          "comments": {
+            "href": "https://api.github.com/repos/mscwilson/changelog-test/issues/20/comments"
+          },
+          "review_comments": {
+            "href": "https://api.github.com/repos/mscwilson/changelog-test/pulls/20/comments"
+          },
+          "review_comment": {
+            "href": "https://api.github.com/repos/mscwilson/changelog-test/pulls/comments{/number}"
+          },
+          "commits": {
+            "href": "https://api.github.com/repos/mscwilson/changelog-test/pulls/20/commits"
+          },
+          "statuses": {
+            "href": "https://api.github.com/repos/mscwilson/changelog-test/statuses/1cb9e296ccaa7dec00c2c2e6cfc15fe9e59d4214"
+          }
+        },
+        "author_association": "OWNER",
+        "auto_merge": null,
+        "active_lock_reason": null,
+        "merged": false,
+        "mergeable": null,
+        "rebaseable": null,
+        "mergeable_state": "unknown",
+        "merged_by": null,
+        "comments": 0,
+        "review_comments": 0,
+        "maintainer_can_modify": false,
+        "commits": 13,
+        "additions": 77,
+        "deletions": 16,
+        "changed_files": 7
+      }
+    },
+    "public": true,
+    "created_at": "2022-03-20T16:18:40Z"
+  },
+  {
+    "id": "20838749839",
+    "type": "CreateEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "ref": "release/1.2.3",
+      "ref_type": "branch",
+      "master_branch": "main",
+      "description": "Testing auto changelog generation",
+      "pusher_type": "user"
+    },
+    "public": true,
+    "created_at": "2022-03-20T16:16:27Z"
+  },
+  {
+    "id": "20838747431",
+    "type": "PushEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "push_id": 9399131245,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/issue/17-octokit",
+      "head": "1cb9e296ccaa7dec00c2c2e6cfc15fe9e59d4214",
+      "before": "69467ce9abcc46c1b7d83ce21ab235748a5e45dc",
+      "commits": [
+        {
+          "sha": "1cb9e296ccaa7dec00c2c2e6cfc15fe9e59d4214",
+          "author": {
+            "email": "miranda@snowplowanalytics.com",
+            "name": "Miranda Wilson"
+          },
+          "message": "Print out when nothing happens",
+          "distinct": true,
+          "url": "https://api.github.com/repos/mscwilson/changelog-test/commits/1cb9e296ccaa7dec00c2c2e6cfc15fe9e59d4214"
+        }
+      ]
+    },
+    "public": true,
+    "created_at": "2022-03-20T16:16:02Z"
+  },
+  {
+    "id": "20838739073",
+    "type": "PushEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "push_id": 9399125777,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/issue/17-octokit",
+      "head": "69467ce9abcc46c1b7d83ce21ab235748a5e45dc",
+      "before": "8251ead6c32c5a9887f9c1295952fc1f6001a169",
+      "commits": [
+        {
+          "sha": "69467ce9abcc46c1b7d83ce21ab235748a5e45dc",
+          "author": {
+            "email": "miranda@snowplowanalytics.com",
+            "name": "Miranda Wilson"
+          },
+          "message": "Print out what labels added",
+          "distinct": true,
+          "url": "https://api.github.com/repos/mscwilson/changelog-test/commits/69467ce9abcc46c1b7d83ce21ab235748a5e45dc"
+        }
+      ]
+    },
+    "public": true,
+    "created_at": "2022-03-20T16:14:35Z"
+  },
+  {
+    "id": "20838732413",
+    "type": "IssuesEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "action": "opened",
+      "issue": {
+        "url": "https://api.github.com/repos/mscwilson/changelog-test/issues/19",
+        "repository_url": "https://api.github.com/repos/mscwilson/changelog-test",
+        "labels_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/19/labels{/name}",
+        "comments_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/19/comments",
+        "events_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/19/events",
+        "html_url": "https://github.com/mscwilson/changelog-test/issues/19",
+        "id": 1174600408,
+        "node_id": "I_kwDOG-Ycns5GAvrY",
+        "number": 19,
+        "title": "Another test issue",
+        "user": {
+          "login": "mscwilson",
+          "id": 10324709,
+          "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+          "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/mscwilson",
+          "html_url": "https://github.com/mscwilson",
+          "followers_url": "https://api.github.com/users/mscwilson/followers",
+          "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+          "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+          "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+          "repos_url": "https://api.github.com/users/mscwilson/repos",
+          "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+          "type": "User",
+          "site_admin": false
+        },
+        "labels": [],
+        "state": "open",
+        "locked": false,
+        "assignee": null,
+        "assignees": [],
+        "milestone": null,
+        "comments": 0,
+        "created_at": "2022-03-20T16:13:23Z",
+        "updated_at": "2022-03-20T16:13:23Z",
+        "closed_at": null,
+        "author_association": "OWNER",
+        "active_lock_reason": null,
+        "body": null,
+        "reactions": {
+          "url": "https://api.github.com/repos/mscwilson/changelog-test/issues/19/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "timeline_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/19/timeline",
+        "performed_via_github_app": null
+      }
+    },
+    "public": true,
+    "created_at": "2022-03-20T16:13:23Z"
+  },
+  {
+    "id": "20838726223",
+    "type": "CreateEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "ref": "issue/18-hello",
+      "ref_type": "branch",
+      "master_branch": "main",
+      "description": "Testing auto changelog generation",
+      "pusher_type": "user"
+    },
+    "public": true,
+    "created_at": "2022-03-20T16:12:17Z"
+  },
+  {
+    "id": "20838721717",
+    "type": "DeleteEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "ref": "issue/18-hello",
+      "ref_type": "branch",
+      "pusher_type": "user"
+    },
+    "public": true,
+    "created_at": "2022-03-20T16:11:31Z"
+  },
+  {
+    "id": "20838718280",
+    "type": "PushEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "push_id": 9399112184,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/issue/17-octokit",
+      "head": "8251ead6c32c5a9887f9c1295952fc1f6001a169",
+      "before": "f60bef409bca7300d74bbc607d1ffb75dfb7cd1f",
+      "commits": [
+        {
+          "sha": "8251ead6c32c5a9887f9c1295952fc1f6001a169",
+          "author": {
+            "email": "miranda@snowplowanalytics.com",
+            "name": "Miranda Wilson"
+          },
+          "message": "Do something with PRs",
+          "distinct": true,
+          "url": "https://api.github.com/repos/mscwilson/changelog-test/commits/8251ead6c32c5a9887f9c1295952fc1f6001a169"
+        }
+      ]
+    },
+    "public": true,
+    "created_at": "2022-03-20T16:10:56Z"
+  },
+  {
+    "id": "20838621568",
+    "type": "CreateEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "ref": "issue/18-hello",
+      "ref_type": "branch",
+      "master_branch": "main",
+      "description": "Testing auto changelog generation",
+      "pusher_type": "user"
+    },
+    "public": true,
+    "created_at": "2022-03-20T15:54:51Z"
+  },
+  {
+    "id": "20838611639",
+    "type": "PushEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "push_id": 9399043016,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/issue/17-octokit",
+      "head": "f60bef409bca7300d74bbc607d1ffb75dfb7cd1f",
+      "before": "c1753a3194c9c85f06ed8635cfc910c939d7d55a",
+      "commits": [
+        {
+          "sha": "f60bef409bca7300d74bbc607d1ffb75dfb7cd1f",
+          "author": {
+            "email": "miranda@snowplowanalytics.com",
+            "name": "Miranda Wilson"
+          },
+          "message": "Add a label for new branch",
+          "distinct": true,
+          "url": "https://api.github.com/repos/mscwilson/changelog-test/commits/f60bef409bca7300d74bbc607d1ffb75dfb7cd1f"
+        }
+      ]
+    },
+    "public": true,
+    "created_at": "2022-03-20T15:53:08Z"
+  },
+  {
+    "id": "20838608413",
+    "type": "IssuesEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "action": "opened",
+      "issue": {
+        "url": "https://api.github.com/repos/mscwilson/changelog-test/issues/18",
+        "repository_url": "https://api.github.com/repos/mscwilson/changelog-test",
+        "labels_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/18/labels{/name}",
+        "comments_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/18/comments",
+        "events_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/18/events",
+        "html_url": "https://github.com/mscwilson/changelog-test/issues/18",
+        "id": 1174593996,
+        "node_id": "I_kwDOG-Ycns5GAuHM",
+        "number": 18,
+        "title": "Test issue",
+        "user": {
+          "login": "mscwilson",
+          "id": 10324709,
+          "node_id": "MDQ6VXNlcjEwMzI0NzA5",
+          "avatar_url": "https://avatars.githubusercontent.com/u/10324709?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/mscwilson",
+          "html_url": "https://github.com/mscwilson",
+          "followers_url": "https://api.github.com/users/mscwilson/followers",
+          "following_url": "https://api.github.com/users/mscwilson/following{/other_user}",
+          "gists_url": "https://api.github.com/users/mscwilson/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/mscwilson/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/mscwilson/subscriptions",
+          "organizations_url": "https://api.github.com/users/mscwilson/orgs",
+          "repos_url": "https://api.github.com/users/mscwilson/repos",
+          "events_url": "https://api.github.com/users/mscwilson/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/mscwilson/received_events",
+          "type": "User",
+          "site_admin": false
+        },
+        "labels": [],
+        "state": "open",
+        "locked": false,
+        "assignee": null,
+        "assignees": [],
+        "milestone": null,
+        "comments": 0,
+        "created_at": "2022-03-20T15:52:34Z",
+        "updated_at": "2022-03-20T15:52:34Z",
+        "closed_at": null,
+        "author_association": "OWNER",
+        "active_lock_reason": null,
+        "body": null,
+        "reactions": {
+          "url": "https://api.github.com/repos/mscwilson/changelog-test/issues/18/reactions",
+          "total_count": 0,
+          "+1": 0,
+          "-1": 0,
+          "laugh": 0,
+          "hooray": 0,
+          "confused": 0,
+          "heart": 0,
+          "rocket": 0,
+          "eyes": 0
+        },
+        "timeline_url": "https://api.github.com/repos/mscwilson/changelog-test/issues/18/timeline",
+        "performed_via_github_app": null
+      }
+    },
+    "public": true,
+    "created_at": "2022-03-20T15:52:34Z"
+  },
+  {
+    "id": "20838540542",
+    "type": "PushEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "push_id": 9398996669,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/issue/17-octokit",
+      "head": "c1753a3194c9c85f06ed8635cfc910c939d7d55a",
+      "before": "7ce6f671ff7c2e48caa765cb0c4316b309115a89",
+      "commits": [
+        {
+          "sha": "c1753a3194c9c85f06ed8635cfc910c939d7d55a",
+          "author": {
+            "email": "miranda@snowplowanalytics.com",
+            "name": "Miranda Wilson"
+          },
+          "message": "Convert this other thing to hash",
+          "distinct": true,
+          "url": "https://api.github.com/repos/mscwilson/changelog-test/commits/c1753a3194c9c85f06ed8635cfc910c939d7d55a"
+        }
+      ]
+    },
+    "public": true,
+    "created_at": "2022-03-20T15:40:51Z"
+  },
+  {
+    "id": "20838463060",
+    "type": "PushEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "push_id": 9398946356,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/issue/17-octokit",
+      "head": "7ce6f671ff7c2e48caa765cb0c4316b309115a89",
+      "before": "d1fc5c2060f144fde297b9649c16b34429bc373f",
+      "commits": [
+        {
+          "sha": "7ce6f671ff7c2e48caa765cb0c4316b309115a89",
+          "author": {
+            "email": "miranda@snowplowanalytics.com",
+            "name": "Miranda Wilson"
+          },
+          "message": "Convert to hash",
+          "distinct": true,
+          "url": "https://api.github.com/repos/mscwilson/changelog-test/commits/7ce6f671ff7c2e48caa765cb0c4316b309115a89"
+        }
+      ]
+    },
+    "public": true,
+    "created_at": "2022-03-20T15:27:42Z"
+  },
+  {
+    "id": "20838441071",
+    "type": "PushEvent",
+    "actor": {
+      "id": 10324709,
+      "login": "mscwilson",
+      "display_login": "mscwilson",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mscwilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10324709?"
+    },
+    "repo": {
+      "id": 468065438,
+      "name": "mscwilson/changelog-test",
+      "url": "https://api.github.com/repos/mscwilson/changelog-test"
+    },
+    "payload": {
+      "push_id": 9398932181,
+      "size": 1,
+      "distinct_size": 1,
+      "ref": "refs/heads/issue/17-octokit",
+      "head": "d1fc5c2060f144fde297b9649c16b34429bc373f",
+      "before": "888e902ba9f1c35ca9c37044d2d66e7757b21e60",
+      "commits": [
+        {
+          "sha": "d1fc5c2060f144fde297b9649c16b34429bc373f",
+          "author": {
+            "email": "miranda@snowplowanalytics.com",
+            "name": "Miranda Wilson"
+          },
+          "message": "Try to get data about events",
+          "distinct": true,
+          "url": "https://api.github.com/repos/mscwilson/changelog-test/commits/d1fc5c2060f144fde297b9649c16b34429bc373f"
+        }
+      ]
+    },
+    "public": true,
+    "created_at": "2022-03-20T15:24:01Z"
+  }
+]

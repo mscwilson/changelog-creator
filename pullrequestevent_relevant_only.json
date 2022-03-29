@@ -1,0 +1,18 @@
+{
+  "type": "PullRequestEvent",
+  "payload": {
+    "action": "opened",
+    "pull_request": {
+      "title": "just to see what events are generated when I open this",
+      "head": {
+        "label": "mscwilson:issue/19-hello",
+        "ref": "issue/19-hello",
+        "sha": "1cb9e296ccaa7dec00c2c2e6cfc15fe9e59d4214",
+      "base": {
+        "label": "mscwilson:main",
+        "ref": "main",
+        "sha": "2c5ba726dd03dc357e43a0d29e8df52fb71e1305",
+      }
+    }
+  }
+}
