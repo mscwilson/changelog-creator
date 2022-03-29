@@ -32,13 +32,13 @@ describe ChangelogCreator do
 
   it "generates a simple CHANGELOG block" do
     commit = { message: "Publish Gradle module file with bintrayUpload",
-      issue: "255",
-      author: "me",
-      snowplower?: true }
+               issue: "255",
+               author: "me",
+               snowplower?: true }
     another_commit = { message: "Update snyk integration to include project name in GitHub action",
-      issue: "8",
-      author: "SomeoneElse",
-      snowplower?: false }
+                       issue: "8",
+                       author: "SomeoneElse",
+                       snowplower?: false }
     processed_commits = [commit, another_commit]
 
     expected = "Version 0.2.0 (2022-02-01)\n-----------------------"\

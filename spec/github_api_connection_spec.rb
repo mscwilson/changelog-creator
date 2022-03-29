@@ -4,7 +4,7 @@ describe GithubApiConnection do
   before do
     @fake_client = double :client
     allow(@fake_client).to receive(:new).and_return(@fake_client)
-    @connection = GithubApiConnection.new(@fake_client)
+    @connection = GithubApiConnection.new(client: @fake_client)
   end
 
   it "returns the head and base for a new PR" do
@@ -31,7 +31,10 @@ describe GithubApiConnection do
     expect(@connection.commits_from_branch("master")).to eq(commits)
   end
 
+  it "makes a new commit" do
+
+
+  end
+
   xit "returns nil if branch doesn't exist or there are no commits there"
-
-
 end

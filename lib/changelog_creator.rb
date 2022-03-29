@@ -5,7 +5,7 @@ require "uri"
 
 class ChangelogCreator
   COMMIT_MESSAGE_PATTERN = /\A([\w\s.,'"-:`@]+) \((?:close|closes|fixes|fix) \#(\d+)\)$/
-  RELEASE_BRANCH_PATTERN = /release\/(\d*\.*\d*\.*\d*\.*)/
+  RELEASE_BRANCH_PATTERN = %r{release/(\d*\.*\d*\.*\d*\.*)}
   RELEASE_COMMIT_PATTERN = /Prepare for \d*\.*\d*\.*\d*\.*\ *release/
   EMAIL_PATTERN = /\w+@snowplowanalytics\.com/
 
@@ -50,9 +50,6 @@ class ChangelogCreator
       author: commit["author"]["login"],
       snowplower?: email_match.nil? ? false : true }
   end
-
-
-
 
   # def process_issue_labels(labels)
   #   possible_types = ["type:enhancement", "type:defect", "type:admin"]

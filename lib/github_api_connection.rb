@@ -2,9 +2,9 @@ require "octokit"
 require "json"
 
 class GithubApiConnection
-  def initialize(client = Octokit::Client)
-    @client = client.new(access_token: ENV["ACCESS_TOKEN"])
-    @repo_name = ENV["GITHUB_REPOSITORY"]
+  def initialize(client: Octokit::Client.new(access_token: ENV["ACCESS_TOKEN"]), repo_name: ENV["GITHUB_REPOSITORY"])
+    @client = client
+    @repo_name = repo_name
   end
 
   def pr_opened?
@@ -22,10 +22,12 @@ class GithubApiConnection
     @client.commits(@repo_name, sha: branch_name)
   end
 
+  def add_file
+    addition = @client.create_contents(@repo_name, "add_me_to_repo.md", "Adding content")
+    p addition.to_h
+
+  end
 end
-
-
-
 
 # client = Octokit::Client.new(access_token: ENV["ACCESS_TOKEN"])
 
@@ -39,5 +41,3 @@ end
 # probably one of these methods to add the file
 # #create_commit(repo, message, tree, parents = nil, options = {})
 # #update_contents(repo, path, message, sha, content = nil, options = {})
-
-
