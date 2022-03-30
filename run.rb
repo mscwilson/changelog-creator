@@ -37,7 +37,8 @@ def commit_new_changelog(connection, creator)
   new_log_section = creator.simple_changelog_block(branch_name: branches[:head_ref], commits:)
   updated_log = "#{new_log_section}\n#{existing_changelog[:contents]}"
 
-  connection.update_file(commit_message: "Update CHANGELOG",
+  commit_message = changelog_exists ? "Update CHANGELOG" : "Create CHANGELOG"
+  connection.update_file(commit_message:,
                          file_contents: updated_log,
                          file_path: LOG_PATH,
                          sha: existing_changelog[:sha],
