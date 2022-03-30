@@ -28,7 +28,7 @@ Metrics/BlockLength:
     - "spec/**/*"
 
 Metrics/MethodLength:
-  Max: 25
+  Max: 30
 
 Metrics/ParameterLists:
   Enabled: false
