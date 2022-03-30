@@ -12,13 +12,16 @@ def run
   connection = GithubApiConnection.new(client:, repo_name: "mscwilson/try-out-actions-here")
   creator = ChangelogCreator.new
 
-  events = connection.repo_events
-  unless connection.pr_opened_to_main?(events)
-    puts "No action taken."
-    return
-  end
+  # events = connection.repo_events
+  # unless connection.pr_opened_to_main?(events)
+  #   puts "No action taken."
+  #   return
+  # end
 
-  commit_new_changelog(connection, creator)
+  # commit_new_changelog(connection, creator)
+
+  labels = connection.issue_labels(issue: 1)
+  p labels
 end
 
 def commit_new_changelog(connection, creator)
