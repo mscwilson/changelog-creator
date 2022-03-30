@@ -9,8 +9,8 @@ class ChangelogCreator
   RELEASE_COMMIT_PATTERN = /Prepare for \d*\.*\d*\.*\d*\.*\ *release/
   EMAIL_PATTERN = /\w+@snowplowanalytics\.com/
 
-  def simple_changelog_block(branch_name:, commits:)
-    version = extract_version_number(branch_name)
+  def simple_changelog_block(branch_name:, commits:, version: nil)
+    version ||= extract_version_number(branch_name)
     return "" if version.nil?
 
     relevant_commits = extract_relevant_commit_data(commits)
