@@ -66,6 +66,12 @@ class GithubApiConnection
 
   def issue_labels(issue:)
     issue = issue.to_i if issue.is_a? String
+    # The response object stores various data about each label, as a hash
     @client.labels_for_issue(@repo_name, issue).map { |label| label[:name] }
+  end
+
+  def comment_on_pr_or_issue(number:, text: "Hello World!")
+    number = number.to_i if number.is_a? String
+    @client.add_comment(@repo_name, number, text)
   end
 end

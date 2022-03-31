@@ -7,10 +7,8 @@ LOG_PATH = "./CHANGELOG"
 def run
   puts "Starting Changelog Creator"
 
-  client = Octokit::Client.new(access_token: "secret")
-
-  connection = GithubApiConnection.new(client:, repo_name: "mscwilson/try-out-actions-here")
-  creator = ChangelogCreator.new
+  creator = ChangelogCreator.new(access_token: "secret",
+                                 repo_name: "mscwilson/try-out-actions-here")
 
   # events = connection.repo_events
   # unless connection.pr_opened_to_main?(events)
@@ -20,8 +18,8 @@ def run
 
   # commit_new_changelog(connection, creator)
 
-  labels = connection.issue_labels(issue: 1)
-  p labels
+  comment = creator.octokit.comment_on_pr_or_issue(number: 2)
+  p comment
 end
 
 def commit_new_changelog(connection, creator)
@@ -50,6 +48,4 @@ def commit_new_changelog(connection, creator)
   puts changelog_exists ? "CHANGELOG updated." : "CHANGELOG created."
 end
 
-# run
-
-
+run

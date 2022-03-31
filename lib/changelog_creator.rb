@@ -11,32 +11,33 @@ class ChangelogCreator
   RELEASE_COMMIT_PATTERN = /Prepare for \d*\.*\d*\.*\d*\.*\ *release/
   EMAIL_PATTERN = /\w+@snowplowanalytics\.com/
 
-  def initialize(client: Octokit::Client.new(access_token: ENV["ACCESS_TOKEN"]),
+  attr_reader :octokit
+
+  def initialize(access_token: ENV["ACCESS_TOKEN"],
+                 client: Octokit::Client,
                  repo_name: ENV["GITHUB_REPOSITORY"],
                  api_connection: GithubApiConnection)
-    @connection = api_connection.new(client, repo_name)
+    @octokit = api_connection.new(client: client.new(access_token:), repo_name:)
   end
 
-  def simple_changelog_block(branch_name:, commits:, version: nil)
+  def simple_changelog_block(branch_name:, commit_data:, version: nil)
     version ||= extract_version_number(branch_name)
     return "" if version.nil?
 
-    relevant_commits = extract_relevant_commit_data(commits)
     title = "#{version} (#{Date.today.strftime('%Y-%m-%d')})"
 
-    relevant_commits.map! do |commit|
+    commit_data.map! do |commit|
       if commit[:snowplower]
         "#{commit[:message]} (##{commit[:issue]})"
       else
         "#{commit[:message]} (##{commit[:issue]}) - thanks @#{commit[:author]}!"
       end
     end
-    "Version #{title}\n-----------------------\n#{relevant_commits.join("\n")}\n"
+    "Version #{title}\n-----------------------\n#{commit_data.join("\n")}\n"
   end
 
-  def fancy_changelog(commits:)
-    relevant_commits = extract_relevant_commit_data(commits)
-    commits_by_type = sort_commits_by_type(relevant_commits)
+  def fancy_changelog(commit_data:)
+    commits_by_type = sort_commits_by_type(commit_data)
 
     features = commits_by_type[:feature].empty? ? "" : "**New features**\n#{commits_by_type[:feature].join("\n")}\n\n"
     bugs = commits_by_type[:bug].empty? ? "" : "**Bug fixes**\n#{commits_by_type[:bug].join("\n")}\n\n"
@@ -60,7 +61,7 @@ class ChangelogCreator
       end
     end
 
-    commits_by_type.each do |k, v|
+    commits_by_type.each do |k, _v|
       commits_by_type[k].map! do |commit|
         fancy_log_single_line(commit_data: commit)
       end

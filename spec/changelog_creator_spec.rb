@@ -54,11 +54,10 @@ describe ChangelogCreator do
       "\nUpdate snyk integration to include project name in GitHub action (#8) - thanks @SomeoneElse!\n"
 
     allow(@creator).to receive(:extract_version_number).and_return("0.2.0")
-    allow(@creator).to receive(:extract_relevant_commit_data).and_return(processed_commits)
     allow(Date).to receive(:today).and_return(Date.new(2022, 2, 1))
 
     expect(@creator.simple_changelog_block(branch_name: "release/0.2.0",
-                                           commits: "pretend this is commits")).to eq(expected)
+                                           commit_data: processed_commits)).to eq(expected)
   end
 
   it "generates a fancy changelog" do
@@ -103,6 +102,6 @@ describe ChangelogCreator do
 
     allow(@creator).to receive(:extract_relevant_commit_data).and_return(processed_commits)
 
-    expect(@creator.fancy_changelog(commits: "pretend this is commits")).to eq(expected)
+    expect(@creator.fancy_changelog(commit_data: processed_commits)).to eq(expected)
   end
 end
