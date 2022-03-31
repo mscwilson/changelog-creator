@@ -10,22 +10,27 @@ def run
   creator = ChangelogCreator.new(access_token: "secret",
                                  repo_name: "mscwilson/try-out-actions-here")
 
-  # events = connection.repo_events
-  # unless connection.pr_opened_to_main?(events)
-  #   puts "No action taken."
-  #   return
-  # end
+  events = connection.repo_events
+  unless connection.pr_opened_to_main?(events)
+    puts "No action taken."
+    return
+  end
 
-  # commit_new_changelog(connection, creator)
+  branches = creator.octokit.pr_branches(events[0])
+  commits = creator.octokit.commits_from_branch(branch_name: branches[:head_ref])
+  commit_data = creator.extract_relevant_commit_data(commits)
+  pr_number = events[0]["payload"]["number"]
 
-  comment = creator.octokit.comment_on_pr_or_issue(number: 2)
-  p comment
+  commit_changelog_file(creator, branches[:head_ref], commit_data)
+
+  formatted_log = creator.fancy_changelog(commit_data:)
+  creator.octokit.comment_on_pr_or_issue(number: pr_number, text: formatted_log)
+  puts "Formatted changelog added as comment to PR ##{pr_number}"
+
+  puts "Action completed."
 end
 
-def commit_new_changelog(connection, creator)
-  branches = connection.pr_branches(events[0])
-  commits = connection.commits_from_branch(branch_name: branches[:head_ref])
-
+def commit_changelog_file(creator, branch_name, commits)
   changelog_exists = true
   begin
     existing_changelog = connection.get_file(path: LOG_PATH)
@@ -35,7 +40,7 @@ def commit_new_changelog(connection, creator)
     changelog_exists = false
   end
 
-  new_log_section = creator.simple_changelog_block(branch_name: branches[:head_ref], commits:)
+  new_log_section = creator.simple_changelog_block(branch_name:, commits:)
   updated_log = "#{new_log_section}\n#{existing_changelog[:contents]}"
 
   commit_message = changelog_exists ? "Update CHANGELOG" : "Create CHANGELOG"
@@ -48,4 +53,9 @@ def commit_new_changelog(connection, creator)
   puts changelog_exists ? "CHANGELOG updated." : "CHANGELOG created."
 end
 
-run
+# run
+
+client = Octokit::Client.new(access_token: "secret")
+
+p client.labels_for_issue("mscwilson/try-out-actions-here", 123)
+

@@ -92,7 +92,7 @@ class ChangelogCreator
 
     email_match = commit["commit"]["author"]["email"].match(EMAIL_PATTERN)
 
-    labels = @connection.issue_labels(issue: message_match[2])
+    labels = @octokit.issue_labels(issue: message_match[2])
     label_data = parse_labels(labels:)
 
     { message: message_match[1],

@@ -67,7 +67,12 @@ class GithubApiConnection
   def issue_labels(issue:)
     issue = issue.to_i if issue.is_a? String
     # The response object stores various data about each label, as a hash
-    @client.labels_for_issue(@repo_name, issue).map { |label| label[:name] }
+    begin
+      @client.labels_for_issue(@repo_name, issue).map { |label| label[:name] }
+    rescue Octokit::NotFound
+      puts "Issue ##{issue} not found."
+      []
+    end
   end
 
   def comment_on_pr_or_issue(number:, text: "Hello World!")
