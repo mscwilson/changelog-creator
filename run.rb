@@ -1,4 +1,4 @@
-require "dotenv/load"
+# require "dotenv/load"
 require "octokit"
 
 require "./lib/github_api_connection"
