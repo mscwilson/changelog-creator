@@ -13,22 +13,23 @@ class GithubApiConnection
   end
 
   def pr_opened_to_main?(events)
+    puts "Checking that most recent event was PR creation."
     recent_event = events[0]
     if recent_event["type"] != "PullRequestEvent" || recent_event["payload"]["action"] != "opened"
-      puts "The most recent event was not PR creation"
+      puts "The most recent event was not PR creation."
       return false
     end
 
     branches = pr_branches(recent_event)
     unless %w[main master].include?(branches[:base_ref])
-      puts "This PR was not opened against main/master branch"
+      puts "This PR was not opened against main/master branch."
       return false
     end
 
-    unless branches[:head_ref][0..6] == "release"
-      puts "This PR was not opened from a release branch"
-      return false
-    end
+    # unless branches[:head_ref][0..6] == "release"
+    #   puts "This PR was not opened from a release branch."
+    #   return false
+    # end
 
     true
   end
@@ -45,7 +46,7 @@ class GithubApiConnection
 
     # The Github API returns 30 results at a time
     # But what if there are more than 30 commits for this release?!
-    # This adds the second page of results too, for a total of 60 commits
+    # This adds the second page of results too, for a total of 60 commits.
     # There's no way anyone would have completed more than 60 issues
     begin
       commits.concat @client.get(@client.last_response.rels[:next].href)
@@ -62,5 +63,21 @@ class GithubApiConnection
 
   def update_file(commit_message:, file_contents:, file_path:, sha: nil, branch: nil)
     @client.update_contents(@repo_name, file_path, commit_message, sha, file_contents, { branch: })
+  end
+
+  def issue_labels(issue:)
+    issue = issue.to_i if issue.is_a? String
+    # The response object stores various data about each label, as a hash
+    begin
+      @client.labels_for_issue(@repo_name, issue).map { |label| label[:name] }
+    rescue Octokit::NotFound
+      puts "Issue ##{issue} not found."
+      []
+    end
+  end
+
+  def comment_on_pr_or_issue(number:, text: "Hello World!")
+    number = number.to_i if number.is_a? String
+    @client.add_comment(@repo_name, number, text)
   end
 end
