@@ -7,10 +7,9 @@ require "./lib/changelog_creator"
 LOG_PATH = "./CHANGELOG"
 
 def run
-  puts "Starting Changelog Creator"
+  puts "Starting Changelog Creator."
 
-  creator = ChangelogCreator.new(access_token: "secret",
-                                 repo_name: "mscwilson/try-out-actions-here")
+  creator = ChangelogCreator.new
 
   events = connection.repo_events
   unless connection.pr_opened_to_main?(events)
