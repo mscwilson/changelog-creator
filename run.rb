@@ -46,14 +46,18 @@ def commit_changelog_file(creator, branch_name, commits)
   new_log_section = creator.simple_changelog_block(branch_name:, commit_data: commits)
   updated_log = "#{new_log_section}\n#{existing_changelog[:contents]}"
 
-  commit_message = changelog_exists ? "Update CHANGELOG" : "Create CHANGELOG"
-  creator.octokit.update_file(commit_message:,
-                              file_contents: updated_log,
-                              file_path: LOG_PATH,
-                              sha: existing_changelog[:sha],
-                              branch: branch_name)
+  if new_log_section.empty?
+    puts "No version number found. No CHANGELOG file created."
+  else
+    commit_message = changelog_exists ? "Update CHANGELOG" : "Create CHANGELOG"
+    creator.octokit.update_file(commit_message:,
+                                file_contents: updated_log,
+                                file_path: LOG_PATH,
+                                sha: existing_changelog[:sha],
+                                branch: branch_name)
 
-  puts changelog_exists ? "CHANGELOG updated." : "CHANGELOG created."
+    puts changelog_exists ? "CHANGELOG updated." : "CHANGELOG created."
+  end
 end
 
 run
