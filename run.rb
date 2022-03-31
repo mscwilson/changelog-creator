@@ -50,4 +50,6 @@ def commit_new_changelog(connection, creator)
   puts changelog_exists ? "CHANGELOG updated." : "CHANGELOG created."
 end
 
-run
+# run
+
+
