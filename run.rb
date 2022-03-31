@@ -23,7 +23,7 @@ def run
 
   pr_number = events[0]["payload"]["number"]
 
-  commit_changelog_file(creator, branches[:head_ref], commit_data)
+  # commit_changelog_file(creator, branches[:head_ref], commit_data)
 
   formatted_log = creator.fancy_changelog(commit_data:)
   creator.octokit.comment_on_pr_or_issue(number: pr_number, text: formatted_log)
