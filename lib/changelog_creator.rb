@@ -49,7 +49,10 @@ class ChangelogCreator
 
   def sort_commits_by_type(commit_data)
     commits_by_type = commit_data.each_with_object(Hash.new([].freeze)) do |i, dict|
-      p dict
+      p i
+      p i.class
+      p i[:type]
+      p "did it work?"
       case i[:type]
       when nil
         dict[:misc] += [i]
