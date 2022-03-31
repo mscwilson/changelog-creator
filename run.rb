@@ -1,4 +1,4 @@
-require 'dotenv/load'
+require "dotenv/load"
 require "octokit"
 
 require "./lib/github_api_connection"
@@ -11,8 +11,8 @@ def run
 
   creator = ChangelogCreator.new
 
-  events = connection.repo_events
-  unless connection.pr_opened_to_main?(events)
+  events = creator.octokit.repo_events
+  unless creator.octokit.pr_opened_to_main?(events)
     puts "No action taken."
     return
   end
@@ -33,26 +33,27 @@ def run
 end
 
 def commit_changelog_file(creator, branch_name, commits)
+  puts "Getting CHANGELOG file."
   changelog_exists = true
   begin
-    existing_changelog = connection.get_file(path: LOG_PATH)
+    existing_changelog = creator.octokit.get_file(path: LOG_PATH)
   rescue Octokit::NotFound
     puts "No existing CHANGELOG found."
     existing_changelog = { sha: nil, contents: "" }
     changelog_exists = false
   end
 
-  new_log_section = creator.simple_changelog_block(branch_name:, commits:)
+  new_log_section = creator.simple_changelog_block(branch_name:, commit_data: commits)
   updated_log = "#{new_log_section}\n#{existing_changelog[:contents]}"
 
   commit_message = changelog_exists ? "Update CHANGELOG" : "Create CHANGELOG"
-  connection.update_file(commit_message:,
-                         file_contents: updated_log,
-                         file_path: LOG_PATH,
-                         sha: existing_changelog[:sha],
-                         branch: branches[:head_ref])
+  creator.octokit.update_file(commit_message:,
+                              file_contents: updated_log,
+                              file_path: LOG_PATH,
+                              sha: existing_changelog[:sha],
+                              branch: branch_name)
 
   puts changelog_exists ? "CHANGELOG updated." : "CHANGELOG created."
 end
 
-# run
+run

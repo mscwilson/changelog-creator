@@ -80,7 +80,10 @@ class ChangelogCreator
   end
 
   def extract_version_number(branch_name)
-    version = branch_name.match(RELEASE_BRANCH_PATTERN)[1]
+    match = branch_name.match(RELEASE_BRANCH_PATTERN)
+    return nil unless match
+
+    version = match[1]
     version.count(".") == 1 ? "#{version}.0" : version
   end
 

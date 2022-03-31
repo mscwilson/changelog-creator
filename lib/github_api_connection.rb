@@ -13,6 +13,7 @@ class GithubApiConnection
   end
 
   def pr_opened_to_main?(events)
+    puts "Checking that most recent event was PR creation."
     recent_event = events[0]
     if recent_event["type"] != "PullRequestEvent" || recent_event["payload"]["action"] != "opened"
       puts "The most recent event was not PR creation."
@@ -25,10 +26,10 @@ class GithubApiConnection
       return false
     end
 
-    unless branches[:head_ref][0..6] == "release"
-      puts "This PR was not opened from a release branch."
-      return false
-    end
+    # unless branches[:head_ref][0..6] == "release"
+    #   puts "This PR was not opened from a release branch."
+    #   return false
+    # end
 
     true
   end
