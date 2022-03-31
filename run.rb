@@ -1,6 +1,8 @@
+require 'dotenv/load'
+require "octokit"
+
 require "./lib/github_api_connection"
 require "./lib/changelog_creator"
-require "octokit"
 
 LOG_PATH = "./CHANGELOG"
 
@@ -19,6 +21,7 @@ def run
   branches = creator.octokit.pr_branches(events[0])
   commits = creator.octokit.commits_from_branch(branch_name: branches[:head_ref])
   commit_data = creator.extract_relevant_commit_data(commits)
+
   pr_number = events[0]["payload"]["number"]
 
   commit_changelog_file(creator, branches[:head_ref], commit_data)
@@ -54,8 +57,3 @@ def commit_changelog_file(creator, branch_name, commits)
 end
 
 # run
-
-client = Octokit::Client.new(access_token: "secret")
-
-p client.labels_for_issue("mscwilson/try-out-actions-here", 123)
-
