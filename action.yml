@@ -19,6 +19,10 @@ runs:
         bundle exec ruby run.rb
       shell: bash
 
+    - id: env
+      run: env
+      shell: bash
+
     - id: greeter
-      run: echo "::set-output name=greeting::$(echo $GREETING)"
+      run: echo "::set-output name=greeting::$(echo $PWD)"
       shell: bash
