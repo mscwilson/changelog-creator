@@ -9,3 +9,8 @@ runs:
     - run: |
         bundle exec ruby run.rb
       shell: bash
+outputs:
+  fancylog:
+    description: |
+      Commits sorted into "New features", "Bug fixes" or "Under the hood". 
+      Otherwise "Miscellaneous" if "type:" issue labels are missing.
