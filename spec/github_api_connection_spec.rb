@@ -6,27 +6,8 @@ describe GithubApiConnection do
     @connection = GithubApiConnection.new(client: @fake_client)
   end
 
-  describe "checks the last event for PR status" do
-    it "checks if a new PR was opened into main/master" do
-      events_json_path = "./example_files_test/events_pullrequestevent_opened.json"
-      file = File.read(events_json_path)
-      expect(@connection.pr_opened_to_main?(JSON.parse(file))).to be true
-    end
-
-    it "returns false if the PR wasn't to main" do
-      events_json_path = "./example_files_test/events_pullrequestevent_opened_not_main.json"
-      file = File.read(events_json_path)
-      expect(@connection.pr_opened_to_main?(JSON.parse(file))).to be false
-    end
-
-    it "returns the head and base for a new PR" do
-      events_json_path = "./example_files_test/events_pullrequestevent_opened.json"
-      file = File.read(events_json_path)
-      expect(@connection.pr_branches(JSON.parse(file)[0])).to eq({ head_ref: "release/1.2.3", base_ref: "main" })
-    end
-  end
-
   it "gets existing CHANGELOG" do
+    # the file contents are base-64 encoded
     log_file_path = "./example_files_test/changelog_file_tJ.json"
     log_string_path = "./example_files_test/changelog_tJ.txt"
     log_file = File.read(log_file_path)

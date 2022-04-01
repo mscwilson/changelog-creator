@@ -9,36 +9,12 @@ class GithubApiConnection
   end
 
   def repo_events
+    # NB there can be a delay for a new PR to show up at the "events" endpoint
     @client.repository_events(@repo_name)
   end
 
-  def pr_opened_to_main?(events)
-    puts "Checking that most recent event was PR creation."
-    recent_event = events[0]
-    if recent_event["type"] != "PullRequestEvent" || recent_event["payload"]["action"] != "opened"
-      puts "The most recent event was not PR creation."
-      return false
-    end
-
-    branches = pr_branches(recent_event)
-    unless %w[main master].include?(branches[:base_ref])
-      puts "This PR was not opened against main/master branch."
-      return false
-    end
-
-    # unless branches[:head_ref][0..6] == "release"
-    #   puts "This PR was not opened from a release branch."
-    #   return false
-    # end
-
-    true
-  end
-
-  def pr_branches(pull_request_event)
-    pr = pull_request_event["payload"]["pull_request"]
-    head_ref = pr["head"]["ref"]
-    base_ref = pr["base"]["ref"]
-    { head_ref:, base_ref: }
+  def repo_pull_requests
+    @client.pull_requests(@repo_name)
   end
 
   def commits_from_branch(branch_name:)
