@@ -20,7 +20,11 @@ def run
   # end
   
 
-  `export GREETING="hello world"`
+  # system({"GREETING" => "polo"}, "echo $GREETING" )
+
+  ENV["GREETING"] = "hello"
+
+  puts ENV["GREETING"]
 
   # commits = creator.octokit.commits_from_branch(branch_name: ENV["GITHUB_HEAD_REF"])
   # commit_data = creator.extract_relevant_commit_data(commits)
