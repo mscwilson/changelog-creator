@@ -16,6 +16,7 @@ runs:
   steps:
     - id: changelog-creator
       run: |
-        bundle exec ruby run.rb
-        echo "::set-output name=greeting::$(echo $GREETING)"
+        bundle exec ruby run.rb > output.txt
+        cat output.txt
+        echo "::set-output name=greeting::$(tail -n 1 output.txt )"
       shell: bash

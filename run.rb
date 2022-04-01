@@ -26,6 +26,8 @@ def run
 
   puts ENV["GREETING"]
 
+  puts "Hello this is some text"
+
   # commits = creator.octokit.commits_from_branch(branch_name: ENV["GITHUB_HEAD_REF"])
   # commit_data = creator.extract_relevant_commit_data(commits)
 

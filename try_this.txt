@@ -1,0 +1,3 @@
+Starting Changelog Creator.
+hello
+Hello this is some text
