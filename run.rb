@@ -21,9 +21,10 @@ def run
   $stdout.write "Writing to STDOUT"
   puts "Puts'd this."
 
-  `echo "hello world with backticks"`
 
-  puts "::set-output name=fancylog::'hello world'"
+  $stdout.write "::set-output name=fancylog::hello"
+
+  puts "And this?"
 
   # commits = creator.octokit.commits_from_branch(branch_name: ENV["GITHUB_HEAD_REF"])
   # commit_data = creator.extract_relevant_commit_data(commits)
