@@ -18,6 +18,10 @@ def run
   #   puts "No action taken."
   #   return
   # end
+  $stdout.write "Writing to STDOUT"
+  puts "Puts'd this."
+
+  `echo "hello world with backticks"`
 
   puts "::set-output name=fancylog::'hello world'"
 
