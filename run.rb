@@ -13,16 +13,18 @@ def run
   creator = ChangelogCreator.new
   manager = Manager.new
 
-  events = creator.octokit.repo_events
-  unless manager.pr_branches_release_and_main?
-    puts "No action taken."
-    return
-  end
+  # events = creator.octokit.repo_events
+  # unless manager.pr_branches_release_and_main?
+  #   puts "No action taken."
+  #   return
+  # end
 
-  commits = creator.octokit.commits_from_branch(branch_name: ENV["GITHUB_HEAD_REF"])
-  commit_data = creator.extract_relevant_commit_data(commits)
+  puts "::set-output name=fancylog::'hello world'"
 
-  pr_number = events[0]["payload"]["number"]
+  # commits = creator.octokit.commits_from_branch(branch_name: ENV["GITHUB_HEAD_REF"])
+  # commit_data = creator.extract_relevant_commit_data(commits)
+
+  # pr_number = events[0]["payload"]["number"]
 
   # commit_changelog_file(creator, branches[:head_ref], commit_data)
 
