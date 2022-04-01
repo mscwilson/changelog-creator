@@ -18,13 +18,9 @@ def run
   #   puts "No action taken."
   #   return
   # end
-  $stdout.write "Writing to STDOUT"
-  puts "Puts'd this."
+  
 
-
-  $stdout.write "::set-output name=fancylog::hello"
-
-  puts "And this?"
+  `export GREETING="hello world"`
 
   # commits = creator.octokit.commits_from_branch(branch_name: ENV["GITHUB_HEAD_REF"])
   # commit_data = creator.extract_relevant_commit_data(commits)

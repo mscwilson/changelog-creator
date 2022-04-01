@@ -3,14 +3,22 @@ description: "Creates a changelog out of the new commits"
 branding:
   icon: filter
   color: red
-runs:
-  using: "composite"
-  steps:
-    - run: |
-        bundle exec ruby run.rb
-      shell: bash
+
 outputs:
   fancylog:
     description: |
       Commits sorted into "New features", "Bug fixes" or "Under the hood". 
       Otherwise "Miscellaneous" if "type:" issue labels are missing.
+    value: ${{ steps.greeter.outputs.greeting }}
+
+runs:
+  using: "composite"
+  steps:
+    - id: changelog-creator
+      run: |
+        bundle exec ruby run.rb
+      shell: bash
+
+    - id: greeter
+      run: echo "::set-output name=greeting::$(echo $GREETING)"
+      shell: bash
