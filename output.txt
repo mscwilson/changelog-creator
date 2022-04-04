@@ -1,4 +1,0 @@
-script: exec: No such file or directory
-Script started, output file is bundle
-
-Script done, output file is bundle
