@@ -14,6 +14,7 @@ def run
   manager = Manager.new
 
   if manager.pr_branches_release_and_main?
+    puts "Starting to make the new CHANGELOG..."
     commits = creator.octokit.commits_from_branch(branch_name: ENV["GITHUB_HEAD_REF"])
     commit_data = creator.extract_relevant_commit_data(commits)
     commit_changelog_file(creator, ENV["GITHUB_HEAD_REF"], commit_data)
@@ -47,10 +48,12 @@ def commit_changelog_file(creator, branch_name, commits)
   new_log_section = creator.simple_changelog_block(branch_name:, commit_data: commits)
   updated_log = "#{new_log_section}\n#{existing_changelog[:contents]}"
 
+  version = creator.extract_version_number(branch_name)
+
   if new_log_section.empty?
     puts "No version number found. No CHANGELOG file created."
   else
-    commit_message = changelog_exists ? "Update CHANGELOG" : "Create CHANGELOG"
+    commit_message = "Prepare for #{version} release"
     creator.octokit.update_file(commit_message:,
                                 file_contents: updated_log,
                                 file_path: LOG_PATH,
@@ -61,4 +64,6 @@ def commit_changelog_file(creator, branch_name, commits)
   end
 end
 
+puts "About to call main run method."
 run
+puts "Finished running."

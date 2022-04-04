@@ -1,5 +1,6 @@
 class Manager
   def pr_branches_release_and_main?
+    puts "Checking it's a PR of the right sort..."
     unless %w[main master].include?(ENV["GITHUB_BASE_REF"])
       puts "This was not a PR opened against main/master branch."
       return false
