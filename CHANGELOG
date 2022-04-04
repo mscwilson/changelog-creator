@@ -1,0 +1,4 @@
+Version 0.1.0 (2022-04-04)
+-----------------------
+Fix update_file not working if no existing file (#41)
+
