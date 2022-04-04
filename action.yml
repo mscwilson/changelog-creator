@@ -16,6 +16,6 @@ runs:
   steps:
     - id: changelog-creator
       run: |
-        unbuffer bundle exec ruby run.rb 2>&1 | tee output.txt
+        stdbuf -o 0 bundle exec ruby run.rb 2>&1 | tee output.txt
         echo "::set-output name=greeting::$(tail -n 1 output.txt )"
       shell: bash
