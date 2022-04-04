@@ -41,6 +41,9 @@ class GithubApiConnection
     # The sha is the blob sha of the file (or files).
     # It's expected to be the sha of the CHANGELOG file on the main branch (GITHUB_BASE_REF)
     # Committing into the release branch
+
+    @client.create_contents(@repo_name, file_path, commit_message, file_contents, { branch: }) if sha.nil?
+
     @client.update_contents(@repo_name, file_path, commit_message, sha, file_contents, { branch: })
     true
   rescue Octokit::Conflict

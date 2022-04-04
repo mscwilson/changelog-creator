@@ -24,7 +24,7 @@ def run
     puts
     puts Base64.strict_encode64("No release notes needed!")
     nil
-    
+
   else
     # Output release notes to use as part of a GH deploy workflow
     # Working on the assumption that the release PR was the most recently made (highest number)
