@@ -17,5 +17,5 @@ runs:
     - id: changelog-creator
       run: |
         bundle exec ruby run.rb 2>&1 | tee output.txt
-        echo "::set-output name=notes::$(tail -n 1 output.txt)"
+        echo ::set-output name=notes::$(tail -n 1 output.txt)
       shell: bash
