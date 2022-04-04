@@ -20,5 +20,4 @@ describe Manager do
   end
 
   # it "checks it's a "
-
 end

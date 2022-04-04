@@ -40,6 +40,9 @@ class GithubApiConnection
 
   def update_file(commit_message:, file_contents:, file_path:, sha: nil, branch: nil)
     @client.update_contents(@repo_name, file_path, commit_message, sha, file_contents, { branch: })
+  rescue Octokit::Conflict
+    puts "Octokit::Conflict error. 409 - CHANGELOG does not match sha"
+    puts "Dunno what to tell you 🤷🏼‍♀️"
   end
 
   def issue_labels(issue:)

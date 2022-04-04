@@ -21,9 +21,7 @@ def run
     puts "Action completed."
     return
   end
-  
-  
-  
+
   # events = creator.octokit.repo_events
   # pr_number = events[0]["payload"]["number"]
 
