@@ -18,5 +18,4 @@ describe Manager do
 
     expect(@manager.pr_branches_release_and_main?).to be false
   end
-
 end

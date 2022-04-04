@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request' && github.event.action == 'opened'
     outputs:
-      release-notes: ${{ steps.changelog.outputs.release-notes }}
+      release-notes: ${{ steps.release-notes.outputs.release-notes }}
 
     steps:
       - uses: actions/checkout@v2
@@ -35,7 +35,7 @@ jobs:
           bundler-cache: true # runs ‘bundle install’ and caches installed gems automatically
 
       - name: Run ruby script
-        id: changelog
+        id: release-notes
         uses: mscwilson/changelog-creator@main
         env:
           ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
