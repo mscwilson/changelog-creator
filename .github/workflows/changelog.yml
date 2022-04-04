@@ -1,0 +1,47 @@
+name: "Update CHANGELOG"
+
+on: pull_request
+
+permissions: write-all
+
+jobs:
+  print-stuff:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Print ENV
+        run: env
+
+      - name: echo stuff
+        run: echo $GITHUB_EVENT_NAME
+
+  changelog:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.action == 'opened'
+    outputs:
+      release-notes: ${{ steps.changelog.outputs.release-notes }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/checkout@v2
+        with:
+          repository: mscwilson/changelog-creator
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true # runs ‘bundle install’ and caches installed gems automatically
+
+      - name: Run ruby script
+        id: changelog
+        uses: mscwilson/changelog-creator@main
+        env:
+          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Print output
+        run: echo ${{ steps.release-notes.outputs.release-notes }}
+
+      - name: Print decoded output?!
+        run: echo ${{ steps.release-notes.outputs.release-notes }} | base64 --decode
