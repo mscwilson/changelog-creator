@@ -14,7 +14,7 @@ class GithubApiConnection
   end
 
   def repo_pull_requests
-    @client.pull_requests(@repo_name)
+    @client.pull_requests(@repo_name, state: "all")
   end
 
   def commits_from_branch(branch_name:)

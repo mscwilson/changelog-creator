@@ -5,17 +5,17 @@ branding:
   color: red
 
 outputs:
-  fancylog:
+  release-notes:
     description: |
       Commits sorted into "New features", "Bug fixes" or "Under the hood". 
       Otherwise "Miscellaneous" if "type:" issue labels are missing.
-    value: ${{ steps.changelog-creator.outputs.greeting }}
+    value: ${{ steps.changelog-creator.outputs.notes }}
 
 runs:
   using: "composite"
   steps:
     - id: changelog-creator
       run: |
-        stdbuf -o 0 bundle exec ruby run.rb 2>&1 | tee output.txt
-        echo "::set-output name=greeting::$(tail -n 1 output.txt )"
+        bundle exec ruby run.rb 2>&1 | tee output.txt
+        echo "::set-output name=notes::$(tail -n 1 output.txt )"
       shell: bash
