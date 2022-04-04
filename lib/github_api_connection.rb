@@ -39,13 +39,17 @@ class GithubApiConnection
   end
 
   def update_file(commit_message:, file_contents:, file_path:, sha: nil, branch: ENV["GITHUB_HEAD_REF"])
+    # The sha is the blob sha of the file (or files).
+    # It's expected to be the sha of the CHANGELOG file on the main branch (GITHUB_BASE_REF)
+    # Committing into the release branch
     @client.update_contents(@repo_name, file_path, commit_message, sha, file_contents, { branch: })
+    true
   rescue Octokit::Conflict
+    # Rerunning the Action can cause an error.
+    # There's a risk of creating a new "Prepare for release" commit with an empty CHANGELOG section
     puts "Octokit::Conflict error. 409 - CHANGELOG does not match sha"
-    puts "Did this action get run multiple times? Try this:"
-    current = get_file(path: "./CHANGELOG", ref: ENV["GITHUB_HEAD_REF"])
-    @client.update_contents(@repo_name, file_path, commit_message, current[:sha], file_contents, { branch: })
-    puts "Dunno what to tell you 🤷🏼‍♀️"
+    puts "Did this Action get run multiple times?"
+    false
   end
 
   def issue_labels(issue:)

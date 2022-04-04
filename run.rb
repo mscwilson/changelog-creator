@@ -55,11 +55,16 @@ def commit_changelog_file(creator, branch_name, commits)
     puts "No version number found. No CHANGELOG file created."
   else
     commit_message = "Prepare for #{version} release"
-    creator.octokit.update_file(commit_message:,
-                                file_contents: updated_log,
-                                file_path: LOG_PATH,
-                                sha: existing_changelog[:sha],
-                                branch: branch_name)
+    commit_result = creator.octokit.update_file(commit_message:,
+                                                file_contents: updated_log,
+                                                file_path: LOG_PATH,
+                                                sha: existing_changelog[:sha],
+                                                branch: branch_name)
+
+    unless commit_result
+      puts "Failed to commit new CHANGELOG."
+      return
+    end
 
     puts changelog_exists ? "CHANGELOG updated." : "CHANGELOG created."
   end
