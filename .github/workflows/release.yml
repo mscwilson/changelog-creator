@@ -86,7 +86,7 @@ jobs:
         with:
           name: Version ${{ needs.prepare-to-publish.outputs.gem-version }}
           prerelease: ${{ contains(needs.prepare-to-publish.outputs.gem-version, '-') }}
-          body: $RELEASE-NOTES
+          body: ${{ echo $RELEASE-NOTES }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASE-NOTES: ${{ steps.release-notes.outputs.release-notes }} | base64 --decode
