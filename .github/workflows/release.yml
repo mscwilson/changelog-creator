@@ -61,7 +61,7 @@ jobs:
         with:
           bundler-cache: true # runs ‘bundle install’ and caches installed gems automatically
 
-      - name:
+      - name: Create release notes
         id: release-notes
         uses: mscwilson/changelog-creator@0.1.0
         env:
@@ -69,6 +69,9 @@ jobs:
 
       - name: print notes
         run: echo ${{ steps.release-notes.outputs.release-notes }}
+
+      - name: print decoded notes
+        run: echo ${{ steps.release-notes.outputs.release-notes }} | base64 --decode
 
   publish:
     needs: [prepare-to-publish, release-notes]
@@ -83,6 +86,7 @@ jobs:
         with:
           name: Version ${{ needs.prepare-to-publish.outputs.gem-version }}
           prerelease: ${{ contains(needs.prepare-to-publish.outputs.gem-version, '-') }}
-          body: ${{ steps.release-notes.outputs.release-notes }}
+          body: ${{ echo $RELEASE-NOTES }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE-NOTES: ${{ steps.release-notes.outputs.release-notes }} | base64 --decode
