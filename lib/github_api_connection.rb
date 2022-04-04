@@ -38,10 +38,13 @@ class GithubApiConnection
     { sha: file[:sha], contents: Base64.decode64(file[:content]) }
   end
 
-  def update_file(commit_message:, file_contents:, file_path:, sha: nil, branch: nil)
+  def update_file(commit_message:, file_contents:, file_path:, sha: nil, branch: ENV["GITHUB_HEAD_REF"])
     @client.update_contents(@repo_name, file_path, commit_message, sha, file_contents, { branch: })
   rescue Octokit::Conflict
     puts "Octokit::Conflict error. 409 - CHANGELOG does not match sha"
+    puts "Did this action get run multiple times? Try this:"
+    current = get_file(path: "./CHANGELOG", ref: ENV["GITHUB_HEAD_REF"])
+    @client.update_contents(@repo_name, file_path, commit_message, current[:sha], file_contents, { branch: })
     puts "Dunno what to tell you 🤷🏼‍♀️"
   end
 
