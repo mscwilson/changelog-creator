@@ -48,6 +48,9 @@ def commit_changelog_file(creator, branch_name, commits)
   new_log_section = creator.simple_changelog_block(branch_name:, commit_data: commits)
   updated_log = "#{new_log_section}\n#{existing_changelog[:contents]}"
 
+  puts "Updated log incoming:"
+  p updated_log
+
   version = creator.extract_version_number(branch_name)
 
   if new_log_section.empty?
