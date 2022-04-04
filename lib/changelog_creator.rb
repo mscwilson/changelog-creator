@@ -20,10 +20,7 @@ class ChangelogCreator
     @octokit = api_connection.new(client: client.new(access_token:), repo_name:)
   end
 
-  def simple_changelog_block(branch_name:, commit_data:, version: nil)
-    version ||= extract_version_number(branch_name)
-    return "" if version.nil?
-
+  def simple_changelog_block(commit_data:, version:)
     title = "#{version} (#{Date.today.strftime('%Y-%m-%d')})"
 
     commit_data.map! do |commit|
@@ -74,12 +71,12 @@ class ChangelogCreator
     "#{commit_data[:message]} (##{commit_data[:issue]})#{thanks}#{breaking_change}"
   end
 
-  def extract_relevant_commit_data(commits)
+  def relevant_commit_data(commits)
     new_commits = commits.take_while { |commit| !RELEASE_COMMIT_PATTERN.match(commit["commit"]["message"]) }
     new_commits.map { |commit| process_single_commit(commit) }.compact
   end
 
-  def extract_version_number(branch_name)
+  def version_number(branch_name)
     match = branch_name.match(RELEASE_BRANCH_PATTERN)
     return nil unless match
 

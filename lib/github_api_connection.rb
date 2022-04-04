@@ -34,7 +34,6 @@ class GithubApiConnection
 
   def get_file(path:, ref: ENV["GITHUB_BASE_REF"])
     file = @client.contents(@repo_name, path:, ref:)
-    p Base64.decode64(file[:content])
     { sha: file[:sha], contents: Base64.decode64(file[:content]) }
   end
 

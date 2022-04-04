@@ -15,7 +15,7 @@ describe ChangelogCreator do
     allow(@fake_octocat).to receive(:issue_labels)
       .and_return(["category:breaking_change", "type:enhancement"], ["type:defect"])
 
-    results = @creator.extract_relevant_commit_data(JSON.parse(commits))
+    results = @creator.relevant_commit_data(JSON.parse(commits))
     expect(results.length).to eq 2
 
     expect(results[0][:message]).to eq("Choose HTTP response codes not to retry")
@@ -33,9 +33,9 @@ describe ChangelogCreator do
   end
 
   it "gets the version number from the release branch name" do
-    expect(@creator.extract_version_number("release/0.6.3")).to eq "0.6.3"
-    expect(@creator.extract_version_number("release/5.0.3")).to eq "5.0.3"
-    expect(@creator.extract_version_number("release/2.7")).to eq "2.7.0"
+    expect(@creator.version_number("release/0.6.3")).to eq "0.6.3"
+    expect(@creator.version_number("release/5.0.3")).to eq "5.0.3"
+    expect(@creator.version_number("release/2.7")).to eq "2.7.0"
   end
 
   it "generates a simple CHANGELOG block" do
@@ -53,10 +53,10 @@ describe ChangelogCreator do
       "\nPublish Gradle module file with bintrayUpload (#255)"\
       "\nUpdate snyk integration to include project name in GitHub action (#8) - thanks @SomeoneElse!\n"
 
-    allow(@creator).to receive(:extract_version_number).and_return("0.2.0")
+    allow(@creator).to receive(:version_number).and_return("0.2.0")
     allow(Date).to receive(:today).and_return(Date.new(2022, 2, 1))
 
-    expect(@creator.simple_changelog_block(branch_name: "release/0.2.0",
+    expect(@creator.simple_changelog_block(version: "0.2.0",
                                            commit_data: processed_commits)).to eq(expected)
   end
 
@@ -100,7 +100,7 @@ describe ChangelogCreator do
       "**Under the hood**\nUpdate all copyright notices (#279)\n"\
       "\n**Miscellaneous**\nAllow Emitter to use a custom ExecutorService (#278) **BREAKING CHANGE**\n"
 
-    allow(@creator).to receive(:extract_relevant_commit_data).and_return(processed_commits)
+    allow(@creator).to receive(:relevant_commit_data).and_return(processed_commits)
 
     expect(@creator.fancy_changelog(commit_data: processed_commits)).to eq(expected)
   end
