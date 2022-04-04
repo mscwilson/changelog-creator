@@ -50,7 +50,8 @@ jobs:
     needs: prepare-to-publish
     runs-on: ubuntu-latest
     outputs:
-      release-notes: ${{ steps.release-notes.outputs.release-notes }}
+      encoded-release-notes: ${{ steps.release-notes.outputs.release-notes }}
+      release-notes: ${{ steps.decode.outputs.release-notes }}
 
     steps:
       - uses: actions/checkout@v2
@@ -67,11 +68,18 @@ jobs:
         env:
           ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Decode release notes
+        id: decode
+        run: echo "::set-output name=release-notes::$( ${{ steps.release-notes.outputs.release-notes }} | base64 --decode )"
+
       - name: print notes
         run: echo ${{ steps.release-notes.outputs.release-notes }}
 
-      - name: print decoded notes
-        run: echo ${{ steps.release-notes.outputs.release-notes }} | base64 --decode
+      # - name: print decoded notes
+      #   run: echo ${{ steps.release-notes.outputs.release-notes }} | base64 --decode
+
+      - name: print decoded notes from the separate step
+        run: echo ${{ steps.decode.outputs.release-notes }}
 
   publish:
     needs: [prepare-to-publish, release-notes]
