@@ -12,4 +12,13 @@ describe Manager do
     expect(@manager.pr_branches_release_and_main?).to be true
   end
 
+  it "returns false if it's not the right kind of PR" do
+    allow(ENV).to receive(:[]).with("GITHUB_BASE_REF").and_return("release/1.3.2")
+    allow(ENV).to receive(:[]).with("GITHUB_HEAD_REF").and_return("issue/123-feature")
+
+    expect(@manager.pr_branches_release_and_main?).to be false
+  end
+
+  # it "checks it's a "
+
 end

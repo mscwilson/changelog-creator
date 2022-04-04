@@ -13,33 +13,24 @@ def run
   creator = ChangelogCreator.new
   manager = Manager.new
 
-  # events = creator.octokit.repo_events
-  # unless manager.pr_branches_release_and_main?
-  #   puts "No action taken."
-  #   return
-  # end
+  if manager.pr_branches_release_and_main?
+    commits = creator.octokit.commits_from_branch(branch_name: ENV["GITHUB_HEAD_REF"])
+    commit_data = creator.extract_relevant_commit_data(commits)
+    commit_changelog_file(creator, ENV["GITHUB_HEAD_REF"], commit_data)
+    puts "Action completed."
+    return
+  end
   
-
-  # system({"GREETING" => "polo"}, "echo $GREETING" )
-
-  ENV["GREETING"] = "hello"
-
-  puts ENV["GREETING"]
-
-  puts "Hello this is some text"
-
-  # commits = creator.octokit.commits_from_branch(branch_name: ENV["GITHUB_HEAD_REF"])
-  # commit_data = creator.extract_relevant_commit_data(commits)
-
+  
+  
+  # events = creator.octokit.repo_events
   # pr_number = events[0]["payload"]["number"]
-
-  # commit_changelog_file(creator, branches[:head_ref], commit_data)
 
   # formatted_log = creator.fancy_changelog(commit_data:)
   # creator.octokit.comment_on_pr_or_issue(number: pr_number, text: formatted_log)
   # puts "Formatted changelog added as comment to PR ##{pr_number}"
-
   # puts "Action completed."
+  puts "Finished."
 end
 
 def commit_changelog_file(creator, branch_name, commits)

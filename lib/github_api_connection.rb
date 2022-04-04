@@ -32,8 +32,9 @@ class GithubApiConnection
     commits
   end
 
-  def get_file(path:, ref: nil)
+  def get_file(path:, ref: ENV["GITHUB_BASE_REF"])
     file = @client.contents(@repo_name, path:, ref:)
+    p file
     { sha: file[:sha], contents: Base64.decode64(file[:content]) }
   end
 
