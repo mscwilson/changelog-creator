@@ -19,5 +19,10 @@ describe Manager do
     expect(@manager.pr_branches_release_and_main?).to be false
   end
 
-  # it "checks it's a "
+  it "gets the version number if it was triggered by tag creation" do
+    
+    expect(@manager.tag_version).to eq "1.0.7"
+  end
+
+  
 end
