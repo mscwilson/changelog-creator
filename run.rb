@@ -14,13 +14,13 @@ def run
   manager = Manager.new
 
   # Commit a new CHANGELOG file into the release branch
-  if manager.pr_branches_release_and_main?
-    commits = creator.octokit.commits_from_branch(branch_name: ENV["GITHUB_HEAD_REF"])
-    commit_data = creator.relevant_commit_data(commits)
-    commit_changelog_file(creator, ENV["GITHUB_HEAD_REF"], commit_data)
-    puts "Action completed."
-    return
-  end
+  # if manager.pr_branches_release_and_main?
+  #   commits = creator.octokit.commits_from_branch(branch_name: ENV["GITHUB_HEAD_REF"])
+  #   commit_data = creator.relevant_commit_data(commits)
+  #   commit_changelog_file(creator, ENV["GITHUB_HEAD_REF"], commit_data)
+  #   puts "Action completed."
+  #   return
+  # end
 
   # Output release notes to use as part of a GH deploy workflow
   # Working on the assumption that the release PR was the most recently made (highest number)
@@ -39,7 +39,7 @@ def run
 
   puts "Action completed."
   puts
-  puts Base64.encode64(release_notes)
+  puts Base64.strict_encode64(release_notes)
 end
 
 def commit_changelog_file(creator, branch_name, commits)
