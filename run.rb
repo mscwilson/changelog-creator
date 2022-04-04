@@ -19,6 +19,8 @@ def run
     commit_data = creator.relevant_commit_data(commits)
     commit_changelog_file(creator, ENV["GITHUB_HEAD_REF"], commit_data)
     puts "Action completed."
+    puts
+    puts Base64.strict_encode64("No release notes needed!")
     return
   end
 
