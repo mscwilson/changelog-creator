@@ -13,38 +13,44 @@ def run
   creator = ChangelogCreator.new
   manager = Manager.new
 
-  pr_action = manager.pr_branches_release_and_main?
+  # File.open("lib/new_file.txt", "w") { |f| f.write("this file was created automatically") }
+  # File.open("lib/another_new_file.txt", "w") { |f| f.write("another test file") }
 
-  # Commit a new CHANGELOG file into the release branch
-  if pr_action
-    commits = creator.octokit.commits_from_branch(branch_name: ENV["GITHUB_HEAD_REF"])
-    commit_data = creator.relevant_commit_data(commits)
-    commit_changelog_file(creator, ENV["GITHUB_HEAD_REF"], commit_data)
-    puts "Action completed."
-    puts
-    puts Base64.strict_encode64("No release notes needed!")
-    nil
+  p creator.octokit.client.ref(ENV["GITHUB_REPOSITORY"], "heads/#{ENV["GITHUB_HEAD_REF"]}")
 
-  else
-    # Output release notes to use as part of a GH deploy workflow
-    # Working on the assumption that the release PR was the most recently made (highest number)
-    # Not necessarily true
-    pull = creator.octokit.repo_pull_requests[0]
-    branch_name = pull["base"]["ref"]
-    pull_description = pull["body"]
 
-    commits = creator.octokit.commits_from_branch(branch_name:)
-    # Temporary hack to allow for the existence of the "Prepare for release" and merge commit
-    # Just ignoring the most recent two commits
-    commit_data = creator.relevant_commit_data(commits[2..])
-    formatted_log = creator.fancy_changelog(commit_data:)
+  # pr_action = manager.pr_branches_release_and_main?
 
-    release_notes = "#{pull_description}\n\n#{formatted_log}"
+  # # Commit a new CHANGELOG file into the release branch
+  # if pr_action
+  #   commits = creator.octokit.commits_from_branch(branch_name: ENV["GITHUB_HEAD_REF"])
+  #   commit_data = creator.relevant_commit_data(commits)
+  #   commit_changelog_file(creator, ENV["GITHUB_HEAD_REF"], commit_data)
+  #   puts "Action completed."
+  #   puts
+  #   puts Base64.strict_encode64("No release notes needed!")
+  #   nil
 
-    puts "Action completed."
-    puts
-    puts Base64.strict_encode64(release_notes)
-  end
+  # else
+  #   # Output release notes to use as part of a GH deploy workflow
+  #   # Working on the assumption that the release PR was the most recently made (highest number)
+  #   # Not necessarily true
+  #   pull = creator.octokit.repo_pull_requests[0]
+  #   branch_name = pull["base"]["ref"]
+  #   pull_description = pull["body"]
+
+  #   commits = creator.octokit.commits_from_branch(branch_name:)
+  #   # Temporary hack to allow for the existence of the "Prepare for release" and merge commit
+  #   # Just ignoring the most recent two commits
+  #   commit_data = creator.relevant_commit_data(commits[2..])
+  #   formatted_log = creator.fancy_changelog(commit_data:)
+
+  #   release_notes = "#{pull_description}\n\n#{formatted_log}"
+
+  #   puts "Action completed."
+  #   puts
+  #   puts Base64.strict_encode64(release_notes)
+  # end
 end
 
 def commit_changelog_file(creator, branch_name, commits)

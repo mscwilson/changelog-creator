@@ -3,6 +3,8 @@ require "json"
 require "base64"
 
 class GithubApiConnection
+  attr_reader :client
+  
   def initialize(client: Octokit::Client.new(access_token: ENV["ACCESS_TOKEN"]), repo_name: ENV["GITHUB_REPOSITORY"])
     @client = client
     @repo_name = repo_name

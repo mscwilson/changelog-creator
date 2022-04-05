@@ -3,16 +3,16 @@ require "changelog_creator"
 
 describe ChangelogCreator do
   before do
-    @fake_octocat = double
-    allow(@fake_octocat).to receive(:new).and_return @fake_octocat
-    @creator = ChangelogCreator.new(api_connection: @fake_octocat)
+    @fake_octokit = double
+    allow(@fake_octokit).to receive(:new).and_return @fake_octokit
+    @creator = ChangelogCreator.new(api_connection: @fake_octokit)
   end
 
   it "processes commits json into a list of new commit data" do
     commits_json_path = "./example_files_test/commits_two_good_two_admin.json"
     commits = File.read(commits_json_path)
 
-    allow(@fake_octocat).to receive(:issue_labels)
+    allow(@fake_octokit).to receive(:issue_labels)
       .and_return(["category:breaking_change", "type:enhancement"], ["type:defect"])
 
     results = @creator.relevant_commit_data(JSON.parse(commits))
