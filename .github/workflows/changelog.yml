@@ -1,17 +1,16 @@
 name: "Update CHANGELOG"
 
-on: [push, pull_request]
+on: pull_request
 
-permissions: write-all
+permissions:
+  contents: write
 
 jobs:
   changelog:
     runs-on: ubuntu-latest
-    # if: github.event_name == 'pull_request' && github.event.action == 'opened'
+    if: github.event_name == 'pull_request' && github.event.action == 'opened'
 
     steps:
-      # - uses: actions/checkout@v2
-
       - uses: actions/checkout@v2
         with:
           repository: mscwilson/changelog-creator
