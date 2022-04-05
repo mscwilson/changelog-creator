@@ -1,5 +1,6 @@
 require "dotenv/load"
 require "octokit"
+require "base64"
 
 require "./lib/github_api_connection"
 require "./lib/changelog_creator"
@@ -13,11 +14,21 @@ def run
   creator = ChangelogCreator.new
   manager = Manager.new
 
-  # File.open("lib/new_file.txt", "w") { |f| f.write("this file was created automatically") }
-  # File.open("lib/another_new_file.txt", "w") { |f| f.write("another test file") }
+  client = creator.octokit.client
+  repo = ENV["GITHUB_REPOSITORY"]
 
-  p creator.octokit.client.ref(ENV["GITHUB_REPOSITORY"], "heads/#{ENV["GITHUB_HEAD_REF"]}")
+  # File.open("lib/test_file.txt", "w") { |f| f.write("this file was created automatically") }
+  # File.open("lib/another_test_file.txt", "w") { |f| f.write("another test file") }
 
+  current_branch =  client.ref(repo, "heads/issue/42-commit_multiple_files")
+  base_branch_sha = current_branch.object.sha
+
+  # base_branch_sha = "02e531ff097ab4e05df13de56c290f4704ff391d"
+
+  file1 = client.contents repo, path: "lib/test_file.txt", sha: base_branch_sha
+  file2 = client.contents repo, path: "lib/another_test_file.txt", sha: base_branch_sha
+
+  p file1
 
   # pr_action = manager.pr_branches_release_and_main?
 
