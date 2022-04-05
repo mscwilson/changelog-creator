@@ -10,15 +10,15 @@ jobs:
     # if: github.event_name == 'pull_request' && github.event.action == 'opened'
 
     steps:
-      - uses: actions/checkout@v2
+      # - uses: actions/checkout@v2
 
       - uses: actions/checkout@v2
         with:
           repository: mscwilson/changelog-creator
 
-      # - uses: ruby/setup-ruby@v1
-      #   with:
-      #     bundler-cache: true # runs ‘bundle install’ and caches installed gems automatically
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
 
       - name: Run ruby script
         id: release-notes
