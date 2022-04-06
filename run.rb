@@ -16,8 +16,9 @@ def run
   pr_action = manager.pr_branches_release_and_main?
 
   if pr_action
+    puts "Will try to update CHANGELOG now."
     # Commit a new CHANGELOG file into the release branch
-    update_changelog(creator)
+    update_changelog(creator, manager)
 
   else
     # Output release notes to use as part of a GH deploy workflow
@@ -41,13 +42,13 @@ def run
   end
 end
 
-def update_changelog(creator)
-  commits = creator.octokit.commits_from_branch(branch_name: ENV["GITHUB_HEAD_REF"])
+def update_changelog(creator, manager)
+  commits = creator.octokit.commits_from_pr(number: manager.pr_number)
   version = creator.version_number(branch_name: ENV["GITHUB_HEAD_REF"])
   commits = creator.relevant_commits(commits:, version:)
 
   if commits[0][:commit][:message].start_with? "Prepare for #{version} release"
-    puts "Did this action already run? There's a 'Prepare for release' commit right there."
+    puts "Did this action already run? There's a 'Prepare for #{version} release' commit right there."
     puts "Exiting action."
     return
   end
