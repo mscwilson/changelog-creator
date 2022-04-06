@@ -69,7 +69,7 @@ class ChangelogCreator
     features = commits_by_type[:feature].empty? ? "" : "**New features**\n#{commits_by_type[:feature].join("\n")}\n\n"
     bugs = commits_by_type[:bug].empty? ? "" : "**Bug fixes**\n#{commits_by_type[:bug].join("\n")}\n\n"
     admin = commits_by_type[:admin].empty? ? "" : "**Under the hood**\n#{commits_by_type[:admin].join("\n")}\n\n"
-    unlabelled = commits_by_type[:misc].empty? ? "" : "**Miscellaneous**\n#{commits_by_type[:misc].join("\n")}\n"
+    unlabelled = commits_by_type[:misc].empty? ? "" : "**Changes**\n#{commits_by_type[:misc].join("\n")}\n"
 
     "#{features}#{bugs}#{admin}#{unlabelled}"
   end

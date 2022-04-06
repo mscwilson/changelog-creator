@@ -114,7 +114,7 @@ describe ChangelogCreator do
       "\n\n**Bug fixes**\nUpdate snyk integration to include project name in GitHub action (#8)"\
       " - thanks @SomeoneElse! **BREAKING CHANGE**\n\n"\
       "**Under the hood**\nUpdate all copyright notices (#279)\n"\
-      "\n**Miscellaneous**\nAllow Emitter to use a custom ExecutorService (#278) **BREAKING CHANGE**\n"
+      "\n**Changes**\nAllow Emitter to use a custom ExecutorService (#278) **BREAKING CHANGE**\n"
 
     allow(@creator).to receive(:relevant_commit_data).and_return(processed_commits)
 
