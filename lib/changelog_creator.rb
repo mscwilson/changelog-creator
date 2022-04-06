@@ -8,7 +8,10 @@ require_relative "github_api_connection"
 class ChangelogCreator
   COMMIT_MESSAGE_PATTERN = /\A([\w\s.,'"-:`@]+) \((?:close|closes|fixes|fix) \#(\d+)\)$/
   RELEASE_BRANCH_PATTERN = %r{release/(\d*\.*\d*\.*\d*\.*)}
-  RELEASE_COMMIT_PATTERN = /Prepare for \d*\.*\d*\.*\d*\.*\ *release/
+  RELEASE_COMMIT_PATTERN = /Prepare for v*\d*\.*\d*\.*\d*\.*\ *release/
+  MERGE_COMMIT_PATTERN = /Merge (pull request|branch)/
+  EMAIL_PATTERN = /\w+@snowplowanalytics\.com/
+
 
   attr_reader :octokit
 
@@ -17,6 +20,34 @@ class ChangelogCreator
                  repo_name: ENV["GITHUB_REPOSITORY"],
                  api_connection: GithubApiConnection)
     @octokit = api_connection.new(client: client.new(access_token:), repo_name:)
+  end
+
+  def prepare_for_release_commit?(message:)
+    RELEASE_COMMIT_PATTERN.match?(message)
+  end
+
+  def merge_commit?(message:)
+    MERGE_COMMIT_PATTERN.match?(message)
+  end
+
+  def version_number(branch_name:)
+    match = RELEASE_BRANCH_PATTERN.match(branch_name)
+    return nil unless match
+
+    version = match[1]
+    version.count(".") == 1 ? "#{version}.0" : version
+  end
+
+  def relevant_commits(commits:, version:)
+    allowed_message = "Prepare for #{version} release"
+    commits.take_while do |commit|
+      message = commit[:commit][:message]
+      message.start_with?(allowed_message) || !prepare_for_release_commit?(message:)
+    end
+  end
+
+  def relevant_commit_data(commits:)
+    commits.map { |commit| process_single_commit(commit) }.compact
   end
 
   def simple_changelog_block(commit_data:, version:)
@@ -70,23 +101,10 @@ class ChangelogCreator
     "#{commit_data[:message]} (##{commit_data[:issue]})#{thanks}#{breaking_change}"
   end
 
-  def relevant_commit_data(commits)
-    new_commits = commits.take_while { |commit| !RELEASE_COMMIT_PATTERN.match(commit["commit"]["message"]) }
-    new_commits.map { |commit| process_single_commit(commit) }.compact
-  end
-
-  def version_number(branch_name)
-    match = branch_name.match(RELEASE_BRANCH_PATTERN)
-    return nil unless match
-
-    version = match[1]
-    version.count(".") == 1 ? "#{version}.0" : version
-  end
-
   private # ------------------------------
 
   def process_single_commit(commit)
-    message_match = commit["commit"]["message"].match(COMMIT_MESSAGE_PATTERN)
+    message_match = commit[:commit][:message].match(COMMIT_MESSAGE_PATTERN)
     return nil if message_match.nil?
 
     labels = @octokit.issue_labels(issue: message_match[2])
@@ -94,8 +112,8 @@ class ChangelogCreator
 
     { message: message_match[1],
       issue: message_match[2],
-      author: commit["author"]["login"],
-      snowplower: @octokit.snowplower?(commit["author"]["login"]),
+      author: commit[:author][:login],
+      snowplower: @octokit.snowplower?(commit[:author][:login]),
       breaking_change: label_data[:breaking_change],
       type: label_data[:type] }
   end
