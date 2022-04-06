@@ -32,6 +32,22 @@ class GithubApiConnection
     commits
   end
 
+  def commits_from_pr(number:)
+    number = number.to_i if number.is_a? String
+    commits = @client.pull_request_commits(@repo_name, number)
+
+    # The Github API returns 30 results at a time
+    # But what if there are more than 30 commits for this release?!
+    # This adds the second page of results too, for a total of 60 commits.
+    # There's no way anyone would have completed more than 60 issues
+    begin
+      commits.concat @client.get(@client.last_response.rels[:next].href)
+    rescue NoMethodError
+      return commits
+    end
+    commits
+  end
+
   def get_file(path:, ref: ENV["GITHUB_BASE_REF"])
     file = @client.contents(@repo_name, path:, ref:)
     { sha: file[:sha], contents: Base64.decode64(file[:content]) }

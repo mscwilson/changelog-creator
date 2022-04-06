@@ -48,9 +48,9 @@ describe ChangelogCreator do
   end
 
   it "gets the version number from the release branch name" do
-    expect(@creator.version_number("release/0.6.3")).to eq "0.6.3"
-    expect(@creator.version_number("release/5.0.3")).to eq "5.0.3"
-    expect(@creator.version_number("release/2.7")).to eq "2.7.0"
+    expect(@creator.version_number(branch_name: "release/0.6.3")).to eq "0.6.3"
+    expect(@creator.version_number(branch_name: "release/5.0.3")).to eq "5.0.3"
+    expect(@creator.version_number(branch_name: "release/2.7")).to eq "2.7.0"
   end
 
   it "generates a simple CHANGELOG block" do

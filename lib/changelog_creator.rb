@@ -29,8 +29,8 @@ class ChangelogCreator
     MERGE_COMMIT_PATTERN.match?(message)
   end
 
-  def version_number(branch_name)
-    match = branch_name.match(RELEASE_BRANCH_PATTERN)
+  def version_number(branch_name:)
+    match = RELEASE_BRANCH_PATTERN.match(branch_name)
     return nil unless match
 
     version = match[1]

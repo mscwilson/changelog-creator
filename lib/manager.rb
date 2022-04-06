@@ -13,4 +13,8 @@ class Manager
     puts "This PR was opened from a release branch into main/master. Continuing."
     true
   end
+
+  def pr_number
+    /\d+/.match(ENV["GITHUB_REF_NAME"])[0].to_i
+  end
 end
