@@ -12,6 +12,7 @@ class ChangelogCreator
   MERGE_COMMIT_PATTERN = /Merge (pull request|branch)/
   EMAIL_PATTERN = /\w+@snowplowanalytics\.com/
 
+
   attr_reader :octokit
 
   def initialize(access_token: ENV["ACCESS_TOKEN"],
@@ -106,15 +107,13 @@ class ChangelogCreator
     message_match = commit[:commit][:message].match(COMMIT_MESSAGE_PATTERN)
     return nil if message_match.nil?
 
-    email_match = commit[:commit][:author][:email].match(EMAIL_PATTERN)
-
     labels = @octokit.issue_labels(issue: message_match[2])
     label_data = parse_labels(labels:)
 
     { message: message_match[1],
       issue: message_match[2],
       author: commit[:author][:login],
-      snowplower: email_match.nil? ? false : true,
+      snowplower: @octokit.snowplower?(commit[:author][:login]),
       breaking_change: label_data[:breaking_change],
       type: label_data[:type] }
   end

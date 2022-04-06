@@ -14,6 +14,7 @@ describe ChangelogCreator do
 
     allow(@fake_octocat).to receive(:issue_labels)
       .and_return(["category:breaking_change", "type:enhancement"], ["type:defect"])
+    allow(@fake_octocat).to receive(:snowplower?).and_return(true, false)
 
     results = @creator.relevant_commit_data(commits: JSON.parse(commits, symbolize_names: true))
     expect(results.length).to eq 2
