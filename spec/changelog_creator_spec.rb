@@ -104,4 +104,17 @@ describe ChangelogCreator do
 
     expect(@creator.fancy_changelog(commit_data: processed_commits)).to eq(expected)
   end
+
+  it "identifies a 'Prepare for x release' commit" do
+    expect(@creator.prepare_for_release_commit?(message: "Prepare for 0.1.0 release")).to be true
+    expect(@creator.prepare_for_release_commit?(message: "Prepare for v2.3 release")).to be true
+    expect(@creator.prepare_for_release_commit?(message: "Prepare for release")).to be true
+    expect(@creator.prepare_for_release_commit?(message: "Prepare to improve the API")).to be false
+  end
+
+  it "identifies a merge commit" do
+    expect(@creator.merge_commit?(message: "Merge branch 'release/0.12.0'")).to be true
+    expect(@creator.merge_commit?(message: "Merge pull request #67 from mscwilson/release/0.1.0")).to be true
+    expect(@creator.merge_commit?(message: "Merge AbstractEmitter and BatchEmitter")).to be false
+  end
 end

@@ -8,7 +8,8 @@ require_relative "github_api_connection"
 class ChangelogCreator
   COMMIT_MESSAGE_PATTERN = /\A([\w\s.,'"-:`@]+) \((?:close|closes|fixes|fix) \#(\d+)\)$/
   RELEASE_BRANCH_PATTERN = %r{release/(\d*\.*\d*\.*\d*\.*)}
-  RELEASE_COMMIT_PATTERN = /Prepare for \d*\.*\d*\.*\d*\.*\ *release/
+  RELEASE_COMMIT_PATTERN = /Prepare for v*\d*\.*\d*\.*\d*\.*\ *release/
+  MERGE_COMMIT_PATTERN = /Merge (pull request|branch)/
   EMAIL_PATTERN = /\w+@snowplowanalytics\.com/
 
   attr_reader :octokit
@@ -18,6 +19,14 @@ class ChangelogCreator
                  repo_name: ENV["GITHUB_REPOSITORY"],
                  api_connection: GithubApiConnection)
     @octokit = api_connection.new(client: client.new(access_token:), repo_name:)
+  end
+
+  def prepare_for_release_commit?(message:)
+    RELEASE_COMMIT_PATTERN.match?(message)
+  end
+
+  def merge_commit?(message:)
+    MERGE_COMMIT_PATTERN.match?(message)
   end
 
   def simple_changelog_block(commit_data:, version:)
