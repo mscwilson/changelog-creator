@@ -8,7 +8,7 @@ describe ChangelogCreator do
     @creator = ChangelogCreator.new(api_connection: @fake_octocat)
   end
 
-  it "processes commits json into a list of new commit data" do
+  it "gets the relevant commits, and bits of commits, out of the raw response" do
     commits_json_path = "./example_files_test/commits_two_good_two_admin.json"
     commits = File.read(commits_json_path)
 
@@ -16,7 +16,7 @@ describe ChangelogCreator do
       .and_return(["category:breaking_change", "type:enhancement"], ["type:defect"])
     allow(@fake_octocat).to receive(:snowplower?).and_return(true, false)
 
-    results = @creator.relevant_commit_data(JSON.parse(commits))
+    results = @creator.relevant_commit_data(commits: JSON.parse(commits, symbolize_names: true))
     expect(results.length).to eq 2
 
     expect(results[0][:message]).to eq("Choose HTTP response codes not to retry")
@@ -33,10 +33,25 @@ describe ChangelogCreator do
     expect(results[1][:type]).to eq "bug"
   end
 
+  it "doesn't stop at the Prepare to release commit for this release" do
+    commits_json_path = "./example_files_test/commits_master_tJ.json"
+    commits = File.read(commits_json_path)
+    allow(@fake_octocat).to receive(:issue_labels).and_return []
+
+    results = @creator.relevant_commits(commits: JSON.parse(commits, symbolize_names: true), version: "0.12.0")
+
+    expect(results.length).to eq 16
+    expect(results[0][:commit][:message]).to eq("Merge branch 'release/0.12.0'")
+    expect(results[1][:commit][:message]).to eq("Prepare for 0.12.0 release\n\n* Remove unused imports in "\
+      "simple-console\r\n\r\n* Update version number\r\n\r\n* Note which Event.Builder methods are "\
+      "required\r\n\r\n* Add link to Javadocs to README\r\n\r\n* Update CHANGELOG")
+    expect(results[-1][:commit][:message]).to eq("Attribute community contributions in changelog (close #289)")
+  end
+
   it "gets the version number from the release branch name" do
-    expect(@creator.version_number("release/0.6.3")).to eq "0.6.3"
-    expect(@creator.version_number("release/5.0.3")).to eq "5.0.3"
-    expect(@creator.version_number("release/2.7")).to eq "2.7.0"
+    expect(@creator.version_number(branch_name: "release/0.6.3")).to eq "0.6.3"
+    expect(@creator.version_number(branch_name: "release/5.0.3")).to eq "5.0.3"
+    expect(@creator.version_number(branch_name: "release/2.7")).to eq "2.7.0"
   end
 
   it "generates a simple CHANGELOG block" do
@@ -104,5 +119,18 @@ describe ChangelogCreator do
     allow(@creator).to receive(:relevant_commit_data).and_return(processed_commits)
 
     expect(@creator.fancy_changelog(commit_data: processed_commits)).to eq(expected)
+  end
+
+  it "identifies a 'Prepare for x release' commit" do
+    expect(@creator.prepare_for_release_commit?(message: "Prepare for 0.1.0 release")).to be true
+    expect(@creator.prepare_for_release_commit?(message: "Prepare for v2.3 release")).to be true
+    expect(@creator.prepare_for_release_commit?(message: "Prepare for release")).to be true
+    expect(@creator.prepare_for_release_commit?(message: "Prepare to improve the API")).to be false
+  end
+
+  it "identifies a merge commit" do
+    expect(@creator.merge_commit?(message: "Merge branch 'release/0.12.0'")).to be true
+    expect(@creator.merge_commit?(message: "Merge pull request #67 from mscwilson/release/0.1.0")).to be true
+    expect(@creator.merge_commit?(message: "Merge AbstractEmitter and BatchEmitter")).to be false
   end
 end
