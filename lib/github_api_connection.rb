@@ -3,6 +3,8 @@ require "json"
 require "base64"
 
 class GithubApiConnection
+  attr_reader :client
+
   def initialize(client: Octokit::Client.new(access_token: ENV["ACCESS_TOKEN"]), repo_name: ENV["GITHUB_REPOSITORY"])
     @client = client
     @repo_name = repo_name
@@ -15,6 +17,10 @@ class GithubApiConnection
 
   def repo_pull_requests
     @client.pull_requests(@repo_name, state: "all")
+  end
+
+  def snowplower?(username)
+    @client.organization_member?("snowplow", username)
   end
 
   def commits_from_branch(branch_name:)
