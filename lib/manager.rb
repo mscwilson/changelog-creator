@@ -1,4 +1,8 @@
 class Manager
+  def pr_event?
+    ENV["GITHUB_EVENT_NAME"] == "pull_request"
+  end
+
   def pr_branches_release_and_main?
     puts "Checking it's a PR of the right sort..."
     unless %w[main master].include?(ENV["GITHUB_BASE_REF"])

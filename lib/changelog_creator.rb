@@ -12,7 +12,6 @@ class ChangelogCreator
   MERGE_COMMIT_PATTERN = /Merge (pull request|branch)/
   EMAIL_PATTERN = /\w+@snowplowanalytics\.com/
 
-
   attr_reader :octokit
 
   def initialize(access_token: ENV["ACCESS_TOKEN"],
@@ -46,7 +45,7 @@ class ChangelogCreator
     end
   end
 
-  def relevant_commit_data(commits:)
+  def useful_commit_data(commits:)
     commits.map { |commit| process_single_commit(commit) }.compact
   end
 

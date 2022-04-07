@@ -19,6 +19,11 @@ class GithubApiConnection
     @client.pull_requests(@repo_name, state: "all")
   end
 
+  def pr_from_title(title)
+    pulls = repo_pull_requests
+    pulls.select! { |pull| pull[:title].downcase == title.downcase }[0]
+  end
+
   def snowplower?(username)
     @client.organization_member?("snowplow", username)
   end
