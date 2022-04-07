@@ -10,7 +10,44 @@ inputs:
       What you want the action to do. 
       Update CHANGELOG? "prepare for release" (or "prepare")
       Generate release notes? "github release notes" (or "github")
+      Future work?
+      Slack release announcement: "slack release notes" (or "slack")
+      Discourse release announcement: "discourse release notes" (or "discourse")
+      Even more futurey:
+      Close milestone: "close milestone" (or "milestone")
+      Very distant:
+      Post on Discourse: "create discourse thread" (or "thread")
     required: true
+  base_branch:
+    description: |
+      Ignoring YAGNI and just adding this in now. Doesn't do anything currently.
+      Name of the base branch, if not main/master. The branch that you'll release from.
+    required: false
+  version_script_path:
+    description: |
+      Ignoring YAGNI and just adding this in now. Doesn't do anything currently.
+      File location for an auto-versioning helper file. The file should contain a list of file paths
+      that need updating with the new version number. Haven't decided exactly what it should look
+      like yet. Only relevant for operation "prepare for release".
+    required: false
+  slack_template_path:
+    description: |
+      Ignoring YAGNI and just adding this in now. Doesn't do anything currently.
+      File location for a Slack release announcement template. 
+      Only relevant for operation "slack release notes".
+    required: false
+  discourse_template_path:
+    description: |
+      Ignoring YAGNI and just adding this in now. Doesn't do anything currently.
+      File location for a Discourse release announcement template. 
+      Only relevant for operation "discourse release notes".
+    required: false
+  blog_post_url:
+    description: |
+      Ignoring YAGNI and just adding this in now. Doesn't do anything currently.
+      The URL for the published blog post about the release. 
+      Only relevant for the release notes operations.
+    required: false
 
 outputs:
   release-notes:
@@ -29,3 +66,8 @@ runs:
         echo ::set-output name=notes::$(tail -n 1 output.txt)
       env:
         INPUT_OPERATION: { { inputs.operation } }
+        INPUT_BASE_BRANCH: { { inputs.base_branch } }
+        INPUT_VERSION_SCRIPT_PATH: { { inputs.version_script_path } }
+        INPUT_SLACK_TEMPLATE_PATH: { { inputs.slack_template_path } }
+        INPUT_DISCOURSE_TEMPLATE_PATH: { { inputs.discourse_template_path } }
+        INPUT_BLOG_POST_URL: { { inputs.blog_post_url } }
