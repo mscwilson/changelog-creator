@@ -13,13 +13,15 @@ def run
   creator = ChangelogCreator.new
   manager = Manager.new
 
-  pr_action = manager.pr_branches_release_and_main?
+  pr_event = manager.pr_event?
+  correct_pr_branches = manager.pr_branches_release_and_main?
 
-  if pr_action
+  if pr_event && correct_pr_branches
     puts "Will try to update CHANGELOG now."
     # Commit a new CHANGELOG file into the release branch
     update_changelog(creator, manager)
-
+  elsif pr_event
+    puts "Nothing to do. Exiting action." 
   else
     # Output release notes to use as part of a GH deploy workflow
     create_release_notes(creator)
