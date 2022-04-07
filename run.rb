@@ -13,22 +13,25 @@ def run
   creator = ChangelogCreator.new
   manager = Manager.new
 
-  pr_action = manager.pr_branches_release_and_main?
+  create_release_notes(creator)
 
-  if pr_action
-    puts "Will try to update CHANGELOG now."
-    # Commit a new CHANGELOG file into the release branch
-    update_changelog(creator, manager)
+  # pr_action = manager.pr_branches_release_and_main?
 
-  else
-    # Output release notes to use as part of a GH deploy workflow
-    create_release_notes(creator)
-  end
+  # if pr_action
+  #   puts "Will try to update CHANGELOG now."
+  #   # Commit a new CHANGELOG file into the release branch
+  #   update_changelog(creator, manager)
+
+  # else
+  #   # Output release notes to use as part of a GH deploy workflow
+  #   create_release_notes(creator)
+  # end
 end
 
 def update_changelog(creator, manager)
-  commits = creator.octokit.commits_from_pr(number: manager.pr_number)
   version = creator.version_number(branch_name: ENV["GITHUB_HEAD_REF"])
+
+  commits = creator.octokit.commits_from_pr(number: manager.pr_number)
   commits = creator.relevant_commits(commits:, version:)
 
   if commits[0][:commit][:message].start_with? "Prepare for #{version} release"
@@ -42,7 +45,7 @@ def update_changelog(creator, manager)
     return
   end
 
-  commit_data = creator.relevant_commit_data(commits:)
+  commit_data = creator.useful_commit_data(commits:)
   commit_changelog_file(creator, ENV["GITHUB_HEAD_REF"], commit_data, version)
   puts "Action completed."
   puts
@@ -81,16 +84,18 @@ def commit_changelog_file(creator, branch_name, commits, version)
 end
 
 def create_release_notes(creator)
-  # Working on the assumption that the release PR was the most recently made (highest number)
-  # Not necessarily true
-  pull = creator.octokit.repo_pull_requests[0]
-  branch_name = pull["base"]["ref"]
+  version = ENV["GITHUB_REF_NAME"]
+
+  pull = creator.octokit.pr_from_title("Release/#{version}")
   pull_description = pull["body"]
 
+  # Getting the name of the base branch - likely to be "main" or "master"
+  branch_name = pull["base"]["ref"]
+
   commits = creator.octokit.commits_from_branch(branch_name:)
-  # Temporary hack to allow for the existence of the "Prepare for release" and merge commit
-  # Just ignoring the most recent two commits
-  commit_data = creator.relevant_commit_data(commits: commits[2..])
+  commits = creator.relevant_commits(commits:, version:)
+  commit_data = creator.useful_commit_data(commits:)
+
   formatted_log = creator.fancy_changelog(commit_data:)
 
   release_notes = "#{pull_description}\n\n#{formatted_log}"

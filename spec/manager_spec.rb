@@ -19,8 +19,11 @@ describe Manager do
     expect(@manager.pr_branches_release_and_main?).to be false
   end
 
-  it "gets the PR number" do
+  it "gets the PR number from ENV" do
     allow(ENV).to receive(:[]).with("GITHUB_REF_NAME").and_return("78/merge")
     expect(@manager.pr_number).to eq 78
+  end
+
+  it "gets the PR number based on branch name" do
   end
 end

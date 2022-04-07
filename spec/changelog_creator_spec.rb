@@ -16,7 +16,7 @@ describe ChangelogCreator do
       .and_return(["category:breaking_change", "type:enhancement"], ["type:defect"])
     allow(@fake_octocat).to receive(:snowplower?).and_return(true, false)
 
-    results = @creator.relevant_commit_data(commits: JSON.parse(commits, symbolize_names: true))
+    results = @creator.useful_commit_data(commits: JSON.parse(commits, symbolize_names: true))
     expect(results.length).to eq 2
 
     expect(results[0][:message]).to eq("Choose HTTP response codes not to retry")
@@ -116,7 +116,7 @@ describe ChangelogCreator do
       "**Under the hood**\nUpdate all copyright notices (#279)\n"\
       "\n**Changes**\nAllow Emitter to use a custom ExecutorService (#278) **BREAKING CHANGE**\n"
 
-    allow(@creator).to receive(:relevant_commit_data).and_return(processed_commits)
+    allow(@creator).to receive(:useful_commit_data).and_return(processed_commits)
 
     expect(@creator.fancy_changelog(commit_data: processed_commits)).to eq(expected)
   end
