@@ -102,8 +102,7 @@ class Manager
     commit_result = @octokit.update_file(commit_message:,
                                          file_contents: new_log,
                                          file_path: LOG_PATH,
-                                         sha: 
-                                         )
+                                         sha:)
 
     raise "Failed to commit new CHANGELOG." unless commit_result
   end

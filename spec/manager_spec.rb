@@ -76,9 +76,9 @@ describe Manager do
         type: "bug" }
     ]
 
-    old_log = {sha: "12345", contents: "Version 0.2.0 (2022-02-01)\n-----------------------"\
+    old_log = { sha: "12345", contents: "Version 0.2.0 (2022-02-01)\n-----------------------"\
       "\nPublish Gradle module file with bintrayUpload (#255)"\
-      "\nUpdate snyk integration to include project name in GitHub action (#8) - thanks @SomeoneElse!\n"}
+      "\nUpdate snyk integration to include project name in GitHub action (#8) - thanks @SomeoneElse!\n" }
 
     new_log_section = "Version 1.7.0 (2022-05-05)\n-----------------------"\
       "\nChoose HTTP response codes not to retry (#316)"\
@@ -92,7 +92,7 @@ describe Manager do
       "\nUpdate snyk integration to include project name in GitHub action (#8) - thanks @SomeoneElse!\n"
 
     allow(@fake_octokit).to receive(:commits_from_pr).with(number: 78)
-    allow(@fake_log_creator).to receive(:relevant_commits).and_return([{commit: {message: "hello"}}])
+    allow(@fake_log_creator).to receive(:relevant_commits).and_return([{ commit: { message: "hello" } }])
 
     allow(@fake_log_creator).to receive(:useful_commit_data).and_return useful_commit_data
     allow(@fake_octokit).to receive(:get_file).and_return old_log
@@ -110,6 +110,4 @@ describe Manager do
   #   expect(@manager.version_number(branch_name: "release/5.0.3")).to eq "5.0.3"
   #   expect(@manager.version_number(branch_name: "release/2.7")).to eq "2.7.0"
   # end
-
-  
 end
