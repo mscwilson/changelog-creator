@@ -14,11 +14,8 @@ class ChangelogCreator
 
   attr_reader :octokit
 
-  def initialize(access_token: ENV["ACCESS_TOKEN"],
-                 client: Octokit::Client,
-                 repo_name: ENV["GITHUB_REPOSITORY"],
-                 api_connection: GithubApiConnection)
-    @octokit = api_connection.new(client: client.new(access_token:), repo_name:)
+  def initialize(api_connection:)
+    @octokit = api_connection
   end
 
   def prepare_for_release_commit?(message:)

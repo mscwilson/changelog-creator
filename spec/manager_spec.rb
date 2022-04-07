@@ -2,7 +2,30 @@ require "manager"
 
 describe Manager do
   before do
-    @manager = Manager.new
+    @fake_octokit = double
+    @fake_api_connection = double
+    @fake_log_creator = double
+    allow(@fake_octokit).to receive(:new)
+    allow(@fake_api_connection).to receive(:new).and_return @fake_octokit
+    allow(@fake_log_creator).to receive(:new).and_return @fake_log_creator
+
+    @manager = Manager.new(client: @fake_octokit,
+                           api_connection: @fake_api_connection,
+                           log_creator: @fake_log_creator)
+  end
+
+  it "calls the appropriate method based on input operation" do
+    allow(ENV).to receive(:[]).with("INPUT_OPERATION").and_return("prepare for release")
+    expect(@manager).to receive :prepare_for_release
+    @manager.do_operation
+
+    allow(ENV).to receive(:[]).with("INPUT_OPERATION").and_return("github")
+    expect(@manager).to receive :github_release_notes
+    @manager.do_operation
+
+    allow(ENV).to receive(:[]).with("INPUT_OPERATION").and_return("hello")
+    expect { @manager.do_operation }.to output("Unexpected string input. "\
+      "That's not a valid operation. Exiting action.\n").to_stdout
   end
 
   it "checks it's a PR event" do
