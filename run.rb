@@ -10,6 +10,8 @@ LOG_PATH = "./CHANGELOG"
 def run
   puts "Starting Changelog Creator."
 
+  puts "specified operation was: #{ENV["INPUT_OPERATION"]}"
+
   creator = ChangelogCreator.new
   manager = Manager.new
 

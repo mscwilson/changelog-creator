@@ -1,21 +1,31 @@
-name: "Generate changelog"
-description: "Creates a changelog out of the new commits"
+name: "Release Helper"
+description: "Automates some of the release process"
 branding:
-  icon: filter
-  color: red
+  icon: file-text
+  color: purple
+
+inputs:
+  operation:
+    description: |
+      What you want the action to do. 
+      Update CHANGELOG? "prepare for release" (or "prepare")
+      Generate release notes? "github release notes" (or "github")
+    required: true
 
 outputs:
   release-notes:
     description: |
-      Commits sorted into "New features", "Bug fixes" or "Under the hood". 
-      Otherwise "Miscellaneous" if "type:" issue labels are missing.
+      The PR description, plus commits sorted into "New features", "Bug fixes" or "Under the hood". 
+      Otherwise "Changes" if issue labels are missing.
     value: ${{ steps.changelog-creator.outputs.notes }}
 
 runs:
   using: "composite"
   steps:
     - id: changelog-creator
+      shell: bash
       run: |
         bundle exec ruby run.rb 2>&1 | tee output.txt
         echo ::set-output name=notes::$(tail -n 1 output.txt)
-      shell: bash
+      env:
+        INPUT_OPERATION: { { inputs.operation } }
