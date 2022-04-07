@@ -20,8 +20,13 @@ def run
     puts "Will try to update CHANGELOG now."
     # Commit a new CHANGELOG file into the release branch
     update_changelog(creator, manager)
+    puts "Action completed."
+    puts
+    puts Base64.strict_encode64("No release notes needed!")
   elsif pr_event
-    puts "Nothing to do. Exiting action." 
+    puts "Nothing to do. Exiting action."
+    puts
+    puts Base64.strict_encode64("No release notes needed!")
   else
     # Output release notes to use as part of a GH deploy workflow
     create_release_notes(creator)
@@ -47,9 +52,6 @@ def update_changelog(creator, manager)
 
   commit_data = creator.useful_commit_data(commits:)
   commit_changelog_file(creator, ENV["GITHUB_HEAD_REF"], commit_data, version)
-  puts "Action completed."
-  puts
-  puts Base64.strict_encode64("No release notes needed!")
   nil
 end
 

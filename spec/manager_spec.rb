@@ -31,5 +31,4 @@ describe Manager do
     allow(ENV).to receive(:[]).with("GITHUB_REF_NAME").and_return("78/merge")
     expect(@manager.pr_number).to eq 78
   end
-
 end
