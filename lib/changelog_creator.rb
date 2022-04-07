@@ -7,7 +7,6 @@ require_relative "github_api_connection"
 
 class ChangelogCreator
   COMMIT_MESSAGE_PATTERN = /\A([\w\s.,'"-:`@]+) \((?:close|closes|fixes|fix) \#(\d+)\)$/
-  RELEASE_BRANCH_PATTERN = %r{release/(\d*\.*\d*\.*\d*\.*)}
   RELEASE_COMMIT_PATTERN = /Prepare for v*\d*\.*\d*\.*\d*\.*\ *release/
   MERGE_COMMIT_PATTERN = /Merge (pull request|branch)/
   EMAIL_PATTERN = /\w+@snowplowanalytics\.com/
@@ -24,14 +23,6 @@ class ChangelogCreator
 
   def merge_commit?(message:)
     MERGE_COMMIT_PATTERN.match?(message)
-  end
-
-  def version_number(branch_name:)
-    match = RELEASE_BRANCH_PATTERN.match(branch_name)
-    return nil unless match
-
-    version = match[1]
-    version.count(".") == 1 ? "#{version}.0" : version
   end
 
   def relevant_commits(commits:, version:)

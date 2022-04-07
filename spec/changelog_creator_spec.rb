@@ -19,6 +19,8 @@ describe ChangelogCreator do
     results = @creator.useful_commit_data(commits: JSON.parse(commits, symbolize_names: true))
     expect(results.length).to eq 2
 
+    p results
+
     expect(results[0][:message]).to eq("Choose HTTP response codes not to retry")
     expect(results[0][:issue]).to eq("316")
     expect(results[0][:author]).to eq("mscwilson")
@@ -48,12 +50,6 @@ describe ChangelogCreator do
     expect(results[-1][:commit][:message]).to eq("Attribute community contributions in changelog (close #289)")
   end
 
-  it "gets the version number from the release branch name" do
-    expect(@creator.version_number(branch_name: "release/0.6.3")).to eq "0.6.3"
-    expect(@creator.version_number(branch_name: "release/5.0.3")).to eq "5.0.3"
-    expect(@creator.version_number(branch_name: "release/2.7")).to eq "2.7.0"
-  end
-
   it "generates a simple CHANGELOG block" do
     commit = { message: "Publish Gradle module file with bintrayUpload",
                issue: "255",
@@ -69,7 +65,6 @@ describe ChangelogCreator do
       "\nPublish Gradle module file with bintrayUpload (#255)"\
       "\nUpdate snyk integration to include project name in GitHub action (#8) - thanks @SomeoneElse!\n"
 
-    allow(@creator).to receive(:version_number).and_return("0.2.0")
     allow(Date).to receive(:today).and_return(Date.new(2022, 2, 1))
 
     expect(@creator.simple_changelog_block(version: "0.2.0",

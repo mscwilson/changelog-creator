@@ -10,13 +10,6 @@ inputs:
       What you want the action to do. 
       Update CHANGELOG? "prepare for release" (or "prepare")
       Generate release notes? "github release notes" (or "github")
-      Future work?
-      Slack release announcement: "slack release notes" (or "slack")
-      Discourse release announcement: "discourse release notes" (or "discourse")
-      Even more futurey:
-      Close milestone: "close milestone" (or "milestone")
-      Very distant:
-      Post on Discourse: "create discourse thread" (or "thread")
     required: true
   base_branch:
     description: |
