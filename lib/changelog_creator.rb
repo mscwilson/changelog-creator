@@ -5,36 +5,17 @@ require "uri"
 
 require_relative "github_api_connection"
 
+# Processes commits into CHANGELOG or release notes format
 class ChangelogCreator
   COMMIT_MESSAGE_PATTERN = /\A([\w\s.,'"-:`@]+) \((?:close|closes|fixes|fix) \#(\d+)\)$/
-  RELEASE_BRANCH_PATTERN = %r{release/(\d*\.*\d*\.*\d*\.*)}
   RELEASE_COMMIT_PATTERN = /Prepare for v*\d*\.*\d*\.*\d*\.*\ *release/
   MERGE_COMMIT_PATTERN = /Merge (pull request|branch)/
   EMAIL_PATTERN = /\w+@snowplowanalytics\.com/
 
   attr_reader :octokit
 
-  def initialize(access_token: ENV["ACCESS_TOKEN"],
-                 client: Octokit::Client,
-                 repo_name: ENV["GITHUB_REPOSITORY"],
-                 api_connection: GithubApiConnection)
-    @octokit = api_connection.new(client: client.new(access_token:), repo_name:)
-  end
-
-  def prepare_for_release_commit?(message:)
-    RELEASE_COMMIT_PATTERN.match?(message)
-  end
-
-  def merge_commit?(message:)
-    MERGE_COMMIT_PATTERN.match?(message)
-  end
-
-  def version_number(branch_name:)
-    match = RELEASE_BRANCH_PATTERN.match(branch_name)
-    return nil unless match
-
-    version = match[1]
-    version.count(".") == 1 ? "#{version}.0" : version
+  def initialize(api_connection:)
+    @octokit = api_connection
   end
 
   def relevant_commits(commits:, version:)
@@ -46,8 +27,28 @@ class ChangelogCreator
   end
 
   def useful_commit_data(commits:)
+    # This processes the commits into hashes of useful stuff
+    # It also removes any commits without an issue number
     commits.map { |commit| process_single_commit(commit) }.compact
   end
+
+  def new_changelog_text(commit_data:, version:, original_text:)
+    new_log_section = simple_changelog_block(version:, commit_data:)
+    "#{new_log_section}\n#{original_text}"
+  end
+
+  def fancy_changelog(commit_data:)
+    commits_by_type = sort_commits_by_type(commit_data)
+
+    features = commits_by_type[:feature].empty? ? "" : "**New features**\n#{commits_by_type[:feature].join("\n")}\n\n"
+    bugs = commits_by_type[:bug].empty? ? "" : "**Bug fixes**\n#{commits_by_type[:bug].join("\n")}\n\n"
+    admin = commits_by_type[:admin].empty? ? "" : "**Under the hood**\n#{commits_by_type[:admin].join("\n")}\n\n"
+    unlabelled = commits_by_type[:misc].empty? ? "" : "**Changes**\n#{commits_by_type[:misc].join("\n")}\n"
+
+    "#{features}#{bugs}#{admin}#{unlabelled}"
+  end
+
+  private # ------------------------------
 
   def simple_changelog_block(commit_data:, version:)
     title = "#{version} (#{Date.today.strftime('%Y-%m-%d')})"
@@ -62,18 +63,8 @@ class ChangelogCreator
     "Version #{title}\n-----------------------\n#{commit_data.join("\n")}\n"
   end
 
-  def fancy_changelog(commit_data:)
-    commits_by_type = sort_commits_by_type(commit_data)
-
-    features = commits_by_type[:feature].empty? ? "" : "**New features**\n#{commits_by_type[:feature].join("\n")}\n\n"
-    bugs = commits_by_type[:bug].empty? ? "" : "**Bug fixes**\n#{commits_by_type[:bug].join("\n")}\n\n"
-    admin = commits_by_type[:admin].empty? ? "" : "**Under the hood**\n#{commits_by_type[:admin].join("\n")}\n\n"
-    unlabelled = commits_by_type[:misc].empty? ? "" : "**Changes**\n#{commits_by_type[:misc].join("\n")}\n"
-
-    "#{features}#{bugs}#{admin}#{unlabelled}"
-  end
-
   def sort_commits_by_type(commit_data)
+    # Type i.e. what label the issue had
     commits_by_type = commit_data.each_with_object(Hash.new([].freeze)) do |i, dict|
       case i[:type]
       when nil
@@ -87,10 +78,12 @@ class ChangelogCreator
       end
     end
 
-    commits_by_type.each do |k, _v|
-      commits_by_type[k].map! do |commit|
-        fancy_log_single_line(commit_data: commit)
-      end
+    sorted_commits_to_one_liners(commits_by_type)
+  end
+
+  def sorted_commits_to_one_liners(commits)
+    commits.each do |k, _v|
+      commits[k].map! { |commit| fancy_log_single_line(commit_data: commit) }
     end
   end
 
@@ -100,7 +93,13 @@ class ChangelogCreator
     "#{commit_data[:message]} (##{commit_data[:issue]})#{thanks}#{breaking_change}"
   end
 
-  private # ------------------------------
+  def prepare_for_release_commit?(message:)
+    RELEASE_COMMIT_PATTERN.match?(message)
+  end
+
+  def merge_commit?(message:)
+    MERGE_COMMIT_PATTERN.match?(message)
+  end
 
   def process_single_commit(commit)
     message_match = commit[:commit][:message].match(COMMIT_MESSAGE_PATTERN)

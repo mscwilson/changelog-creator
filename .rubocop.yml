@@ -28,12 +28,12 @@ Metrics/BlockLength:
     - "spec/**/*"
 
 Metrics/MethodLength:
-  Max: 30
+  Max: 50
 
 Metrics/ParameterLists:
   Enabled: false
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 120
   IgnoredPatterns: ["^ *#"]
 
@@ -42,3 +42,6 @@ Metrics/ClassLength:
 
 Metrics/AbcSize:
   Enabled: false
+
+AllCops:
+  NewCops: enable
