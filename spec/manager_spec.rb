@@ -113,6 +113,18 @@ describe Manager do
       expect(@manager).not_to receive(:old_changelog_data)
       expect { @manager.do_operation }.to output(/#{Regexp.quote(message)}/).to_stdout
     end
+
+    xit "doesn't do anything with versions if no locations file is provided" do
+      allow(ENV).to receive(:[]).with("INPUT_VERSION_SCRIPT_PATH").and_return("")
+      expect(@manager.find_version_strings).to be nil
+    end
+
+    xit "finds where version strings are if locations file is provided" do
+      allow(ENV).to receive(:[]).with("INPUT_VERSION_SCRIPT_PATH").and_return("version_locations.json")
+      file = JSON.parse(File.read("version_locations.json"))
+
+      expect(@manager.find_version_strings).to eq file
+    end
   end
 
   describe "with 'github release notes'" do

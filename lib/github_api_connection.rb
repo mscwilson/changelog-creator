@@ -94,6 +94,18 @@ class GithubApiConnection
     end
   end
 
+  def ref(branch_name:)
+    @client.ref(@repo_name, "heads/#{branch_name}")
+  end
+
+  def make_blob(text:)
+    @client.create_blob(@repo_name, text)
+  end
+
+  def git_commit(sha:)
+    @client.git_commit(@repo_name, sha)
+  end
+
   def comment_on_pr_or_issue(number:, text: "Hello World!")
     number = number.to_i if number.is_a? String
     @client.add_comment(@repo_name, number, text)

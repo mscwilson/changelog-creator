@@ -3,6 +3,8 @@
 As a member of the DV Trackers team, I want to automate some of the release process, to minimise time spent on boring admin tasks. 
 ``` 
 
+The current version is v0.2.0.
+
 - [~~changelog-creator~~ Release Helper](#changelog-creator-release-helper)
   - [Prepare for release/CHANGELOG creation](#prepare-for-releasechangelog-creation)
     - [Future work for this bit?](#future-work-for-this-bit)

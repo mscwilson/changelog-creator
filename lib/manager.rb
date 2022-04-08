@@ -2,8 +2,11 @@ require "base64"
 
 # Does the appropriate action depending on inputs, branch names etc
 class Manager
-  RELEASE_BRANCH_PATTERN = %r{release/(\d*\.*\d*\.*\d*\.*)}
+  RELEASE_VERSION_PATTERN = "\\d+\\.\\d+\\.\\d+(?:-\\w*\\.\\d+)?"
+  RELEASE_BRANCH_PATTERN = %r{release/(#{RELEASE_VERSION_PATTERN})}
   LOG_PATH = "./CHANGELOG"
+
+  attr_reader :octokit
 
   def initialize(access_token: ENV["ACCESS_TOKEN"],
                  client: Octokit::Client,
@@ -25,6 +28,33 @@ class Manager
     end
   end
 
+  def find_version_strings(path: ENV["INPUT_VERSION_SCRIPT_PATH"])
+    version = "6.6.6"
+
+    current_branch = @octokit.ref(branch_name: ENV["GITHUB_HEAD_REF"])
+    branch_sha = current_branch.object.sha
+
+    # Get the version_locations.json file
+    file = @octokit.get_file(path:, ref: branch_sha)
+
+    files_to_update = []
+    JSON.parse(file[:contents]).each { |k, v| files_to_update << { path: k, strings: v } }
+
+    files_to_update.each do |loc|
+      process_file_version_locations(loc, branch_sha, version)
+    end
+
+    files_to_update.map! do |file|
+      {
+        path: file[:path],
+        mode: "100644",
+        type: "blob",
+        sha: @octokit.make_blob(text: file[:new_contents])
+      }
+    end
+    p files_to_update
+  end
+
   def prepare_for_release
     puts "Doing 'prepare for release' operation."
 
@@ -42,7 +72,8 @@ class Manager
       old_log = old_changelog_data
       new_log = @log_creator.new_changelog_text(commit_data:, version:, original_text: old_log[:contents])
 
-      commit_files(version, new_log, old_log[:sha])
+      puts "ready to commit"
+      # commit_files(version, new_log, old_log[:sha])
 
       puts old_log[:sha].nil? ? "CHANGELOG created." : "CHANGELOG updated."
       puts "Action completed."
@@ -180,5 +211,29 @@ class Manager
 
   def pr_number
     /\d+/.match(ENV["GITHUB_REF_NAME"])[0].to_i
+  end
+
+  def process_file_version_locations(loc, branch_sha, version)
+    # Allows for users not wrapping single strings as arrays
+    loc[:strings] = [loc[:strings]] if loc[:strings].is_a? String
+
+    file = @octokit.get_file(path: loc[:path], ref: branch_sha)
+    loc[:current_contents] = file[:contents]
+    loc[:sha] = file[:sha]
+    # loc[:current_tree] = @octokit.git_commit(sha: file[:sha])[:tree]
+
+    loc[:strings].map! do |str|
+      { original: str,
+        as_pattern: Regexp.new(str.sub(/(x\.x\.x)|(X\.X\.X)/, RELEASE_VERSION_PATTERN)),
+        updated: str.sub(/(x\.x\.x)|(X\.X\.X)/, version) }
+    end
+
+    loc[:strings].each_with_index do |str, i|
+      loc[:new_contents] = if i.zero?
+                             loc[:current_contents].sub(str[:as_pattern], str[:updated])
+                           else
+                             loc[:new_contents].sub(str[:as_pattern], str[:updated])
+                           end
+    end
   end
 end
