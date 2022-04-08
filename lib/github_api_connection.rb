@@ -2,6 +2,7 @@ require "octokit"
 require "json"
 require "base64"
 
+# Wrapper for Octokit::Client
 class GithubApiConnection
   attr_reader :client
 
@@ -12,6 +13,7 @@ class GithubApiConnection
 
   def repo_events
     # NB there can be a delay for a new PR to show up at the "events" endpoint
+    # (it will appear in the "pulls" endpoint instantly)
     @client.repository_events(@repo_name)
   end
 

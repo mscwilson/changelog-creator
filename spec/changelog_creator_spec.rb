@@ -45,8 +45,9 @@ describe ChangelogCreator do
     expect(results.length).to eq 16
     expect(results[0][:commit][:message]).to eq("Merge branch 'release/0.12.0'")
     expect(results[1][:commit][:message]).to eq("Prepare for 0.12.0 release\n\n* Remove unused imports in "\
-      "simple-console\r\n\r\n* Update version number\r\n\r\n* Note which Event.Builder methods are "\
-      "required\r\n\r\n* Add link to Javadocs to README\r\n\r\n* Update CHANGELOG")
+                                                "simple-console\r\n\r\n* Update version number\r\n\r\n* "\
+                                                "Note which Event.Builder methods are required\r\n\r\n* "\
+                                                "Add link to Javadocs to README\r\n\r\n* Update CHANGELOG")
     expect(results[-1][:commit][:message]).to eq("Attribute community contributions in changelog (close #289)")
   end
 
@@ -63,10 +64,10 @@ describe ChangelogCreator do
     old_log = "Version 0.1.0 (2015-11-13)\n-----------------------\nInvented a thing (#2)\n"
 
     expected = "Version 0.2.0 (2022-02-01)\n-----------------------"\
-      "\nPublish Gradle module file with bintrayUpload (#255)"\
-      "\nUpdate snyk integration to include project name in GitHub action (#8) - thanks @SomeoneElse!\n\n"\
-      "Version 0.1.0 (2015-11-13)\n-----------------------"\
-      "\nInvented a thing (#2)\n"
+               "\nPublish Gradle module file with bintrayUpload (#255)"\
+               "\nUpdate snyk integration to include project name in GitHub action (#8) - thanks @SomeoneElse!\n\n"\
+               "Version 0.1.0 (2015-11-13)\n-----------------------"\
+               "\nInvented a thing (#2)\n"
 
     allow(Date).to receive(:today).and_return(Date.new(2022, 2, 1))
 
@@ -109,11 +110,11 @@ describe ChangelogCreator do
     processed_commits = [commit1, commit2, commit3, commit4, commit5]
 
     expected = "**New features**\nPublish Gradle module file with bintrayUpload (#255)"\
-      "\nRename bufferSize to batchSize (#306) **BREAKING CHANGE**"\
-      "\n\n**Bug fixes**\nUpdate snyk integration to include project name in GitHub action (#8)"\
-      " - thanks @SomeoneElse! **BREAKING CHANGE**\n\n"\
-      "**Under the hood**\nUpdate all copyright notices (#279)\n"\
-      "\n**Changes**\nAllow Emitter to use a custom ExecutorService (#278) **BREAKING CHANGE**\n"
+               "\nRename bufferSize to batchSize (#306) **BREAKING CHANGE**"\
+               "\n\n**Bug fixes**\nUpdate snyk integration to include project name in GitHub action (#8)"\
+               " - thanks @SomeoneElse! **BREAKING CHANGE**\n\n"\
+               "**Under the hood**\nUpdate all copyright notices (#279)\n"\
+               "\n**Changes**\nAllow Emitter to use a custom ExecutorService (#278) **BREAKING CHANGE**\n"
 
     allow(@creator).to receive(:useful_commit_data).and_return(processed_commits)
 

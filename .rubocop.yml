@@ -33,7 +33,7 @@ Metrics/MethodLength:
 Metrics/ParameterLists:
   Enabled: false
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 120
   IgnoredPatterns: ["^ *#"]
 
@@ -42,3 +42,6 @@ Metrics/ClassLength:
 
 Metrics/AbcSize:
   Enabled: false
+
+AllCops:
+  NewCops: enable

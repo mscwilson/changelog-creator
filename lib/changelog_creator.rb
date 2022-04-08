@@ -5,6 +5,7 @@ require "uri"
 
 require_relative "github_api_connection"
 
+# Processes commits into CHANGELOG or release notes format
 class ChangelogCreator
   COMMIT_MESSAGE_PATTERN = /\A([\w\s.,'"-:`@]+) \((?:close|closes|fixes|fix) \#(\d+)\)$/
   RELEASE_COMMIT_PATTERN = /Prepare for v*\d*\.*\d*\.*\d*\.*\ *release/
@@ -63,6 +64,7 @@ class ChangelogCreator
   end
 
   def sort_commits_by_type(commit_data)
+    # Type i.e. what label the issue had
     commits_by_type = commit_data.each_with_object(Hash.new([].freeze)) do |i, dict|
       case i[:type]
       when nil
@@ -76,10 +78,12 @@ class ChangelogCreator
       end
     end
 
-    commits_by_type.each do |k, _v|
-      commits_by_type[k].map! do |commit|
-        fancy_log_single_line(commit_data: commit)
-      end
+    sorted_commits_to_one_liners(commits_by_type)
+  end
+
+  def sorted_commits_to_one_liners(commits)
+    commits.each do |k, _v|
+      commits[k].map! { |commit| fancy_log_single_line(commit_data: commit) }
     end
   end
 

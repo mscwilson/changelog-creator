@@ -26,7 +26,7 @@ describe Manager do
 
     allow(ENV).to receive(:[]).with("INPUT_OPERATION").and_return("hello")
     expect { @manager.do_operation }.to output("Unexpected string input. "\
-      "'hello' is not a valid operation. Exiting action.\n").to_stdout
+                                               "'hello' is not a valid operation. Exiting action.\n").to_stdout
   end
 
   describe "with 'prepare for release'" do
@@ -76,16 +76,18 @@ describe Manager do
           type: "bug" }
       ]
 
-      old_log = { sha: "12345", contents: "Version 0.2.0 (2022-02-01)\n-----------------------"\
-        "\nPublish Gradle module file with bintrayUpload (#255)"\
-        "\nUpdate snyk integration to include project name in GitHub action (#8) - thanks @SomeoneElse!\n" }
+      old_log = { sha: "12345",
+                  contents: "Version 0.2.0 (2022-02-01)\n-----------------------"\
+                            "\nPublish Gradle module file with bintrayUpload (#255)"\
+                            "\nUpdate snyk integration to include project name in "\
+                            "GitHub action (#8) - thanks @SomeoneElse!\n" }
 
       new_log = "Version 1.7.0 (2022-05-05)\n-----------------------"\
-        "\nChoose HTTP response codes not to retry (#316)"\
-        "\nAllow Emitter to use a custom ExecutorService (#278) - thanks @AcidFlow!\n\n"\
-        "Version 0.2.0 (2022-02-01)\n-----------------------"\
-        "\nPublish Gradle module file with bintrayUpload (#255)"\
-        "\nUpdate snyk integration to include project name in GitHub action (#8) - thanks @SomeoneElse!\n"
+                "\nChoose HTTP response codes not to retry (#316)"\
+                "\nAllow Emitter to use a custom ExecutorService (#278) - thanks @AcidFlow!\n\n"\
+                "Version 0.2.0 (2022-02-01)\n-----------------------"\
+                "\nPublish Gradle module file with bintrayUpload (#255)"\
+                "\nUpdate snyk integration to include project name in GitHub action (#8) - thanks @SomeoneElse!\n"
 
       allow(@fake_octokit).to receive(:commits_from_pr).with(number: 78)
       allow(@fake_log_creator).to receive(:relevant_commits).and_return fake_commits

@@ -1,5 +1,6 @@
 require "base64"
 
+# Does the appropriate action depending on inputs, branch names etc
 class Manager
   RELEASE_BRANCH_PATTERN = %r{release/(\d*\.*\d*\.*\d*\.*)}
   LOG_PATH = "./CHANGELOG"
@@ -58,7 +59,7 @@ class Manager
     "I'm creating GH release notes"
   end
 
-  private #------------------------
+  private #--------------------------------------------------
 
   def commits_data_for_log(version)
     puts "Getting commit data for PR #{pr_number}..."
