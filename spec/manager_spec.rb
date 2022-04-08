@@ -1,4 +1,5 @@
 require "date"
+require "json"
 require "manager"
 
 describe Manager do
@@ -111,6 +112,40 @@ describe Manager do
       expect(@fake_log_creator).not_to receive(:useful_commit_data)
       expect(@manager).not_to receive(:old_changelog_data)
       expect { @manager.do_operation }.to output(/#{Regexp.quote(message)}/).to_stdout
+    end
+  end
+
+  describe "with 'github release notes'" do
+    before do
+      allow(ENV).to receive(:[]).with("INPUT_OPERATION").and_return("github release notes")
+      allow(ENV).to receive(:[]).with("GITHUB_REF_NAME").and_return("3.2.1")
+    end
+
+    it "does nothing if not a tag event" do
+      allow(ENV).to receive(:[]).with("GITHUB_REF_TYPE").and_return("push")
+
+      expect(@manager).not_to receive :commits_data_for_release_notes
+      @manager.do_operation
+    end
+
+    it "outputs encoded release notes" do
+      allow(ENV).to receive(:[]).with("GITHUB_REF_TYPE").and_return("tag")
+
+      fake_pr = { base: { ref: "main" }, body: "We are pleased to announce this release." }
+      fake_commits = ["not an empty array"]
+      formatted_commits = "**New features**\nAdd pause and resume to EmitterController (#672)\n"
+
+      expected_output = "V2UgYXJlIHBsZWFzZWQgdG8gYW5ub3VuY2UgdGhpcyByZ"\
+                        "WxlYXNlLgoKKipOZXcgZmVhdHVyZXMqKgpBZGQgcGF1c2"\
+                        "UgYW5kIHJlc3VtZSB0byBFbWl0dGVyQ29udHJvbGxlciAoIzY3MikK"
+
+      allow(@fake_octokit).to receive(:pr_from_title).and_return(fake_pr)
+      allow(@fake_octokit).to receive(:commits_from_branch)
+      allow(@fake_log_creator).to receive(:relevant_commits)
+      allow(@fake_log_creator).to receive(:useful_commit_data).and_return(fake_commits)
+      allow(@fake_log_creator).to receive(:fancy_changelog).and_return(formatted_commits)
+
+      expect { @manager.do_operation }.to output(/#{Regexp.quote(expected_output)}/).to_stdout
     end
   end
 end
