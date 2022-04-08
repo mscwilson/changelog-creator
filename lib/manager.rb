@@ -31,8 +31,8 @@ class Manager
       version = version_number(branch_name: ENV["GITHUB_HEAD_REF"])
 
       commit_data = commits_data_for_log(version)
-      if commit_data.nil?
-        puts "No commits: nothing to do. Exiting action."
+      if commit_data.nil? || commit_data.empty?
+        puts "Nothing to do. Exiting action."
         puts
         puts Base64.strict_encode64("No release notes needed!")
         return
