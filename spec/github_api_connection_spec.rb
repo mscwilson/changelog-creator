@@ -27,4 +27,16 @@ describe GithubApiConnection do
     results = ["enhancement", "help wanted", "good first issue"]
     expect(@connection.issue_labels(issue: "27")).to eq(results)
   end
+
+  it "gets a PR based on its name" do
+    file_path = "./example_files_test/pulls.json"
+    file = File.read(file_path)
+
+    result_path = "./example_files_test/pulls_only_release.json"
+    result = File.read(result_path)
+
+    allow(@connection).to receive(:repo_pull_requests).and_return(JSON.parse(file, symbolize_names: true))
+
+    expect(@connection.pr_from_title("Release/0.1.0")).to eq JSON.parse(result, symbolize_names: true)
+  end
 end

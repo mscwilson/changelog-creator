@@ -1,6 +1,6 @@
 name: "Update CHANGELOG"
 
-on: pull_request
+on: [push, pull_request]
 
 permissions:
   contents: write
@@ -8,7 +8,9 @@ permissions:
 jobs:
   changelog:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' && github.event.action == 'opened'
+    # if: github.event_name == 'pull_request'
+    outputs:
+      release-notes: ${{ steps.release-notes.outputs.release-notes }}
 
     steps:
       - uses: actions/checkout@v2
@@ -24,3 +26,8 @@ jobs:
         uses: mscwilson/changelog-creator@main
         env:
           ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Print decoded output?!
+        env:
+          DECODED-NOTES: ${{ steps.release-notes.outputs.release-notes }} | base64 --decode
+        run: echo $DECODED-NOTES

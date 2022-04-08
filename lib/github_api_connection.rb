@@ -2,7 +2,10 @@ require "octokit"
 require "json"
 require "base64"
 
+# Wrapper for Octokit::Client
 class GithubApiConnection
+  attr_reader :client
+
   def initialize(client: Octokit::Client.new(access_token: ENV["ACCESS_TOKEN"]), repo_name: ENV["GITHUB_REPOSITORY"])
     @client = client
     @repo_name = repo_name
@@ -10,6 +13,7 @@ class GithubApiConnection
 
   def repo_events
     # NB there can be a delay for a new PR to show up at the "events" endpoint
+    # (it will appear in the "pulls" endpoint instantly)
     @client.repository_events(@repo_name)
   end
 
@@ -17,8 +21,33 @@ class GithubApiConnection
     @client.pull_requests(@repo_name, state: "all")
   end
 
+  def pr_from_title(title)
+    pulls = repo_pull_requests
+    pulls.select! { |pull| pull[:title].downcase == title.downcase }[0]
+  end
+
+  def snowplower?(username)
+    @client.organization_member?("snowplow", username)
+  end
+
   def commits_from_branch(branch_name:)
     commits = @client.commits(@repo_name, sha: branch_name)
+
+    # The Github API returns 30 results at a time
+    # But what if there are more than 30 commits for this release?!
+    # This adds the second page of results too, for a total of 60 commits.
+    # There's no way anyone would have completed more than 60 issues
+    begin
+      commits.concat @client.get(@client.last_response.rels[:next].href)
+    rescue NoMethodError
+      return commits
+    end
+    commits
+  end
+
+  def commits_from_pr(number:)
+    number = number.to_i if number.is_a? String
+    commits = @client.pull_request_commits(@repo_name, number)
 
     # The Github API returns 30 results at a time
     # But what if there are more than 30 commits for this release?!
