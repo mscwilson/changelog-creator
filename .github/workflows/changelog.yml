@@ -24,6 +24,8 @@ jobs:
       - name: Run ruby script
         id: release-notes
         uses: mscwilson/changelog-creator@main
+        with:
+          operation: "prepare"
         env:
           ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
