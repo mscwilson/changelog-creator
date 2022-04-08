@@ -71,8 +71,6 @@ class Manager
       pr_text = pull[:body]
 
       commit_data = commits_data_for_release_notes(branch_name:, version:)
-      p "commits data incoming:"
-      p commit_data
       if commit_data.nil? || commit_data.empty?
         puts "Nothing to do. Exiting action."
         puts
