@@ -40,6 +40,6 @@ runs:
         bundle exec ruby run.rb 2>&1 | tee output.txt
         echo ::set-output name=notes::$(tail -n 1 output.txt)
       env:
-        INPUT_OPERATION: { { inputs.operation } }
-        INPUT_BASE_BRANCH: { { inputs.base_branch } }
-        INPUT_VERSION_SCRIPT_PATH: { { inputs.version_script_path } }
+        INPUT_OPERATION: ${{ inputs.operation }}
+        INPUT_BASE_BRANCH: ${{ inputs.base_branch }}
+        INPUT_VERSION_SCRIPT_PATH: ${{ inputs.version_script_path }}
