@@ -1,6 +1,9 @@
 require "dotenv/load"
+require "octokit"
 
 require "./lib/manager"
+require "./lib/github_api_connection"
+require "./lib/changelog_creator"
 
 LOG_PATH = "./CHANGELOG"
 
