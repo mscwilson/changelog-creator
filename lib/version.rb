@@ -1,1 +1,1 @@
-repo_version = "0.1.0" # rubocop:disable Lint/UselessAssignment
+repo_version = "0.2.0" # rubocop:disable Lint/UselessAssignment
