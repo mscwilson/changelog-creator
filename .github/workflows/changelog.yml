@@ -38,7 +38,7 @@ jobs:
         env:
           ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          operation: "hello????"
+          operation: "github"
 
       - name: Print decoded output?!
         env:
