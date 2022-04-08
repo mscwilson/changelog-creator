@@ -34,8 +34,7 @@ describe Manager do
       allow(ENV).to receive(:[]).with("INPUT_OPERATION").and_return("prepare for release")
       allow(ENV).to receive(:[]).with("GITHUB_EVENT_NAME").and_return("pull_request")
       allow(ENV).to receive(:[]).with("GITHUB_BASE_REF").and_return("main")
-            allow(ENV).to receive(:[]).with("GITHUB_REF_NAME").and_return("78/merge")
-
+      allow(ENV).to receive(:[]).with("GITHUB_REF_NAME").and_return("78/merge")
     end
 
     it "does nothing if not a PR" do
@@ -81,10 +80,6 @@ describe Manager do
         "\nPublish Gradle module file with bintrayUpload (#255)"\
         "\nUpdate snyk integration to include project name in GitHub action (#8) - thanks @SomeoneElse!\n" }
 
-      new_log_section = "Version 1.7.0 (2022-05-05)\n-----------------------"\
-        "\nChoose HTTP response codes not to retry (#316)"\
-        "\nAllow Emitter to use a custom ExecutorService (#278) - thanks @AcidFlow!\n"
-
       new_log = "Version 1.7.0 (2022-05-05)\n-----------------------"\
         "\nChoose HTTP response codes not to retry (#316)"\
         "\nAllow Emitter to use a custom ExecutorService (#278) - thanks @AcidFlow!\n\n"\
@@ -96,7 +91,7 @@ describe Manager do
       allow(@fake_log_creator).to receive(:relevant_commits).and_return fake_commits
       allow(@fake_log_creator).to receive(:useful_commit_data).and_return useful_commit_data
       allow(@fake_octokit).to receive(:get_file).and_return old_log
-      allow(@fake_log_creator).to receive(:simple_changelog_block).and_return new_log_section
+      allow(@fake_log_creator).to receive(:new_changelog_text).and_return new_log
 
       expect(@manager).to receive(:commit_files).with("1.7.0", new_log, "12345")
       @manager.do_operation

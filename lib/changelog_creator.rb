@@ -17,14 +17,6 @@ class ChangelogCreator
     @octokit = api_connection
   end
 
-  def prepare_for_release_commit?(message:)
-    RELEASE_COMMIT_PATTERN.match?(message)
-  end
-
-  def merge_commit?(message:)
-    MERGE_COMMIT_PATTERN.match?(message)
-  end
-
   def relevant_commits(commits:, version:)
     allowed_message = "Prepare for #{version} release"
     commits.take_while do |commit|
@@ -34,8 +26,28 @@ class ChangelogCreator
   end
 
   def useful_commit_data(commits:)
+    # This processes the commits into hashes of useful stuff
+    # It also removes any commits without an issue number
     commits.map { |commit| process_single_commit(commit) }.compact
   end
+
+  def new_changelog_text(commit_data:, version:, original_text:)
+    new_log_section = simple_changelog_block(version:, commit_data:)
+    "#{new_log_section}\n#{original_text}"
+  end
+
+  def fancy_changelog(commit_data:)
+    commits_by_type = sort_commits_by_type(commit_data)
+
+    features = commits_by_type[:feature].empty? ? "" : "**New features**\n#{commits_by_type[:feature].join("\n")}\n\n"
+    bugs = commits_by_type[:bug].empty? ? "" : "**Bug fixes**\n#{commits_by_type[:bug].join("\n")}\n\n"
+    admin = commits_by_type[:admin].empty? ? "" : "**Under the hood**\n#{commits_by_type[:admin].join("\n")}\n\n"
+    unlabelled = commits_by_type[:misc].empty? ? "" : "**Changes**\n#{commits_by_type[:misc].join("\n")}\n"
+
+    "#{features}#{bugs}#{admin}#{unlabelled}"
+  end
+
+  private # ------------------------------
 
   def simple_changelog_block(commit_data:, version:)
     title = "#{version} (#{Date.today.strftime('%Y-%m-%d')})"
@@ -48,17 +60,6 @@ class ChangelogCreator
       end
     end
     "Version #{title}\n-----------------------\n#{commit_data.join("\n")}\n"
-  end
-
-  def fancy_changelog(commit_data:)
-    commits_by_type = sort_commits_by_type(commit_data)
-
-    features = commits_by_type[:feature].empty? ? "" : "**New features**\n#{commits_by_type[:feature].join("\n")}\n\n"
-    bugs = commits_by_type[:bug].empty? ? "" : "**Bug fixes**\n#{commits_by_type[:bug].join("\n")}\n\n"
-    admin = commits_by_type[:admin].empty? ? "" : "**Under the hood**\n#{commits_by_type[:admin].join("\n")}\n\n"
-    unlabelled = commits_by_type[:misc].empty? ? "" : "**Changes**\n#{commits_by_type[:misc].join("\n")}\n"
-
-    "#{features}#{bugs}#{admin}#{unlabelled}"
   end
 
   def sort_commits_by_type(commit_data)
@@ -88,7 +89,13 @@ class ChangelogCreator
     "#{commit_data[:message]} (##{commit_data[:issue]})#{thanks}#{breaking_change}"
   end
 
-  private # ------------------------------
+  def prepare_for_release_commit?(message:)
+    RELEASE_COMMIT_PATTERN.match?(message)
+  end
+
+  def merge_commit?(message:)
+    MERGE_COMMIT_PATTERN.match?(message)
+  end
 
   def process_single_commit(commit)
     message_match = commit[:commit][:message].match(COMMIT_MESSAGE_PATTERN)

@@ -39,7 +39,7 @@ class Manager
       end
 
       old_log = old_changelog_data
-      new_log = new_changelog_text(commit_data, version, old_log)
+      new_log = @log_creator.new_changelog_text(commit_data:, version:, original_text: old_log[:contents])
 
       commit_files(version, new_log, old_log[:sha])
 
@@ -88,12 +88,6 @@ class Manager
       existing_changelog = { sha: nil, contents: "" }
     end
     existing_changelog
-  end
-
-  # this should be a ChangelogCreator method
-  def new_changelog_text(commit_data, version, existing_changelog_data)
-    new_log_section = @log_creator.simple_changelog_block(version:, commit_data:)
-    "#{new_log_section}\n#{existing_changelog_data[:contents]}"
   end
 
   def commit_files(version, new_log, sha)

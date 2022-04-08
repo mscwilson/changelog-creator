@@ -16,23 +16,23 @@ describe ChangelogCreator do
       .and_return(["category:breaking_change", "type:enhancement"], ["type:defect"])
     allow(@fake_octocat).to receive(:snowplower?).and_return(true, false)
 
+    commit1 = { message: "Choose HTTP response codes not to retry",
+                issue: "316",
+                author: "mscwilson",
+                snowplower: true,
+                breaking_change: true,
+                type: "feature" }
+    commit2 = { message: "Allow Emitter to use a custom ExecutorService",
+                issue: "278",
+                author: "AcidFlow",
+                snowplower: false,
+                breaking_change: false,
+                type: "bug" }
+
     results = @creator.useful_commit_data(commits: JSON.parse(commits, symbolize_names: true))
     expect(results.length).to eq 2
-
-    p results
-
-    expect(results[0][:message]).to eq("Choose HTTP response codes not to retry")
-    expect(results[0][:issue]).to eq("316")
-    expect(results[0][:author]).to eq("mscwilson")
-    expect(results[0][:snowplower]).to be true
-    expect(results[0][:breaking_change]).to be true
-    expect(results[0][:type]).to eq("feature")
-
-    expect(results[1][:message]).to eq("Allow Emitter to use a custom ExecutorService")
-    expect(results[1][:issue]).to eq("278")
-    expect(results[1][:author]).to eq("AcidFlow")
-    expect(results[1][:snowplower]).to be false
-    expect(results[1][:type]).to eq "bug"
+    expect(results[0]).to eq commit1
+    expect(results[1]).to eq commit2
   end
 
   it "doesn't stop at the Prepare to release commit for this release" do
@@ -50,7 +50,7 @@ describe ChangelogCreator do
     expect(results[-1][:commit][:message]).to eq("Attribute community contributions in changelog (close #289)")
   end
 
-  it "generates a simple CHANGELOG block" do
+  it "generates a new CHANGELOG" do
     commit = { message: "Publish Gradle module file with bintrayUpload",
                issue: "255",
                author: "me",
@@ -60,15 +60,19 @@ describe ChangelogCreator do
                        author: "SomeoneElse",
                        snowplower: false }
     processed_commits = [commit, another_commit]
+    old_log = "Version 0.1.0 (2015-11-13)\n-----------------------\nInvented a thing (#2)\n"
 
     expected = "Version 0.2.0 (2022-02-01)\n-----------------------"\
       "\nPublish Gradle module file with bintrayUpload (#255)"\
-      "\nUpdate snyk integration to include project name in GitHub action (#8) - thanks @SomeoneElse!\n"
+      "\nUpdate snyk integration to include project name in GitHub action (#8) - thanks @SomeoneElse!\n\n"\
+      "Version 0.1.0 (2015-11-13)\n-----------------------"\
+      "\nInvented a thing (#2)\n"
 
     allow(Date).to receive(:today).and_return(Date.new(2022, 2, 1))
 
-    expect(@creator.simple_changelog_block(version: "0.2.0",
-                                           commit_data: processed_commits)).to eq(expected)
+    expect(@creator.new_changelog_text(version: "0.2.0",
+                                       commit_data: processed_commits,
+                                       original_text: old_log)).to eq(expected)
   end
 
   it "generates a fancy changelog" do
@@ -114,18 +118,5 @@ describe ChangelogCreator do
     allow(@creator).to receive(:useful_commit_data).and_return(processed_commits)
 
     expect(@creator.fancy_changelog(commit_data: processed_commits)).to eq(expected)
-  end
-
-  it "identifies a 'Prepare for x release' commit" do
-    expect(@creator.prepare_for_release_commit?(message: "Prepare for 0.1.0 release")).to be true
-    expect(@creator.prepare_for_release_commit?(message: "Prepare for v2.3 release")).to be true
-    expect(@creator.prepare_for_release_commit?(message: "Prepare for release")).to be true
-    expect(@creator.prepare_for_release_commit?(message: "Prepare to improve the API")).to be false
-  end
-
-  it "identifies a merge commit" do
-    expect(@creator.merge_commit?(message: "Merge branch 'release/0.12.0'")).to be true
-    expect(@creator.merge_commit?(message: "Merge pull request #67 from mscwilson/release/0.1.0")).to be true
-    expect(@creator.merge_commit?(message: "Merge AbstractEmitter and BatchEmitter")).to be false
   end
 end
