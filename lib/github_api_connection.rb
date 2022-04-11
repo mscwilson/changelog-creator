@@ -22,15 +22,18 @@ class GithubApiConnection
   end
 
   def pr_from_title(title)
+    # TODO: none with title
     pulls = repo_pull_requests
     pulls.select! { |pull| pull[:title].downcase == title.downcase }[0]
   end
 
   def snowplower?(username)
+    # TODO: can't find username
     @client.organization_member?("snowplow", username)
   end
 
   def commits_from_branch(branch_name:)
+    # TODO: no branch found
     commits = @client.commits(@repo_name, sha: branch_name)
 
     # The Github API returns 30 results at a time
@@ -46,6 +49,7 @@ class GithubApiConnection
   end
 
   def commits_from_pr(number:)
+    # TODO: 404 no PR with that number
     number = number.to_i if number.is_a? String
     commits = @client.pull_request_commits(@repo_name, number)
 
@@ -62,8 +66,9 @@ class GithubApiConnection
   end
 
   def get_file(path:, ref: ENV["GITHUB_BASE_REF"])
-    file = @client.contents(@repo_name, path:, ref:)
-    { sha: file[:sha], contents: Base64.decode64(file[:content]) }
+    # TODO: no file found
+    locations_file = @client.contents(@repo_name, path:, ref:)
+    { sha: locations_file[:sha], contents: Base64.decode64(locations_file[:content]) }
   end
 
   def update_file(commit_message:, file_contents:, file_path:, sha: nil, branch: ENV["GITHUB_HEAD_REF"])

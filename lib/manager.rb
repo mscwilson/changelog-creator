@@ -37,21 +37,24 @@ class Manager
     current_tree = current_commit.tree
 
     # Get the version_locations.json file
-    file = @octokit.get_file(path:, ref: branch_sha)
+    locations_file = @octokit.get_file(path:, ref: branch_sha)
 
     files_to_update = []
-    JSON.parse(file[:contents]).each { |k, v| files_to_update << { path: k, strings: v } }
+    JSON.parse(locations_file[:contents]).each { |k, v| files_to_update << { path: k, strings: v } }
 
     files_to_update.each do |loc|
       process_file_version_locations(loc, branch_sha, version)
     end
 
-    files_to_update.map! do |file|
+    p files_to_update
+    puts
+
+    files_to_update.map! do |locations_file|
       {
-        path: file[:path],
+        path: locations_file[:path],
         mode: "100644",
         type: "blob",
-        sha: @octokit.make_blob(text: file[:new_contents])
+        sha: @octokit.make_blob(text: locations_file[:new_contents])
       }
     end
     p files_to_update
@@ -74,21 +77,28 @@ class Manager
     if pr_event? && pr_branches_release_and_main?
       version = version_number(branch_name: ENV["GITHUB_HEAD_REF"])
 
-      commit_data = commits_data_for_log(version)
-      if commit_data.nil? || commit_data.empty?
-        puts "Nothing to do. Exiting action."
-        puts
-        puts Base64.strict_encode64("No release notes needed!")
-        return
-      end
+      current_branch = @octokit.ref(branch_name: ENV["GITHUB_HEAD_REF"])
+      branch_sha = current_branch.object.sha
+      current_commit = @octokit.git_commit(sha: branch_sha)
+      current_tree = current_commit.tree
 
-      old_log = old_changelog_data
-      new_log = @log_creator.new_changelog_text(commit_data:, version:, original_text: old_log[:contents])
+      all_files_tree = updated_files_tree(branch_sha:, version:)
 
-      puts "ready to commit"
+
       # commit_files(version, new_log, old_log[:sha])
 
-      puts old_log[:sha].nil? ? "CHANGELOG created." : "CHANGELOG updated."
+      # new_tree = @octokit.make_tree(tree_data: files_to_update,
+      #                             base_tree_sha: current_commit[:tree][:sha])
+
+      # new_commit = @octokit.make_commit(commit_message: "Update test files",
+      #                                 tree_sha: new_tree[:sha],
+      #                                 base_commit_sha: current_commit[:sha])
+
+      # @octokit.update_ref(branch_name: ENV["GITHUB_HEAD_REF"],
+      #                   commit_sha: new_commit[:sha])
+
+      #  this needs changing TODO
+      # puts old_log[:sha].nil? ? "CHANGELOG created." : "CHANGELOG updated."
       puts "Action completed."
     elsif pr_event?
       puts "Nothing to do. Exiting action."
@@ -96,7 +106,6 @@ class Manager
       puts "Operation 'prepare for release' was specified, but this isn't a PR event. Exiting action."
     end
     puts
-    # These print statements are included mainly for testing
     # Downstream actions to decode the output from this action won't fail
     # Because there actually is an encoded string output
     puts Base64.strict_encode64("No release notes needed!")
@@ -138,8 +147,52 @@ class Manager
 
   private #--------------------------------------------------
 
+  def updated_files_tree(branch_sha:, version:)
+    # TODO: this should be able to return nil - if no file/no path given?
+    version_files_tree = version_files_tree(branch_sha, version)
+    changelog_tree = changelog_tree(version)
+
+    if version_files_tree && changelog_tree
+      puts "Ready to update version strings and CHANGELOG."
+      version_files_tree + [changelog_tree]
+    elsif version_files_tree
+      puts "Ready to update version strings."
+      version_files_tree
+    elsif changelog_tree & !version_files_tree
+      puts "Ready to update CHANGELOG."
+      [changelog_tree]
+    else
+      puts "Nothing to do."
+    end
+  end
+
+  def changelog_tree(version)
+    commit_data = commits_data_for_log(version)
+    if commit_data.nil? || commit_data.empty?
+      # change these prints
+      puts "Nothing to do. Exiting action."
+      puts
+      puts Base64.strict_encode64("No release notes needed!")
+      return nil
+    end
+
+    old_log = old_changelog_data
+    new_log = @log_creator.new_changelog_text(commit_data:,
+                                              version:,
+                                              original_text: old_log[:contents])
+
+    {
+      path: LOG_PATH,
+      mode: "100644",
+      type: "blob",
+      sha: @octokit.make_blob(text: new_log)
+    }
+  end
+
   def commits_data_for_log(version)
     puts "Getting commit data for PR #{pr_number}..."
+    puts "PR number is: #{pr_number}"
+
     commits = @octokit.commits_from_pr(number: pr_number)
     commits = @log_creator.relevant_commits(commits:, version:)
 
@@ -222,8 +275,29 @@ class Manager
     true
   end
 
-  def pr_number
-    /\d+/.match(ENV["GITHUB_REF_NAME"])[0].to_i
+  def pr_number(ref: ENV["GITHUB_REF_NAME"])
+    /\d+/.match(ref)[0].to_i
+  end
+
+  def version_files_tree(branch_sha:, version:, path: ENV["INPUT_VERSION_SCRIPT_PATH"])
+    # Get the version_locations.json file
+    locations_file = @octokit.get_file(path:, ref: branch_sha)
+
+    files_to_update = []
+    JSON.parse(locations_file[:contents]).each { |k, v| files_to_update << { path: k, strings: v } }
+
+    files_to_update.each do |loc|
+      process_file_version_locations(loc, branch_sha, version)
+    end
+
+    files_to_update.map! do |f|
+      {
+        path: f[:path],
+        mode: "100644",
+        type: "blob",
+        sha: @octokit.make_blob(text: f[:new_contents])
+      }
+    end
   end
 
   def process_file_version_locations(loc, branch_sha, version)

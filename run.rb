@@ -17,7 +17,8 @@ def run
   client = manager.octokit
   repo = ENV["GITHUB_REPOSITORY"]
 
-  manager.find_version_strings
+  # manager.find_version_strings
+  manager.prepare_for_release
 
   # # File.write("lib/test_file.txt", "this file was created automatically")
   # # File.write("lib/another_test_file.txt", "another test file")
