@@ -61,73 +61,9 @@ describe Manager do
       @manager.do_operation
     end
 
-    it "creates and commits a new changelog given the right branches" do
-      @fake_env["GITHUB_HEAD_REF"] = "release/1.7"
-      allow(Date).to receive(:today).and_return(Date.new(2022, 5, 5))
-
-      fake_commits = [{ commit: { message: "Complete work (close #5)" } }]
-
-      useful_commit_data = [
-        { message: "Choose HTTP response codes not to retry",
-          issue: "316",
-          author: "mscwilson",
-          snowplower: true,
-          breaking_change: true,
-          type: "feature" },
-        { message: "Allow Emitter to use a custom ExecutorService",
-          issue: "278",
-          author: "AcidFlow",
-          snowplower: false,
-          breaking_change: false,
-          type: "bug" }
-      ]
-
-      old_log = { sha: "12345",
-                  contents: "Version 0.2.0 (2022-02-01)\n-----------------------"\
-                            "\nPublish Gradle module file with bintrayUpload (#255)"\
-                            "\nUpdate snyk integration to include project name in "\
-                            "GitHub action (#8) - thanks @SomeoneElse!\n" }
-
-      new_log = "Version 1.7.0 (2022-05-05)\n-----------------------"\
-                "\nChoose HTTP response codes not to retry (#316)"\
-                "\nAllow Emitter to use a custom ExecutorService (#278) - thanks @AcidFlow!\n\n"\
-                "Version 0.2.0 (2022-02-01)\n-----------------------"\
-                "\nPublish Gradle module file with bintrayUpload (#255)"\
-                "\nUpdate snyk integration to include project name in GitHub action (#8) - thanks @SomeoneElse!\n"
-
-      allow(@fake_octokit).to receive(:commits_from_pr).with(number: 78)
-      allow(@fake_log_creator).to receive(:relevant_commits).and_return fake_commits
-      allow(@fake_log_creator).to receive(:useful_commit_data).and_return useful_commit_data
-      allow(@fake_octokit).to receive(:file).and_return old_log
-
-      expect(@fake_log_creator).to receive(:update_ref)
-      expect { @manager.do_operation }.to output(/#{Regexp.quote("Files updated, committed and pushed.")}/).to_stdout
-    end
-
-    it "quits early if the last commit was already 'Prepare for {this} release'" do
-      @fake_env["GITHUB_HEAD_REF"] = "release/2.5.3"
-
-      message = "Did this action already run? There's a 'Prepare for 2.5.3 release' commit right there."
-      fake_commits = [{ commit: { message: "Prepare for 2.5.3 release" } }]
-
-      allow(@fake_octokit).to receive(:commits_from_pr).with(number: 78)
-      allow(@fake_log_creator).to receive(:relevant_commits).and_return(fake_commits)
-
-      expect(@fake_log_creator).not_to receive(:useful_commit_data)
-      expect(@manager).not_to receive(:old_changelog_data)
-      expect { @manager.do_operation }.to output(/#{Regexp.quote(message)}/).to_stdout
-    end
-
     it "doesn't do anything with versions if no locations file is provided" do
       @fake_env["INPUT_VERSION_SCRIPT_PATH"] = nil
       expect(@manager).not_to receive(:version_files_tree)
-    end
-
-    xit "finds where version strings are if locations file is provided" do
-      @fake_env["INPUT_VERSION_SCRIPT_PATH"] = "version_locations.json"
-      file = JSON.parse(File.read("version_locations.json"))
-
-      expect(@manager.find_version_strings).to eq file
     end
   end
 
@@ -142,26 +78,6 @@ describe Manager do
 
       expect(@manager).not_to receive :commits_data_for_release_notes
       @manager.do_operation
-    end
-
-    it "outputs encoded release notes" do
-      @fake_env["GITHUB_REF_TYPE"] = "tag"
-
-      fake_pr = { base: { ref: "main" }, body: "We are pleased to announce this release." }
-      fake_commits = ["not an empty array"]
-      formatted_commits = "**New features**\nAdd pause and resume to EmitterController (#672)\n"
-
-      expected_output = "V2UgYXJlIHBsZWFzZWQgdG8gYW5ub3VuY2UgdGhpcyByZ"\
-                        "WxlYXNlLgoKKipOZXcgZmVhdHVyZXMqKgpBZGQgcGF1c2"\
-                        "UgYW5kIHJlc3VtZSB0byBFbWl0dGVyQ29udHJvbGxlciAoIzY3MikK"
-
-      allow(@fake_octokit).to receive(:pr_from_title).and_return(fake_pr)
-      allow(@fake_octokit).to receive(:commits_from_branch)
-      allow(@fake_log_creator).to receive(:relevant_commits)
-      allow(@fake_log_creator).to receive(:useful_commit_data).and_return(fake_commits)
-      allow(@fake_log_creator).to receive(:fancy_changelog).and_return(formatted_commits)
-
-      expect { @manager.do_operation }.to output(/#{Regexp.quote(expected_output)}/).to_stdout
     end
   end
 end
