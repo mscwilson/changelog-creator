@@ -178,7 +178,7 @@ class Manager
     commits = @octokit.commits_from_branch(branch_name:)
     commits = @log_creator.relevant_commits(commits:, version:)
 
-    if commits.empty? || commits.nil?
+    if commits.nil? || commits.empty?
       puts "No commits found."
       return nil
     end
@@ -201,17 +201,6 @@ class Manager
     end
     existing_changelog
   end
-
-  # def commit_files(version, new_log, sha)
-  #   commit_message = "Prepare for #{version} release"
-
-  #   commit_result = @octokit.update_file(commit_message:,
-  #                                        file_contents: new_log,
-  #                                        file_path: LOG_PATH,
-  #                                        sha:)
-
-  #   raise "Failed to commit new CHANGELOG." unless commit_result
-  # end
 
   def version_number(branch_name:)
     match = RELEASE_BRANCH_PATTERN.match(branch_name)

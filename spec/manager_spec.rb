@@ -16,50 +16,53 @@ describe Manager do
     @manager = Manager.new(client: @fake_octokit,
                            api_connection: @fake_api_connection,
                            log_creator: @fake_log_creator)
+
+    @fake_env = {}
+    allow(ENV).to receive(:[]) do |key|
+      @fake_env[key] || raise("#{key} not expected")
+    end
   end
 
   it "calls the appropriate method based on input operation" do
-    allow(ENV).to receive(:[]).with("INPUT_OPERATION").and_return("prepare for release")
+    @fake_env["INPUT_OPERATION"] = "prepare for release"
     expect(@manager).to receive :prepare_for_release
     @manager.do_operation
 
-    allow(ENV).to receive(:[]).with("INPUT_OPERATION").and_return("github")
+    @fake_env["INPUT_OPERATION"] = "github"
     expect(@manager).to receive :github_release_notes
     @manager.do_operation
 
-    allow(ENV).to receive(:[]).with("INPUT_OPERATION").and_return("hello")
-    expect { @manager.do_operation }.to output("Unexpected string input. "\
-                                               "'hello' is not a valid operation. Exiting action.\n").to_stdout
+    @fake_env["INPUT_OPERATION"] = "hello"
+    expected = "Unexpected string input. 'hello' is not a valid operation. Exiting action.\n"
+    expect { @manager.do_operation }.to output(/#{Regexp.quote(expected)}/).to_stdout
   end
 
   describe "with 'prepare for release'" do
     before do
-      allow(ENV).to receive(:[]).with("INPUT_OPERATION").and_return("prepare for release")
-      allow(ENV).to receive(:[]).with("GITHUB_EVENT_NAME").and_return("pull_request")
-      allow(ENV).to receive(:[]).with("GITHUB_BASE_REF").and_return("main")
-      allow(ENV).to receive(:[]).with("GITHUB_REF_NAME").and_return("78/merge")
+      @fake_env["INPUT_OPERATION"] = "prepare for release"
+      @fake_env["GITHUB_EVENT_NAME"] = "pull_request"
+      @fake_env["GITHUB_BASE_REF"] = "main"
+      @fake_env["GITHUB_REF_NAME"] = "78/merge"
     end
 
     it "does nothing if not a PR" do
-      allow(ENV).to receive(:[]).with("GITHUB_EVENT_NAME").and_return("push")
+      @fake_env["GITHUB_EVENT_NAME"] = "push"
       expect(@manager).not_to receive :commits_data_for_log
-      expect(@manager).not_to receive :commit_files
 
       @manager.do_operation
     end
 
     it "does nothing if not the right PR branches" do
-      allow(ENV).to receive(:[]).with("GITHUB_BASE_REF").and_return("release/0.1.0")
-      allow(ENV).to receive(:[]).with("GITHUB_HEAD_REF").and_return("issue/99-red_balloons")
+      @fake_env["GITHUB_BASE_REF"] = "release/0.1.0"
+      @fake_env["GITHUB_HEAD_REF"] = "issue/99-red_balloons"
 
       expect(@manager).not_to receive :commits_data_for_log
-      expect(@manager).not_to receive :commit_files
 
       @manager.do_operation
     end
 
     it "creates and commits a new changelog given the right branches" do
-      allow(ENV).to receive(:[]).with("GITHUB_HEAD_REF").and_return("release/1.7")
+      @fake_env["GITHUB_HEAD_REF"] = "release/1.7"
       allow(Date).to receive(:today).and_return(Date.new(2022, 5, 5))
 
       fake_commits = [{ commit: { message: "Complete work (close #5)" } }]
@@ -103,7 +106,7 @@ describe Manager do
     end
 
     it "quits early if the last commit was already 'Prepare for {this} release'" do
-      allow(ENV).to receive(:[]).with("GITHUB_HEAD_REF").and_return("release/2.5.3")
+      @fake_env["GITHUB_HEAD_REF"] = "release/2.5.3"
 
       message = "Did this action already run? There's a 'Prepare for 2.5.3 release' commit right there."
       fake_commits = [{ commit: { message: "Prepare for 2.5.3 release" } }]
@@ -116,13 +119,13 @@ describe Manager do
       expect { @manager.do_operation }.to output(/#{Regexp.quote(message)}/).to_stdout
     end
 
-    xit "doesn't do anything with versions if no locations file is provided" do
-      allow(ENV).to receive(:[]).with("INPUT_VERSION_SCRIPT_PATH").and_return("")
-      expect(@manager.find_version_strings).to be nil
+    it "doesn't do anything with versions if no locations file is provided" do
+      @fake_env["INPUT_VERSION_SCRIPT_PATH"] = nil
+      expect(@manager).not_to receive(:version_files_tree)
     end
 
     xit "finds where version strings are if locations file is provided" do
-      allow(ENV).to receive(:[]).with("INPUT_VERSION_SCRIPT_PATH").and_return("version_locations.json")
+      @fake_env["INPUT_VERSION_SCRIPT_PATH"] = "version_locations.json"
       file = JSON.parse(File.read("version_locations.json"))
 
       expect(@manager.find_version_strings).to eq file
@@ -131,19 +134,19 @@ describe Manager do
 
   describe "with 'github release notes'" do
     before do
-      allow(ENV).to receive(:[]).with("INPUT_OPERATION").and_return("github release notes")
-      allow(ENV).to receive(:[]).with("GITHUB_REF_NAME").and_return("3.2.1")
+      @fake_env["INPUT_OPERATION"] = "github release notes"
+      @fake_env["GITHUB_REF_NAME"] = "3.2.1"
     end
 
     it "does nothing if not a tag event" do
-      allow(ENV).to receive(:[]).with("GITHUB_REF_TYPE").and_return("push")
+      @fake_env["GITHUB_REF_TYPE"] = "push"
 
       expect(@manager).not_to receive :commits_data_for_release_notes
       @manager.do_operation
     end
 
     it "outputs encoded release notes" do
-      allow(ENV).to receive(:[]).with("GITHUB_REF_TYPE").and_return("tag")
+      @fake_env["GITHUB_REF_TYPE"] = "tag"
 
       fake_pr = { base: { ref: "main" }, body: "We are pleased to announce this release." }
       fake_commits = ["not an empty array"]
