@@ -5,6 +5,7 @@ class Manager
   RELEASE_VERSION_PATTERN = "\\d+\\.\\d+\\.\\d+(?:-\\w*\\.\\d+)?"
   RELEASE_BRANCH_PATTERN = %r{release/(#{RELEASE_VERSION_PATTERN})}
   LOG_PATH = "./CHANGELOG"
+  DEFAULT_OUTPUT = "\n#{Base64.strict_encode64('No release notes needed!')}"
 
   attr_reader :octokit
 
@@ -25,50 +26,10 @@ class Manager
       github_release_notes
     else
       puts "Unexpected string input. '#{ENV['INPUT_OPERATION']}' is not a valid operation. Exiting action."
+      # Downstream actions to decode the output from this action won't fail
+      # Because there actually is an encoded string output
+      puts DEFAULT_OUTPUT
     end
-  end
-
-  def find_version_strings(path: ENV["INPUT_VERSION_SCRIPT_PATH"])
-    version = "6.6.6"
-
-    current_branch = @octokit.ref(branch_name: ENV["GITHUB_HEAD_REF"])
-    branch_sha = current_branch.object.sha
-    current_commit = @octokit.git_commit(sha: branch_sha)
-    current_tree = current_commit.tree
-
-    # Get the version_locations.json file
-    locations_file = @octokit.get_file(path:, ref: branch_sha)
-
-    files_to_update = []
-    JSON.parse(locations_file[:contents]).each { |k, v| files_to_update << { path: k, strings: v } }
-
-    files_to_update.each do |loc|
-      process_file_version_locations(loc, branch_sha, version)
-    end
-
-    p files_to_update
-    puts
-
-    files_to_update.map! do |locations_file|
-      {
-        path: locations_file[:path],
-        mode: "100644",
-        type: "blob",
-        sha: @octokit.make_blob(text: locations_file[:new_contents])
-      }
-    end
-    p files_to_update
-
-    # now commit them!
-    new_tree = @octokit.make_tree(tree_data: files_to_update,
-                                  base_tree_sha: current_commit[:tree][:sha])
-
-    new_commit = @octokit.make_commit(commit_message: "Update test files",
-                                      tree_sha: new_tree[:sha],
-                                      base_commit_sha: current_commit[:sha])
-
-    @octokit.update_ref(branch_name: ENV["GITHUB_HEAD_REF"],
-                        commit_sha: new_commit[:sha])
   end
 
   def prepare_for_release
@@ -80,35 +41,28 @@ class Manager
       current_branch = @octokit.ref(branch_name: ENV["GITHUB_HEAD_REF"])
       branch_sha = current_branch.object.sha
       current_commit = @octokit.git_commit(sha: branch_sha)
-      current_tree = current_commit.tree
 
-      all_files_tree = updated_files_tree(branch_sha:, version:)
+      all_files_tree_data = updated_files_tree(branch_sha:, version:)
 
+      new_tree = @octokit.make_tree(tree_data: all_files_tree_data,
+                                    base_tree_sha: current_commit[:tree][:sha])
 
-      # commit_files(version, new_log, old_log[:sha])
+      commit_message = "Prepare for #{version} release"
+      new_commit = @octokit.make_commit(commit_message:,
+                                        tree_sha: new_tree[:sha],
+                                        base_commit_sha: current_commit[:sha])
 
-      # new_tree = @octokit.make_tree(tree_data: files_to_update,
-      #                             base_tree_sha: current_commit[:tree][:sha])
+      # This pushes the changes
+      @octokit.update_ref(branch_name: ENV["GITHUB_HEAD_REF"],
+                          commit_sha: new_commit[:sha])
 
-      # new_commit = @octokit.make_commit(commit_message: "Update test files",
-      #                                 tree_sha: new_tree[:sha],
-      #                                 base_commit_sha: current_commit[:sha])
-
-      # @octokit.update_ref(branch_name: ENV["GITHUB_HEAD_REF"],
-      #                   commit_sha: new_commit[:sha])
-
-      #  this needs changing TODO
-      # puts old_log[:sha].nil? ? "CHANGELOG created." : "CHANGELOG updated."
       puts "Action completed."
     elsif pr_event?
       puts "Nothing to do. Exiting action."
     else
       puts "Operation 'prepare for release' was specified, but this isn't a PR event. Exiting action."
     end
-    puts
-    # Downstream actions to decode the output from this action won't fail
-    # Because there actually is an encoded string output
-    puts Base64.strict_encode64("No release notes needed!")
+    puts DEFAULT_OUTPUT
   end
 
   def github_release_notes
@@ -126,22 +80,19 @@ class Manager
       commit_data = commits_data_for_release_notes(branch_name:, version:)
       if commit_data.nil? || commit_data.empty?
         puts "Nothing to do. Exiting action."
-        puts
-        puts Base64.strict_encode64("No release notes needed!")
+        puts DEFAULT_OUTPUT
         return
       end
 
       release_notes = github_release_notes_text(commit_data:, pr_text:)
       puts "Action completed."
-      puts
       # The Action output is set based on the last line of the STDOUT
       # It has to be base64-encoded without newlines to move between jobs/steps in a GH workflow
-      puts Base64.strict_encode64(release_notes)
+      puts "\n#{Base64.strict_encode64(release_notes)}"
 
     else
       puts "Operation 'github release notes' was specified, but this isn't a tag event. Exiting action."
-      puts
-      puts Base64.strict_encode64("No release notes needed!")
+      puts DEFAULT_OUTPUT
     end
   end
 
@@ -149,8 +100,8 @@ class Manager
 
   def updated_files_tree(branch_sha:, version:)
     # TODO: this should be able to return nil - if no file/no path given?
-    version_files_tree = version_files_tree(branch_sha, version)
-    changelog_tree = changelog_tree(version)
+    version_files_tree = version_files_tree(branch_sha:, version:)
+    changelog_tree = changelog_tree(version:)
 
     if version_files_tree && changelog_tree
       puts "Ready to update version strings and CHANGELOG."
@@ -166,13 +117,12 @@ class Manager
     end
   end
 
-  def changelog_tree(version)
+  def changelog_tree(version:)
     commit_data = commits_data_for_log(version)
     if commit_data.nil? || commit_data.empty?
       # change these prints
       puts "Nothing to do. Exiting action."
-      puts
-      puts Base64.strict_encode64("No release notes needed!")
+      puts DEFAULT_OUTPUT
       return nil
     end
 
@@ -191,8 +141,6 @@ class Manager
 
   def commits_data_for_log(version)
     puts "Getting commit data for PR #{pr_number}..."
-    puts "PR number is: #{pr_number}"
-
     commits = @octokit.commits_from_pr(number: pr_number)
     commits = @log_creator.relevant_commits(commits:, version:)
 
