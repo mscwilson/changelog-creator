@@ -33,6 +33,8 @@ class Manager
 
     current_branch = @octokit.ref(branch_name: ENV["GITHUB_HEAD_REF"])
     branch_sha = current_branch.object.sha
+    current_commit = @octokit.git_commit(sha: branch_sha)
+    current_tree = current_commit.tree
 
     # Get the version_locations.json file
     file = @octokit.get_file(path:, ref: branch_sha)
@@ -53,6 +55,17 @@ class Manager
       }
     end
     p files_to_update
+
+    # now commit them!
+    new_tree = @octokit.make_tree(tree_data: files_to_update,
+                                  base_tree_sha: current_commit[:tree][:sha])
+
+    new_commit = @octokit.make_commit(commit_message: "Update test files",
+                                      tree_sha: new_tree[:sha],
+                                      base_commit_sha: current_commit[:sha])
+
+    @octokit.update_ref(branch_name: ENV["GITHUB_HEAD_REF"],
+                        commit_sha: new_commit[:sha])
   end
 
   def prepare_for_release
@@ -220,7 +233,6 @@ class Manager
     file = @octokit.get_file(path: loc[:path], ref: branch_sha)
     loc[:current_contents] = file[:contents]
     loc[:sha] = file[:sha]
-    # loc[:current_tree] = @octokit.git_commit(sha: file[:sha])[:tree]
 
     loc[:strings].map! do |str|
       { original: str,

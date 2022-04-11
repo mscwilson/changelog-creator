@@ -106,6 +106,18 @@ class GithubApiConnection
     @client.git_commit(@repo_name, sha)
   end
 
+  def make_tree(tree_data:, base_tree_sha:)
+    @client.create_tree(@repo_name, tree_data, base_tree: base_tree_sha)
+  end
+
+  def make_commit(commit_message:, tree_sha:, base_commit_sha:)
+    @client.create_commit(@repo_name, commit_message, tree_sha, base_commit_sha)
+  end
+
+  def update_ref(branch_name:, commit_sha:)
+    @client.update_ref(@repo_name, "heads/#{branch_name}", commit_sha)
+  end
+
   def comment_on_pr_or_issue(number:, text: "Hello World!")
     number = number.to_i if number.is_a? String
     @client.add_comment(@repo_name, number, text)
