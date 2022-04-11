@@ -19,6 +19,7 @@ describe Manager do
 
       @fake_env[key]
     end
+    @fake_env["COLUMNS"] = "why does rspec keep calling this?"
   end
 
   it "calls the appropriate method based on input operation" do
@@ -106,7 +107,7 @@ describe Manager do
 
 
       # give something some files!
-      
+
       expect(@manager).to receive(:version_files_tree)
       expect(@manager.octokit).to receive(:make_tree)
       # expect { @manager.do_operation }.to output(/#{Regexp.quote("Found all version string locations")}/).to_stdout
