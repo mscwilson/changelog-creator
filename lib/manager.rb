@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "base64"
 
 # Does the appropriate action depending on inputs, branch names etc
@@ -16,6 +18,7 @@ class Manager
                  log_creator: ChangelogCreator)
     @octokit = api_connection.new(client: client.new(access_token:), repo_name:)
     @log_creator = log_creator.new(api_connection: @octokit)
+    @prepare_commit_already_present = false
   end
 
   def do_operation
@@ -44,6 +47,11 @@ class Manager
 
       all_files_tree_data = updated_files_tree(branch_sha:, version:)
 
+      if @prepare_commit_already_present
+        puts "Exiting action. #{DEFAULT_OUTPUT}"
+        return
+      end
+
       new_tree = @octokit.make_tree(tree_data: all_files_tree_data,
                                     base_tree_sha: current_commit[:tree][:sha])
 
@@ -55,7 +63,7 @@ class Manager
       # This pushes the changes
       @octokit.update_ref(branch_name: ENV["GITHUB_HEAD_REF"],
                           commit_sha: new_commit[:sha])
-
+      puts "Files updated, committed and pushed."
       puts "Action completed."
     elsif pr_event?
       puts "Nothing to do. Exiting action."
@@ -71,6 +79,11 @@ class Manager
     if tag_event?
       version = ENV["GITHUB_REF_NAME"]
       pull = @octokit.pr_from_title("Release/#{version}")
+      if pull.nil?
+        puts "Couldn't find a PR called 'Release/#{version}' or 'release/#{version}'. Unable to proceed."
+        puts "\n#{Base64.strict_encode64('Unable to create release notes!')}"
+        return
+      end
 
       # Getting the name of the base branch - likely to be "main" or "master"
       branch_name = pull[:base][:ref]
@@ -99,9 +112,10 @@ class Manager
   private #--------------------------------------------------
 
   def updated_files_tree(branch_sha:, version:)
-    # TODO: this should be able to return nil - if no file/no path given?
-    version_files_tree = version_files_tree(branch_sha:, version:)
     changelog_tree = changelog_tree(version:)
+    return if @prepare_commit_already_present
+
+    version_files_tree = (version_files_tree(branch_sha:, version:) if ENV["INPUT_VERSION_SCRIPT_PATH"])
 
     if version_files_tree && changelog_tree
       puts "Ready to update version strings and CHANGELOG."
@@ -109,7 +123,7 @@ class Manager
     elsif version_files_tree
       puts "Ready to update version strings."
       version_files_tree
-    elsif changelog_tree & !version_files_tree
+    elsif changelog_tree
       puts "Ready to update CHANGELOG."
       [changelog_tree]
     else
@@ -118,19 +132,19 @@ class Manager
   end
 
   def changelog_tree(version:)
-    commit_data = commits_data_for_log(version)
+    commit_data = commits_data_for_log(version:)
+    return if @prepare_commit_already_present
+
     if commit_data.nil? || commit_data.empty?
-      # change these prints
-      puts "Nothing to do. Exiting action."
-      puts DEFAULT_OUTPUT
+      puts "No CHANGELOG-suitable commits found."
       return nil
     end
 
-    old_log = old_changelog_data
     new_log = @log_creator.new_changelog_text(commit_data:,
                                               version:,
-                                              original_text: old_log[:contents])
+                                              original_text: old_changelog_data[:contents])
 
+    puts "Appended new commits to the existing CHANGELOG contents."
     {
       path: LOG_PATH,
       mode: "100644",
@@ -139,18 +153,19 @@ class Manager
     }
   end
 
-  def commits_data_for_log(version)
+  def commits_data_for_log(version:)
     puts "Getting commit data for PR #{pr_number}..."
     commits = @octokit.commits_from_pr(number: pr_number)
     commits = @log_creator.relevant_commits(commits:, version:)
 
-    if commits[0][:commit][:message].start_with? "Prepare for #{version} release"
-      puts "Did this action already run? There's a 'Prepare for #{version} release' commit right there."
+    if commits.empty? || commits.nil?
+      puts "No commits found."
       return nil
     end
 
-    if commits.empty?
-      puts "No commits found."
+    if commits[0][:commit][:message].start_with? "Prepare for #{version} release"
+      puts "Did this action already run? There's a 'Prepare for #{version} release' commit right there."
+      @prepare_commit_already_present = true
       return nil
     end
 
@@ -162,6 +177,12 @@ class Manager
 
     commits = @octokit.commits_from_branch(branch_name:)
     commits = @log_creator.relevant_commits(commits:, version:)
+
+    if commits.empty? || commits.nil?
+      puts "No commits found."
+      return nil
+    end
+
     @log_creator.useful_commit_data(commits:)
   end
 
@@ -228,17 +249,22 @@ class Manager
   end
 
   def version_files_tree(branch_sha:, version:, path: ENV["INPUT_VERSION_SCRIPT_PATH"])
+    puts "Getting the version strings location file..."
     # Get the version_locations.json file
     locations_file = @octokit.get_file(path:, ref: branch_sha)
-
-    files_to_update = []
-    JSON.parse(locations_file[:contents]).each { |k, v| files_to_update << { path: k, strings: v } }
-
-    files_to_update.each do |loc|
-      process_file_version_locations(loc, branch_sha, version)
+    if locations_file.nil?
+      puts "Are you sure that's the right path? Unable to find file or edit version strings."
+      return
     end
 
-    files_to_update.map! do |f|
+    JSON.parse(locations_file[:contents]).each_with_object(files = []) { |(k, v), arr| arr << { path: k, strings: v } }
+
+    files.each do |loc|
+      process_file_version_locations(loc, branch_sha, version)
+    end
+    puts "Found all version string locations and updated text(s) to '#{version}'."
+
+    files.map! do |f|
       {
         path: f[:path],
         mode: "100644",

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "github_api_connection"
 
 describe GithubApiConnection do

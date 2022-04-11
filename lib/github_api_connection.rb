@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "octokit"
 require "json"
 require "base64"
@@ -22,41 +24,40 @@ class GithubApiConnection
   end
 
   def pr_from_title(title)
-    # TODO: none with title
     pulls = repo_pull_requests
     pulls.select! { |pull| pull[:title].downcase == title.downcase }[0]
   end
 
   def snowplower?(username)
-    # TODO: can't find username
     @client.organization_member?("snowplow", username)
   end
 
   def commits_from_branch(branch_name:)
-    # TODO: no branch found
-    commits = @client.commits(@repo_name, sha: branch_name)
-
-    # The Github API returns 30 results at a time
-    # But what if there are more than 30 commits for this release?!
-    # This adds the second page of results too, for a total of 60 commits.
-    # There's no way anyone would have completed more than 60 issues
     begin
-      commits.concat @client.get(@client.last_response.rels[:next].href)
-    rescue NoMethodError
-      return commits
+      commits = @client.commits(@repo_name, sha: branch_name)
+    rescue Octokit::NotFound
+      puts "Unable to find branch '#{branch_name}', so couldn't get commits."
+      return nil
     end
-    commits
+    second_page(commits)
   end
 
   def commits_from_pr(number:)
-    # TODO: 404 no PR with that number
     number = number.to_i if number.is_a? String
-    commits = @client.pull_request_commits(@repo_name, number)
+    begin
+      commits = @client.pull_request_commits(@repo_name, number)
+    rescue Octokit::NotFound
+      puts "Unable to find PR #{number}, so couldn't get commits."
+      return nil
+    end
+    second_page(commits)
+  end
 
-    # The Github API returns 30 results at a time
-    # But what if there are more than 30 commits for this release?!
-    # This adds the second page of results too, for a total of 60 commits.
-    # There's no way anyone would have completed more than 60 issues
+  # The Github API returns 30 results at a time.
+  # But what if there are more than 30 commits for this release?!
+  # This adds the second page of results too, for a total of 60 commits.
+  # There's no way anyone would have completed more than 60 issues.
+  def second_page(commits)
     begin
       commits.concat @client.get(@client.last_response.rels[:next].href)
     rescue NoMethodError
@@ -66,9 +67,11 @@ class GithubApiConnection
   end
 
   def get_file(path:, ref: ENV["GITHUB_BASE_REF"])
-    # TODO: no file found
     locations_file = @client.contents(@repo_name, path:, ref:)
     { sha: locations_file[:sha], contents: Base64.decode64(locations_file[:content]) }
+  rescue Octokit::NotFound
+    puts "Unable to find a file at '#{path}' in branch '#{ref}'"
+    nil
   end
 
   def update_file(commit_message:, file_contents:, file_path:, sha: nil, branch: ENV["GITHUB_HEAD_REF"])

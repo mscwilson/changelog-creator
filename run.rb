@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "dotenv/load"
 require "octokit"
 
@@ -14,11 +16,11 @@ def run
   manager = Manager.new
   # manager.do_operation
 
-  client = manager.octokit
-  repo = ENV["GITHUB_REPOSITORY"]
+  # client = manager.octokit
+  # repo = ENV["GITHUB_REPOSITORY"]
 
-  # manager.find_version_strings
   manager.prepare_for_release
+  # p client.snowplower?("mscwilson")
 
   # # File.write("lib/test_file.txt", "this file was created automatically")
   # # File.write("lib/another_test_file.txt", "another test file")
@@ -26,8 +28,8 @@ def run
   # current_branch =  client.ref(branch_name: "release/0.2.0")
   # base_branch_sha = current_branch.object.sha
 
-  # file1 = client.get_file path: "README.md", ref: base_branch_sha
-  # file2 = client.get_file path: "lib/version.rb", ref: base_branch_sha
+  # file1 = client.get_file path: "READMEf.md", ref: base_branch_sha
+  # # file2 = client.get_file path: "lib/version.rb", ref: base_branch_sha
 
   # file1_new_content = "#{file1[:contents]}. Isn't that cool?"
   # file2_new_content = "#{file2[:contents]}\nAdding more text.\n\nAnd some more."
