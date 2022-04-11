@@ -7,9 +7,9 @@ class Manager
   RELEASE_VERSION_PATTERN = "\\d+\\.\\d+\\.\\d+(?:-\\w*\\.\\d+)?"
   RELEASE_BRANCH_PATTERN = %r{release/(#{RELEASE_VERSION_PATTERN})}
   LOG_PATH = "./CHANGELOG"
-  DEFAULT_OUTPUT = "\n#{Base64.strict_encode64('No release notes needed!')}"
+  DEFAULT_OUTPUT = "\n\n#{Base64.strict_encode64('No release notes needed!')}"
 
-  attr_reader :octokit
+  attr_reader :octokit, :log_creator
 
   def initialize(access_token: ENV["ACCESS_TOKEN"],
                  client: Octokit::Client,
@@ -42,12 +42,12 @@ class Manager
       version = version_number(branch_name: ENV["GITHUB_HEAD_REF"])
 
       current_branch = @octokit.ref(branch_name: ENV["GITHUB_HEAD_REF"])
-      branch_sha = current_branch.object.sha
+      branch_sha = current_branch[:object][:sha]
       current_commit = @octokit.git_commit(sha: branch_sha)
 
       all_files_tree_data = updated_files_tree(branch_sha:, version:)
 
-      if @prepare_commit_already_present
+      if @prepare_commit_already_present || all_files_tree_data.nil?
         puts "Exiting action. #{DEFAULT_OUTPUT}"
         return
       end
@@ -112,9 +112,11 @@ class Manager
   private #--------------------------------------------------
 
   def updated_files_tree(branch_sha:, version:)
+    puts "Updating CHANGELOG..."
     changelog_tree = changelog_tree(version:)
     return if @prepare_commit_already_present
 
+    puts "Updating version strings..."
     version_files_tree = (version_files_tree(branch_sha:, version:) if ENV["INPUT_VERSION_SCRIPT_PATH"])
 
     if version_files_tree && changelog_tree
@@ -127,7 +129,7 @@ class Manager
       puts "Ready to update CHANGELOG."
       [changelog_tree]
     else
-      puts "Nothing to do."
+      puts "No files to update."
     end
   end
 
@@ -158,7 +160,7 @@ class Manager
     commits = @octokit.commits_from_pr(number: pr_number)
     commits = @log_creator.relevant_commits(commits:, version:)
 
-    if commits.empty? || commits.nil?
+    if commits.nil? || commits.empty?
       puts "No commits found."
       return nil
     end
@@ -242,7 +244,7 @@ class Manager
     # Get the version_locations.json file
     locations_file = @octokit.file(path:, ref: branch_sha)
     if locations_file.nil?
-      puts "Are you sure that's the right path? Unable to find file or edit version strings."
+      puts "Are you sure that's the right path? Unable to find file."
       return
     end
 

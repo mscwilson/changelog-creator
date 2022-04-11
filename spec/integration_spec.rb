@@ -3,23 +3,21 @@
 require "date"
 require "json"
 require "manager"
+require "changelog_creator"
+require "github_api_connection"
 
 describe Manager do
   before do
-    @fake_octokit = double :octokit
-    @fake_api_connection = double :api_connection
-    @fake_log_creator = double :log_creator
-    allow(@fake_octokit).to receive(:new)
-    allow(@fake_api_connection).to receive(:new).and_return @fake_octokit
-    allow(@fake_log_creator).to receive(:new).and_return @fake_log_creator
+    @fake_octokit = double :client
+    allow(@fake_octokit).to receive(:new).and_return @fake_octokit
 
-    @manager = Manager.new(client: @fake_octokit,
-                           api_connection: @fake_api_connection,
-                           log_creator: @fake_log_creator)
+    @manager = Manager.new(client: @fake_octokit, repo_name: "mscwilson/try-out-actions-here")
 
     @fake_env = {}
     allow(ENV).to receive(:[]) do |key|
-      @fake_env[key] || raise("#{key} not expected")
+      raise("#{key} not expected") unless @fake_env.key? key
+
+      @fake_env[key]
     end
   end
 
@@ -42,12 +40,19 @@ describe Manager do
       @fake_env["INPUT_OPERATION"] = "prepare for release"
       @fake_env["GITHUB_EVENT_NAME"] = "pull_request"
       @fake_env["GITHUB_BASE_REF"] = "main"
+      @fake_env["GITHUB_HEAD_REF"] = "release/2.5.3"
       @fake_env["GITHUB_REF_NAME"] = "78/merge"
+      @fake_env["INPUT_VERSION_SCRIPT_PATH"] = nil
+
+      allow(@fake_octokit).to receive(:ref).and_return({ object: { sha: "abcde" } })
+      allow(@fake_octokit).to receive(:git_commit).and_return({ tree: { sha: "abcde" }, sha: "123" })
+      allow(@fake_octokit).to receive(:pull_request_commits).with("mscwilson/try-out-actions-here", 78)
+      allow(@fake_octokit).to receive(:last_response)
     end
 
     it "does nothing if not a PR" do
       @fake_env["GITHUB_EVENT_NAME"] = "push"
-      expect(@manager).not_to receive :commits_data_for_log
+      expect(@manager).not_to receive :updated_files_tree
 
       @manager.do_operation
     end
@@ -56,65 +61,37 @@ describe Manager do
       @fake_env["GITHUB_BASE_REF"] = "release/0.1.0"
       @fake_env["GITHUB_HEAD_REF"] = "issue/99-red_balloons"
 
-      expect(@manager).not_to receive :commits_data_for_log
+      expect(@manager).not_to receive :updated_files_tree
 
       @manager.do_operation
     end
 
-    it "creates and commits a new changelog given the right branches" do
+    it "creates and commits a new changelog" do
       @fake_env["GITHUB_HEAD_REF"] = "release/1.7"
-      allow(Date).to receive(:today).and_return(Date.new(2022, 5, 5))
 
-      fake_commits = [{ commit: { message: "Complete work (close #5)" } }]
+      expect(Date).to receive(:today)
+      expect(@manager).not_to receive(:version_files_tree)
+      expect(@manager.log_creator).to receive(:new_changelog_text)
 
-      useful_commit_data = [
-        { message: "Choose HTTP response codes not to retry",
-          issue: "316",
-          author: "mscwilson",
-          snowplower: true,
-          breaking_change: true,
-          type: "feature" },
-        { message: "Allow Emitter to use a custom ExecutorService",
-          issue: "278",
-          author: "AcidFlow",
-          snowplower: false,
-          breaking_change: false,
-          type: "bug" }
-      ]
+      expect(@manager.octokit).to receive(:make_blob)
+      expect(@manager.octokit).to receive(:make_tree)
+      expect(@manager.octokit).to receive(:make_commit)
+      expect(@manager.octokit).to receive(:update_ref)
 
-      old_log = { sha: "12345",
-                  contents: "Version 0.2.0 (2022-02-01)\n-----------------------"\
-                            "\nPublish Gradle module file with bintrayUpload (#255)"\
-                            "\nUpdate snyk integration to include project name in "\
-                            "GitHub action (#8) - thanks @SomeoneElse!\n" }
-
-      new_log = "Version 1.7.0 (2022-05-05)\n-----------------------"\
-                "\nChoose HTTP response codes not to retry (#316)"\
-                "\nAllow Emitter to use a custom ExecutorService (#278) - thanks @AcidFlow!\n\n"\
-                "Version 0.2.0 (2022-02-01)\n-----------------------"\
-                "\nPublish Gradle module file with bintrayUpload (#255)"\
-                "\nUpdate snyk integration to include project name in GitHub action (#8) - thanks @SomeoneElse!\n"
-
-      allow(@fake_octokit).to receive(:commits_from_pr).with(number: 78)
-      allow(@fake_log_creator).to receive(:relevant_commits).and_return fake_commits
-      allow(@fake_log_creator).to receive(:useful_commit_data).and_return useful_commit_data
-      allow(@fake_octokit).to receive(:file).and_return old_log
-
-      expect(@fake_log_creator).to receive(:update_ref)
       expect { @manager.do_operation }.to output(/#{Regexp.quote("Files updated, committed and pushed.")}/).to_stdout
     end
 
     it "quits early if the last commit was already 'Prepare for {this} release'" do
-      @fake_env["GITHUB_HEAD_REF"] = "release/2.5.3"
+      @fake_env["GITHUB_HEAD_REF"] = "release/0.2.0"
 
-      message = "Did this action already run? There's a 'Prepare for 2.5.3 release' commit right there."
-      fake_commits = [{ commit: { message: "Prepare for 2.5.3 release" } }]
+      commits_json_path = "./example_files_test/commits_first_is_prepare_for_x_release.json"
+      commits = File.read(commits_json_path)
 
-      allow(@fake_octokit).to receive(:commits_from_pr).with(number: 78)
-      allow(@fake_log_creator).to receive(:relevant_commits).and_return(fake_commits)
+      message = "Did this action already run? There's a 'Prepare for 0.2.0 release' commit right there."
 
-      expect(@fake_log_creator).not_to receive(:useful_commit_data)
-      expect(@manager).not_to receive(:old_changelog_data)
+      allow(@manager.octokit).to receive(:commits_from_pr).and_return(JSON.parse(commits, symbolize_names: true))
+
+      expect(@manager.octokit).not_to receive(:make_blob)
       expect { @manager.do_operation }.to output(/#{Regexp.quote(message)}/).to_stdout
     end
 
@@ -123,11 +100,18 @@ describe Manager do
       expect(@manager).not_to receive(:version_files_tree)
     end
 
-    xit "finds where version strings are if locations file is provided" do
+    it "tries to update version strings if locations file is provided" do
       @fake_env["INPUT_VERSION_SCRIPT_PATH"] = "version_locations.json"
-      file = JSON.parse(File.read("version_locations.json"))
+      @fake_env["GITHUB_HEAD_REF"] = "release/2.5.3"
 
-      expect(@manager.find_version_strings).to eq file
+
+      # give something some files!
+      
+      expect(@manager).to receive(:version_files_tree)
+      expect(@manager.octokit).to receive(:make_tree)
+      # expect { @manager.do_operation }.to output(/#{Regexp.quote("Found all version string locations")}/).to_stdout
+      @manager.do_operation
+
     end
   end
 
