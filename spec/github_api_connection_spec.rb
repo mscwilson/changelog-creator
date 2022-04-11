@@ -18,7 +18,7 @@ describe GithubApiConnection do
                contents: log_string }
 
     allow(@fake_client).to receive(:contents).and_return(JSON.parse(log_file, symbolize_names: true))
-    expect(@connection.get_file(path: "CHANGELOG")).to eq(result)
+    expect(@connection.file(path: "CHANGELOG")).to eq(result)
   end
 
   it "gets a list of the labels from an issue" do

@@ -2,7 +2,7 @@
 
 require "base64"
 
-# Does the appropriate action depending on inputs, branch names etc
+# Does the appropriate action depending on inputs, branch names etc.
 class Manager
   RELEASE_VERSION_PATTERN = "\\d+\\.\\d+\\.\\d+(?:-\\w*\\.\\d+)?"
   RELEASE_BRANCH_PATTERN = %r{release/(#{RELEASE_VERSION_PATTERN})}
@@ -193,7 +193,7 @@ class Manager
   def old_changelog_data(path: LOG_PATH)
     puts "Getting CHANGELOG file..."
     begin
-      existing_changelog = @octokit.get_file(path:)
+      existing_changelog = @octokit.file(path:)
       puts "CHANGELOG found."
     rescue Octokit::NotFound
       puts "No existing CHANGELOG found, will make a new one."
@@ -202,16 +202,16 @@ class Manager
     existing_changelog
   end
 
-  def commit_files(version, new_log, sha)
-    commit_message = "Prepare for #{version} release"
+  # def commit_files(version, new_log, sha)
+  #   commit_message = "Prepare for #{version} release"
 
-    commit_result = @octokit.update_file(commit_message:,
-                                         file_contents: new_log,
-                                         file_path: LOG_PATH,
-                                         sha:)
+  #   commit_result = @octokit.update_file(commit_message:,
+  #                                        file_contents: new_log,
+  #                                        file_path: LOG_PATH,
+  #                                        sha:)
 
-    raise "Failed to commit new CHANGELOG." unless commit_result
-  end
+  #   raise "Failed to commit new CHANGELOG." unless commit_result
+  # end
 
   def version_number(branch_name:)
     match = RELEASE_BRANCH_PATTERN.match(branch_name)
@@ -251,7 +251,7 @@ class Manager
   def version_files_tree(branch_sha:, version:, path: ENV["INPUT_VERSION_SCRIPT_PATH"])
     puts "Getting the version strings location file..."
     # Get the version_locations.json file
-    locations_file = @octokit.get_file(path:, ref: branch_sha)
+    locations_file = @octokit.file(path:, ref: branch_sha)
     if locations_file.nil?
       puts "Are you sure that's the right path? Unable to find file or edit version strings."
       return
@@ -278,7 +278,7 @@ class Manager
     # Allows for users not wrapping single strings as arrays
     loc[:strings] = [loc[:strings]] if loc[:strings].is_a? String
 
-    file = @octokit.get_file(path: loc[:path], ref: branch_sha)
+    file = @octokit.file(path: loc[:path], ref: branch_sha)
     loc[:current_contents] = file[:contents]
     loc[:sha] = file[:sha]
 

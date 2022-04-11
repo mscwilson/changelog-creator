@@ -28,8 +28,8 @@ def run
   # current_branch =  client.ref(branch_name: "release/0.2.0")
   # base_branch_sha = current_branch.object.sha
 
-  # file1 = client.get_file path: "READMEf.md", ref: base_branch_sha
-  # # file2 = client.get_file path: "lib/version.rb", ref: base_branch_sha
+  # file1 = client.file path: "READMEf.md", ref: base_branch_sha
+  # # file2 = client.file path: "lib/version.rb", ref: base_branch_sha
 
   # file1_new_content = "#{file1[:contents]}. Isn't that cool?"
   # file2_new_content = "#{file2[:contents]}\nAdding more text.\n\nAnd some more."

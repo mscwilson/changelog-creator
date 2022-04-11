@@ -95,7 +95,7 @@ describe Manager do
       allow(@fake_octokit).to receive(:commits_from_pr).with(number: 78)
       allow(@fake_log_creator).to receive(:relevant_commits).and_return fake_commits
       allow(@fake_log_creator).to receive(:useful_commit_data).and_return useful_commit_data
-      allow(@fake_octokit).to receive(:get_file).and_return old_log
+      allow(@fake_octokit).to receive(:file).and_return old_log
       allow(@fake_log_creator).to receive(:new_changelog_text).and_return new_log
 
       expect(@manager).to receive(:commit_files).with("1.7.0", new_log, "12345")

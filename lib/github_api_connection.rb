@@ -4,7 +4,7 @@ require "octokit"
 require "json"
 require "base64"
 
-# Wrapper for Octokit::Client
+# Wrapper for Octokit::Client.
 class GithubApiConnection
   attr_reader :client
 
@@ -66,7 +66,7 @@ class GithubApiConnection
     commits
   end
 
-  def get_file(path:, ref: ENV["GITHUB_BASE_REF"])
+  def file(path:, ref: ENV["GITHUB_BASE_REF"])
     locations_file = @client.contents(@repo_name, path:, ref:)
     { sha: locations_file[:sha], contents: Base64.decode64(locations_file[:content]) }
   rescue Octokit::NotFound
@@ -74,22 +74,22 @@ class GithubApiConnection
     nil
   end
 
-  def update_file(commit_message:, file_contents:, file_path:, sha: nil, branch: ENV["GITHUB_HEAD_REF"])
-    # The sha is the blob sha of the file (or files).
-    # It's expected to be the sha of the CHANGELOG file on the main branch (GITHUB_BASE_REF)
-    # Committing into the release branch
+  # def update_file(commit_message:, file_contents:, file_path:, sha: nil, branch: ENV["GITHUB_HEAD_REF"])
+  #   # The sha is the blob sha of the file (or files).
+  #   # It's expected to be the sha of the CHANGELOG file on the main branch (GITHUB_BASE_REF)
+  #   # Committing into the release branch
 
-    @client.create_contents(@repo_name, file_path, commit_message, file_contents, { branch: }) if sha.nil?
+  #   @client.create_contents(@repo_name, file_path, commit_message, file_contents, { branch: }) if sha.nil?
 
-    @client.update_contents(@repo_name, file_path, commit_message, sha, file_contents, { branch: })
-    true
-  rescue Octokit::Conflict
-    # Rerunning the Action can cause an error.
-    # There's a risk of creating a new "Prepare for release" commit with an empty CHANGELOG section
-    puts "Octokit::Conflict error. 409 - CHANGELOG does not match sha"
-    puts "Did this Action get run multiple times?"
-    false
-  end
+  #   @client.update_contents(@repo_name, file_path, commit_message, sha, file_contents, { branch: })
+  #   true
+  # rescue Octokit::Conflict
+  #   # Rerunning the Action can cause an error.
+  #   # There's a risk of creating a new "Prepare for release" commit with an empty CHANGELOG section
+  #   puts "Octokit::Conflict error. 409 - CHANGELOG does not match sha"
+  #   puts "Did this Action get run multiple times?"
+  #   false
+  # end
 
   def issue_labels(issue:)
     issue = issue.to_i if issue.is_a? String
