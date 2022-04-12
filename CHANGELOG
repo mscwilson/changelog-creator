@@ -1,3 +1,8 @@
+Version 0.3.0 (2022-04-12)
+-----------------------
+Update version as well as CHANGELOG (#55)
+Update README (#57)
+
 Version 0.1.0 (2022-04-04)
 -----------------------
 Fix update_file not working if no existing file (#41)

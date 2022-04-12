@@ -28,6 +28,8 @@ class GithubApiConnection
     pulls.select! { |pull| pull[:title].downcase == title.downcase }[0]
   end
 
+  # This works locally with a Personal Access Token, but not within Github Actions!
+  # Or at least, not using GITHUB_TOKEN, which has only repo-level permissions
   def snowplower?(username)
     @client.organization_member?("snowplow", username)
   end
@@ -80,13 +82,15 @@ class GithubApiConnection
     begin
       @client.labels_for_issue(@repo_name, issue).map { |label| label[:name] }
     rescue Octokit::NotFound
-      puts "Issue ##{issue} not found."
+      puts "404: Issue ##{issue} not found."
       []
     end
   end
 
   def ref(branch_name:)
     @client.ref(@repo_name, "heads/#{branch_name}")
+  rescue Octokit::NotFound
+    puts "404: Branch '#{branch_name}' not found."
   end
 
   def make_blob(text:)
@@ -99,6 +103,8 @@ class GithubApiConnection
 
   def make_tree(tree_data:, base_tree_sha:)
     @client.create_tree(@repo_name, tree_data, base_tree: base_tree_sha)
+  rescue Octokit::UnprocessableEntity
+    puts "422: tree.path contains a malformed path component"
   end
 
   def make_commit(commit_message:, tree_sha:, base_commit_sha:)

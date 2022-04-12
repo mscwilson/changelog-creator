@@ -12,7 +12,6 @@ class ChangelogCreator
   COMMIT_MESSAGE_PATTERN = /\A([\w\s.,'"-:`@]+) \((?:close|closes|fixes|fix) \#(\d+)\)$/
   RELEASE_COMMIT_PATTERN = /Prepare for v*\d*\.*\d*\.*\d*\.*\ *release/
   MERGE_COMMIT_PATTERN = /Merge (pull request|branch)/
-  EMAIL_PATTERN = /\w+@snowplowanalytics\.com/
 
   attr_reader :octokit
 
@@ -58,11 +57,11 @@ class ChangelogCreator
     title = "#{version} (#{Date.today.strftime('%Y-%m-%d')})"
 
     commit_data.map! do |commit|
-      if commit[:snowplower]
-        "#{commit[:message]} (##{commit[:issue]})"
-      else
-        "#{commit[:message]} (##{commit[:issue]}) - thanks @#{commit[:author]}!"
-      end
+      # if commit[:snowplower]
+      "#{commit[:message]} (##{commit[:issue]})"
+      # else
+      #   "#{commit[:message]} (##{commit[:issue]}) - thanks @#{commit[:author]}!"
+      # end
     end
     "Version #{title}\n-----------------------\n#{commit_data.join("\n")}\n"
   end
@@ -93,8 +92,9 @@ class ChangelogCreator
 
   def fancy_log_single_line(commit_data:)
     breaking_change = commit_data[:breaking_change] ? " **BREAKING CHANGE**" : ""
-    thanks = commit_data[:snowplower] ? "" : " - thanks @#{commit_data[:author]}!"
-    "#{commit_data[:message]} (##{commit_data[:issue]})#{thanks}#{breaking_change}"
+    # thanks = commit_data[:snowplower] ? "" : " - thanks @#{commit_data[:author]}!"
+    # "#{commit_data[:message]} (##{commit_data[:issue]})#{thanks}#{breaking_change}"
+    "#{commit_data[:message]} (##{commit_data[:issue]})#{breaking_change}"
   end
 
   def prepare_for_release_commit?(message:)
@@ -115,7 +115,7 @@ class ChangelogCreator
     { message: message_match[1],
       issue: message_match[2],
       author: commit[:author][:login],
-      snowplower: @octokit.snowplower?(commit[:author][:login]),
+      # snowplower: @octokit.snowplower?(commit[:author][:login]),
       breaking_change: label_data[:breaking_change],
       type: label_data[:type] }
   end

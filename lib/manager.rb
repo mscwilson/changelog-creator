@@ -39,32 +39,7 @@ class Manager
     puts "Doing 'prepare for release' operation."
 
     if pr_event? && pr_branches_release_and_main?
-      version = version_number(branch_name: ENV["GITHUB_HEAD_REF"])
-
-      # Steps for changing multiple files in one commit taken from blog post
-      # https://juanitofatas.com/fragments/github_git_data_api
-      current_branch = @octokit.ref(branch_name: ENV["GITHUB_HEAD_REF"])
-      branch_sha = current_branch[:object][:sha]
-      current_commit = @octokit.git_commit(sha: branch_sha)
-
-      all_files_tree_data = updated_files_tree(branch_sha:, version:)
-
-      if @prepare_commit_already_present || all_files_tree_data.nil?
-        puts "Exiting action. #{DEFAULT_OUTPUT}"
-        return
-      end
-
-      new_tree = @octokit.make_tree(tree_data: all_files_tree_data,
-                                    base_tree_sha: current_commit[:tree][:sha])
-
-      commit_message = "Prepare for #{version} release"
-      new_commit = @octokit.make_commit(commit_message:,
-                                        tree_sha: new_tree[:sha],
-                                        base_commit_sha: current_commit[:sha])
-
-      # This pushes the changes
-      @octokit.update_ref(branch_name: ENV["GITHUB_HEAD_REF"],
-                          commit_sha: new_commit[:sha])
+      update_and_commit_versions_and_changelog
       puts "Files updated, committed and pushed."
       puts "Action completed."
     elsif pr_event?
@@ -113,6 +88,47 @@ class Manager
 
   private #--------------------------------------------------
 
+  def update_and_commit_versions_and_changelog
+    version = version_number(branch_name: ENV["GITHUB_HEAD_REF"])
+
+    # Steps for changing multiple files in one commit taken from blog post
+    # https://juanitofatas.com/fragments/github_git_data_api
+    current_branch = @octokit.ref(branch_name: ENV["GITHUB_HEAD_REF"])
+
+    # If it wasn't a real branch - probably would only happen during testing
+    if current_branch.nil?
+      puts "Exiting action. #{DEFAULT_OUTPUT}"
+      return
+    end
+
+    branch_sha = current_branch[:object][:sha]
+    current_commit = @octokit.git_commit(sha: branch_sha)
+
+    all_files_tree_data = updated_files_tree(branch_sha:, version:)
+
+    if @prepare_commit_already_present || all_files_tree_data.nil?
+      puts "Exiting action. #{DEFAULT_OUTPUT}"
+      return
+    end
+
+    new_tree = @octokit.make_tree(tree_data: all_files_tree_data,
+                                  base_tree_sha: current_commit[:tree][:sha])
+
+    if new_tree.nil?
+      puts "Unsuitable file paths. Unable to proceed. #{DEFAULT_OUTPUT}"
+      return
+    end
+
+    commit_message = "Prepare for #{version} release"
+    new_commit = @octokit.make_commit(commit_message:,
+                                      tree_sha: new_tree[:sha],
+                                      base_commit_sha: current_commit[:sha])
+
+    # This pushes the changes
+    @octokit.update_ref(branch_name: ENV["GITHUB_HEAD_REF"],
+                        commit_sha: new_commit[:sha])
+  end
+
   def updated_files_tree(branch_sha:, version:)
     puts "Updating CHANGELOG..."
     changelog_tree = changelog_tree(version:)
@@ -150,7 +166,7 @@ class Manager
 
     puts "Appended new commits to the existing CHANGELOG contents."
     {
-      path: LOG_PATH,
+      path: "CHANGELOG",
       mode: "100644",
       type: "blob",
       sha: @octokit.make_blob(text: new_log)
@@ -167,7 +183,7 @@ class Manager
       return nil
     end
 
-    if commits[0][:commit][:message].start_with? "Prepare for #{version} release"
+    if commits[-1][:commit][:message].start_with? "Prepare for #{version} release"
       puts "Did this action already run? There's a 'Prepare for #{version} release' commit right there."
       @prepare_commit_already_present = true
       return nil
@@ -275,17 +291,20 @@ class Manager
     loc[:current_contents] = file[:contents]
     loc[:sha] = file[:sha]
 
+    # Remove "./" from the paths since it's not accepted by Github
+    loc[:path] = loc[:path][2..] if loc[:path][0..1] == "./"
+
     loc[:strings].map! do |str|
       { original: str,
-        as_pattern: Regexp.new(str.sub(/(x\.x\.x)|(X\.X\.X)/, RELEASE_VERSION_PATTERN)),
-        updated: str.sub(/(x\.x\.x)|(X\.X\.X)/, version) }
+        as_pattern: Regexp.new(str.gsub(/(x\.x\.x)|(X\.X\.X)/, RELEASE_VERSION_PATTERN)),
+        updated: str.gsub(/(x\.x\.x)|(X\.X\.X)/, version) }
     end
 
     loc[:strings].each_with_index do |str, i|
       loc[:new_contents] = if i.zero?
-                             loc[:current_contents].sub(str[:as_pattern], str[:updated])
+                             loc[:current_contents].gsub(str[:as_pattern], str[:updated])
                            else
-                             loc[:new_contents].sub(str[:as_pattern], str[:updated])
+                             loc[:new_contents].gsub(str[:as_pattern], str[:updated])
                            end
     end
   end

@@ -62,13 +62,13 @@ jobs:
 
       - name: Save release notes to file
         run: |
-          echo ${{ needs.release-notes.outputs.release-notes }} | base64 --decode > ${{ github.workspace }}-CHANGELOG.txt
+          echo ${{ needs.release-notes.outputs.release-notes }} | base64 --decode > notes.txt
 
       - name: Release on GitHub
         uses: softprops/action-gh-release@v0.1.12
         with:
           name: Version ${{ needs.prepare-to-publish.outputs.gem-version }}
           prerelease: ${{ contains(needs.prepare-to-publish.outputs.gem-version, '-') }}
-          body_path: ${{ github.workspace }}-CHANGELOG.txt
+          body_path: notes.txt
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

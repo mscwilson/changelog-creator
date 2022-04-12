@@ -16,18 +16,18 @@ describe ChangelogCreator do
 
     allow(@fake_octocat).to receive(:issue_labels)
       .and_return(["category:breaking_change", "type:enhancement"], ["type:defect"])
-    allow(@fake_octocat).to receive(:snowplower?).and_return(true, false)
+    # allow(@fake_octocat).to receive(:snowplower?).and_return(true, false)
 
     commit1 = { message: "Choose HTTP response codes not to retry",
                 issue: "316",
                 author: "mscwilson",
-                snowplower: true,
+                # snowplower: true,
                 breaking_change: true,
                 type: "feature" }
     commit2 = { message: "Allow Emitter to use a custom ExecutorService",
                 issue: "278",
                 author: "AcidFlow",
-                snowplower: false,
+                # snowplower: false,
                 breaking_change: false,
                 type: "bug" }
 
@@ -56,18 +56,16 @@ describe ChangelogCreator do
   it "generates a new CHANGELOG" do
     commit = { message: "Publish Gradle module file with bintrayUpload",
                issue: "255",
-               author: "me",
-               snowplower: true }
+               author: "me" }
     another_commit = { message: "Update snyk integration to include project name in GitHub action",
                        issue: "8",
-                       author: "SomeoneElse",
-                       snowplower: false }
+                       author: "SomeoneElse" }
     processed_commits = [commit, another_commit]
     old_log = "Version 0.1.0 (2015-11-13)\n-----------------------\nInvented a thing (#2)\n"
 
     expected = "Version 0.2.0 (2022-02-01)\n-----------------------"\
                "\nPublish Gradle module file with bintrayUpload (#255)"\
-               "\nUpdate snyk integration to include project name in GitHub action (#8) - thanks @SomeoneElse!\n\n"\
+               "\nUpdate snyk integration to include project name in GitHub action (#8)\n\n"\
                "Version 0.1.0 (2015-11-13)\n-----------------------"\
                "\nInvented a thing (#2)\n"
 
@@ -82,31 +80,31 @@ describe ChangelogCreator do
     commit1 = { message: "Publish Gradle module file with bintrayUpload",
                 issue: "255",
                 author: "me",
-                snowplower: true,
+                # snowplower: true,
                 breaking_change: false,
                 type: "feature" }
     commit2 = { message: "Update snyk integration to include project name in GitHub action",
                 issue: "8",
                 author: "SomeoneElse",
-                snowplower: false,
+                # snowplower: false,
                 breaking_change: true,
                 type: "bug" }
     commit3 = { message: "Rename bufferSize to batchSize",
                 issue: "306",
                 author: "XenaPrincess",
-                snowplower: true,
+                # snowplower: true,
                 breaking_change: true,
                 type: "feature" }
     commit4 = { message: "Update all copyright notices",
                 issue: "279",
                 author: "XenaPrincess",
-                snowplower: true,
+                # snowplower: true,
                 breaking_change: false,
                 type: "admin" }
     commit5 = { message: "Allow Emitter to use a custom ExecutorService",
                 issue: "278",
                 author: "XenaPrincess",
-                snowplower: true,
+                # snowplower: true,
                 breaking_change: true,
                 type: nil }
     processed_commits = [commit1, commit2, commit3, commit4, commit5]
@@ -114,7 +112,7 @@ describe ChangelogCreator do
     expected = "**New features**\nPublish Gradle module file with bintrayUpload (#255)"\
                "\nRename bufferSize to batchSize (#306) **BREAKING CHANGE**"\
                "\n\n**Bug fixes**\nUpdate snyk integration to include project name in GitHub action (#8)"\
-               " - thanks @SomeoneElse! **BREAKING CHANGE**\n\n"\
+               " **BREAKING CHANGE**\n\n"\
                "**Under the hood**\nUpdate all copyright notices (#279)\n"\
                "\n**Changes**\nAllow Emitter to use a custom ExecutorService (#278) **BREAKING CHANGE**\n"
 
