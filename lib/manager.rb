@@ -41,6 +41,8 @@ class Manager
     if pr_event? && pr_branches_release_and_main?
       version = version_number(branch_name: ENV["GITHUB_HEAD_REF"])
 
+      # Steps for changing multiple files in one commit taken from blog post
+      # https://juanitofatas.com/fragments/github_git_data_api
       current_branch = @octokit.ref(branch_name: ENV["GITHUB_HEAD_REF"])
       branch_sha = current_branch[:object][:sha]
       current_commit = @octokit.git_commit(sha: branch_sha)
