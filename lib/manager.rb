@@ -212,10 +212,9 @@ class Manager
 
   def old_changelog_data(path: LOG_PATH)
     puts "Getting CHANGELOG file..."
-    begin
-      existing_changelog = @octokit.file(path:)
-      puts "CHANGELOG found."
-    rescue Octokit::NotFound
+    existing_changelog = @octokit.file(path:)
+
+    if existing_changelog.nil?
       puts "No existing CHANGELOG found, will make a new one."
       existing_changelog = { sha: nil, contents: "" }
     end
