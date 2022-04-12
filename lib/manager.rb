@@ -1,9 +1,15 @@
+# frozen_string_literal: true
+
 require "base64"
 
-# Does the appropriate action depending on inputs, branch names etc
+# Does the appropriate action depending on inputs, branch names etc.
 class Manager
-  RELEASE_BRANCH_PATTERN = %r{release/(\d*\.*\d*\.*\d*\.*)}
+  RELEASE_VERSION_PATTERN = "\\d+\\.\\d+\\.\\d+(?:-\\w*\\.\\d+)?"
+  RELEASE_BRANCH_PATTERN = %r{release/(#{RELEASE_VERSION_PATTERN})}
   LOG_PATH = "./CHANGELOG"
+  DEFAULT_OUTPUT = "\n\n#{Base64.strict_encode64('No release notes needed!')}"
+
+  attr_reader :octokit, :log_creator
 
   def initialize(access_token: ENV["ACCESS_TOKEN"],
                  client: Octokit::Client,
@@ -12,6 +18,7 @@ class Manager
                  log_creator: ChangelogCreator)
     @octokit = api_connection.new(client: client.new(access_token:), repo_name:)
     @log_creator = log_creator.new(api_connection: @octokit)
+    @prepare_commit_already_present = false
   end
 
   def do_operation
@@ -22,6 +29,9 @@ class Manager
       github_release_notes
     else
       puts "Unexpected string input. '#{ENV['INPUT_OPERATION']}' is not a valid operation. Exiting action."
+      # Downstream actions to decode the output from this action won't fail
+      # Because there actually is an encoded string output
+      puts DEFAULT_OUTPUT
     end
   end
 
@@ -31,31 +41,38 @@ class Manager
     if pr_event? && pr_branches_release_and_main?
       version = version_number(branch_name: ENV["GITHUB_HEAD_REF"])
 
-      commit_data = commits_data_for_log(version)
-      if commit_data.nil? || commit_data.empty?
-        puts "Nothing to do. Exiting action."
-        puts
-        puts Base64.strict_encode64("No release notes needed!")
+      # Steps for changing multiple files in one commit taken from blog post
+      # https://juanitofatas.com/fragments/github_git_data_api
+      current_branch = @octokit.ref(branch_name: ENV["GITHUB_HEAD_REF"])
+      branch_sha = current_branch[:object][:sha]
+      current_commit = @octokit.git_commit(sha: branch_sha)
+
+      all_files_tree_data = updated_files_tree(branch_sha:, version:)
+
+      if @prepare_commit_already_present || all_files_tree_data.nil?
+        puts "Exiting action. #{DEFAULT_OUTPUT}"
         return
       end
 
-      old_log = old_changelog_data
-      new_log = @log_creator.new_changelog_text(commit_data:, version:, original_text: old_log[:contents])
+      new_tree = @octokit.make_tree(tree_data: all_files_tree_data,
+                                    base_tree_sha: current_commit[:tree][:sha])
 
-      commit_files(version, new_log, old_log[:sha])
+      commit_message = "Prepare for #{version} release"
+      new_commit = @octokit.make_commit(commit_message:,
+                                        tree_sha: new_tree[:sha],
+                                        base_commit_sha: current_commit[:sha])
 
-      puts old_log[:sha].nil? ? "CHANGELOG created." : "CHANGELOG updated."
+      # This pushes the changes
+      @octokit.update_ref(branch_name: ENV["GITHUB_HEAD_REF"],
+                          commit_sha: new_commit[:sha])
+      puts "Files updated, committed and pushed."
       puts "Action completed."
     elsif pr_event?
       puts "Nothing to do. Exiting action."
     else
       puts "Operation 'prepare for release' was specified, but this isn't a PR event. Exiting action."
     end
-    puts
-    # These print statements are included mainly for testing
-    # Downstream actions to decode the output from this action won't fail
-    # Because there actually is an encoded string output
-    puts Base64.strict_encode64("No release notes needed!")
+    puts DEFAULT_OUTPUT
   end
 
   def github_release_notes
@@ -64,6 +81,11 @@ class Manager
     if tag_event?
       version = ENV["GITHUB_REF_NAME"]
       pull = @octokit.pr_from_title("Release/#{version}")
+      if pull.nil?
+        puts "Couldn't find a PR called 'Release/#{version}' or 'release/#{version}'. Unable to proceed."
+        puts "\n#{Base64.strict_encode64('Unable to create release notes!')}"
+        return
+      end
 
       # Getting the name of the base branch - likely to be "main" or "master"
       branch_name = pull[:base][:ref]
@@ -73,39 +95,81 @@ class Manager
       commit_data = commits_data_for_release_notes(branch_name:, version:)
       if commit_data.nil? || commit_data.empty?
         puts "Nothing to do. Exiting action."
-        puts
-        puts Base64.strict_encode64("No release notes needed!")
+        puts DEFAULT_OUTPUT
         return
       end
 
       release_notes = github_release_notes_text(commit_data:, pr_text:)
       puts "Action completed."
-      puts
       # The Action output is set based on the last line of the STDOUT
       # It has to be base64-encoded without newlines to move between jobs/steps in a GH workflow
-      puts Base64.strict_encode64(release_notes)
+      puts "\n#{Base64.strict_encode64(release_notes)}"
 
     else
       puts "Operation 'github release notes' was specified, but this isn't a tag event. Exiting action."
-      puts
-      puts Base64.strict_encode64("No release notes needed!")
+      puts DEFAULT_OUTPUT
     end
   end
 
   private #--------------------------------------------------
 
-  def commits_data_for_log(version)
+  def updated_files_tree(branch_sha:, version:)
+    puts "Updating CHANGELOG..."
+    changelog_tree = changelog_tree(version:)
+    return if @prepare_commit_already_present
+
+    puts "Updating version strings..."
+    version_files_tree = (version_files_tree(branch_sha:, version:) if ENV["INPUT_VERSION_SCRIPT_PATH"])
+
+    if version_files_tree && changelog_tree
+      puts "Ready to update version strings and CHANGELOG."
+      version_files_tree + [changelog_tree]
+    elsif version_files_tree
+      puts "Ready to update version strings."
+      version_files_tree
+    elsif changelog_tree
+      puts "Ready to update CHANGELOG."
+      [changelog_tree]
+    else
+      puts "No files to update."
+    end
+  end
+
+  def changelog_tree(version:)
+    commit_data = commits_data_for_log(version:)
+    return if @prepare_commit_already_present
+
+    if commit_data.nil? || commit_data.empty?
+      puts "No CHANGELOG-suitable commits found."
+      return nil
+    end
+
+    new_log = @log_creator.new_changelog_text(commit_data:,
+                                              version:,
+                                              original_text: old_changelog_data[:contents])
+
+    puts "Appended new commits to the existing CHANGELOG contents."
+    {
+      path: LOG_PATH,
+      mode: "100644",
+      type: "blob",
+      sha: @octokit.make_blob(text: new_log)
+    }
+  end
+
+  def commits_data_for_log(version:)
     puts "Getting commit data for PR #{pr_number}..."
     commits = @octokit.commits_from_pr(number: pr_number)
     commits = @log_creator.relevant_commits(commits:, version:)
 
-    if commits[0][:commit][:message].start_with? "Prepare for #{version} release"
-      puts "Did this action already run? There's a 'Prepare for #{version} release' commit right there."
+    if commits.nil? || commits.empty?
+      puts "No commits found."
       return nil
     end
 
-    if commits.empty?
-      puts "No commits found."
+    if commits[0][:commit][:message].start_with? "Prepare for #{version} release"
+      puts "Did this action already run? There's a 'Prepare for #{version} release' commit right there."
+      @prepare_commit_already_present = true
       return nil
     end
 
@@ -117,6 +181,12 @@ class Manager
 
     commits = @octokit.commits_from_branch(branch_name:)
     commits = @log_creator.relevant_commits(commits:, version:)
+
+    if commits.nil? || commits.empty?
+      puts "No commits found."
+      return nil
+    end
+
     @log_creator.useful_commit_data(commits:)
   end
 
@@ -127,24 +197,13 @@ class Manager
   def old_changelog_data(path: LOG_PATH)
     puts "Getting CHANGELOG file..."
     begin
-      existing_changelog = @octokit.get_file(path:)
+      existing_changelog = @octokit.file(path:)
       puts "CHANGELOG found."
     rescue Octokit::NotFound
       puts "No existing CHANGELOG found, will make a new one."
       existing_changelog = { sha: nil, contents: "" }
     end
     existing_changelog
-  end
-
-  def commit_files(version, new_log, sha)
-    commit_message = "Prepare for #{version} release"
-
-    commit_result = @octokit.update_file(commit_message:,
-                                         file_contents: new_log,
-                                         file_path: LOG_PATH,
-                                         sha:)
-
-    raise "Failed to commit new CHANGELOG." unless commit_result
   end
 
   def version_number(branch_name:)
@@ -178,7 +237,56 @@ class Manager
     true
   end
 
-  def pr_number
-    /\d+/.match(ENV["GITHUB_REF_NAME"])[0].to_i
+  def pr_number(ref: ENV["GITHUB_REF_NAME"])
+    /\d+/.match(ref)[0].to_i
+  end
+
+  def version_files_tree(branch_sha:, version:, path: ENV["INPUT_VERSION_SCRIPT_PATH"])
+    puts "Getting the version strings location file..."
+    # Get the version_locations.json file
+    locations_file = @octokit.file(path:, ref: branch_sha)
+    if locations_file.nil?
+      puts "Are you sure that's the right path? Unable to find file."
+      return
+    end
+
+    JSON.parse(locations_file[:contents]).each_with_object(files = []) { |(k, v), arr| arr << { path: k, strings: v } }
+
+    files.each do |loc|
+      process_file_version_locations(loc, branch_sha, version)
+    end
+    puts "Found all version string locations and updated text(s) to '#{version}'."
+
+    files.map! do |f|
+      {
+        path: f[:path],
+        mode: "100644",
+        type: "blob",
+        sha: @octokit.make_blob(text: f[:new_contents])
+      }
+    end
+  end
+
+  def process_file_version_locations(loc, branch_sha, version)
+    # Allows for users not wrapping single strings as arrays
+    loc[:strings] = [loc[:strings]] if loc[:strings].is_a? String
+
+    file = @octokit.file(path: loc[:path], ref: branch_sha)
+    loc[:current_contents] = file[:contents]
+    loc[:sha] = file[:sha]
+
+    loc[:strings].map! do |str|
+      { original: str,
+        as_pattern: Regexp.new(str.sub(/(x\.x\.x)|(X\.X\.X)/, RELEASE_VERSION_PATTERN)),
+        updated: str.sub(/(x\.x\.x)|(X\.X\.X)/, version) }
+    end
+
+    loc[:strings].each_with_index do |str, i|
+      loc[:new_contents] = if i.zero?
+                             loc[:current_contents].sub(str[:as_pattern], str[:updated])
+                           else
+                             loc[:new_contents].sub(str[:as_pattern], str[:updated])
+                           end
+    end
   end
 end

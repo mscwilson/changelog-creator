@@ -8,7 +8,7 @@ permissions:
 jobs:
   changelog:
     runs-on: ubuntu-latest
-    # if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request'
     outputs:
       release-notes: ${{ steps.release-notes.outputs.release-notes }}
 

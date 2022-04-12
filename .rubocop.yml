@@ -12,7 +12,7 @@ Style/StringLiterals:
   EnforcedStyle: double_quotes
 
 Style/FrozenStringLiteralComment:
-  Enabled: false
+  Enabled: true
 
 Style/EmptyMethod:
   EnforcedStyle: expanded
@@ -28,7 +28,7 @@ Metrics/BlockLength:
     - "spec/**/*"
 
 Metrics/MethodLength:
-  Max: 50
+  Max: 30
 
 Metrics/ParameterLists:
   Enabled: false

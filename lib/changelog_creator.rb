@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "json"
 require "date"
 require "net/http"
@@ -19,6 +21,8 @@ class ChangelogCreator
   end
 
   def relevant_commits(commits:, version:)
+    return if commits.nil? || commits.empty?
+
     allowed_message = "Prepare for #{version} release"
     commits.take_while do |commit|
       message = commit[:commit][:message]
