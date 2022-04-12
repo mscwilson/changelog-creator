@@ -69,9 +69,14 @@ describe Manager do
     it "quits early if the last commit was already 'Prepare for {this} release'" do
       @fake_env["GITHUB_HEAD_REF"] = "release/0.2.0"
 
-      commits_json_path = "./example_files_test/commits_first_is_prepare_for_x_release.json"
+      commits_json_path = "./example_files_test/commits_just_prepare_for_x_release.json"
       commits = File.read(commits_json_path)
       allow(@fake_log_creator).to receive(:relevant_commits).and_return(JSON.parse(commits, symbolize_names: true))
+
+      allow(@fake_log_creator).to receive(:useful_commit_data).and_return nil
+
+
+      
 
       allow(@fake_octokit).to receive(:ref).and_return({ object: { sha: "abcde" } })
       allow(@fake_octokit).to receive(:git_commit).and_return({ tree: { sha: "abcde" }, sha: "123" })
