@@ -21,11 +21,12 @@ jobs:
         with:
           bundler-cache: true
 
-      - name: Run ruby script
+      - name: Update version strings and CHANGELOG
         id: release-notes
         uses: mscwilson/changelog-creator@main
         with:
           operation: "prepare"
+          version_script_path: ".github/workflows/version_locations.json"
         env:
           ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

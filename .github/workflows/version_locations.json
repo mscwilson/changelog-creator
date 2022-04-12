@@ -1,4 +1,4 @@
 {
-  "lib/version.rb": "repo_version = \"0.2.0\"",
-  "README.md": "The current version is v0.2.0."
+  "lib/version.rb": "repo_version = \"x.x.x\"",
+  "README.md": "The current version is vx.x.x."
 }
