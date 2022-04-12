@@ -257,6 +257,8 @@ class Manager
     end
     puts "Found all version string locations and updated text(s) to '#{version}'."
 
+    p files[1]
+
     files.map! do |f|
       {
         path: f[:path],
@@ -277,15 +279,15 @@ class Manager
 
     loc[:strings].map! do |str|
       { original: str,
-        as_pattern: Regexp.new(str.sub(/(x\.x\.x)|(X\.X\.X)/, RELEASE_VERSION_PATTERN)),
-        updated: str.sub(/(x\.x\.x)|(X\.X\.X)/, version) }
+        as_pattern: Regexp.new(str.gsub(/(x\.x\.x)|(X\.X\.X)/, RELEASE_VERSION_PATTERN)),
+        updated: str.gsub(/(x\.x\.x)|(X\.X\.X)/, version) }
     end
 
     loc[:strings].each_with_index do |str, i|
       loc[:new_contents] = if i.zero?
-                             loc[:current_contents].sub(str[:as_pattern], str[:updated])
+                             loc[:current_contents].gsub(str[:as_pattern], str[:updated])
                            else
-                             loc[:new_contents].sub(str[:as_pattern], str[:updated])
+                             loc[:new_contents].gsub(str[:as_pattern], str[:updated])
                            end
     end
   end
