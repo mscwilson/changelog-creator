@@ -47,7 +47,7 @@ describe Manager do
 
     it "does nothing if not a PR" do
       @fake_env["GITHUB_EVENT_NAME"] = "push"
-      expect(@manager).not_to receive :commits_data_for_log
+      expect(@manager).not_to receive :updated_files_tree
 
       @manager.do_operation
     end
@@ -56,7 +56,7 @@ describe Manager do
       @fake_env["GITHUB_BASE_REF"] = "release/0.1.0"
       @fake_env["GITHUB_HEAD_REF"] = "issue/99-red_balloons"
 
-      expect(@manager).not_to receive :commits_data_for_log
+      expect(@manager).not_to receive :updated_files_tree
 
       @manager.do_operation
     end
@@ -64,6 +64,24 @@ describe Manager do
     it "doesn't do anything with versions if no locations file is provided" do
       @fake_env["INPUT_VERSION_SCRIPT_PATH"] = nil
       expect(@manager).not_to receive(:version_files_tree)
+    end
+
+    it "quits early if the last commit was already 'Prepare for {this} release'" do
+      @fake_env["GITHUB_HEAD_REF"] = "release/0.2.0"
+
+      commits_json_path = "./example_files_test/commits_first_is_prepare_for_x_release.json"
+      commits = File.read(commits_json_path)
+      allow(@fake_log_creator).to receive(:relevant_commits).and_return(JSON.parse(commits, symbolize_names: true))
+
+      allow(@fake_octokit).to receive(:ref).and_return({ object: { sha: "abcde" } })
+      allow(@fake_octokit).to receive(:git_commit).and_return({ tree: { sha: "abcde" }, sha: "123" })
+      allow(@fake_octokit).to receive(:commits_from_pr)
+      allow(@fake_octokit).to receive(:pull_request_commits).with("mscwilson/try-out-actions-here", 78)
+      allow(@fake_octokit).to receive(:last_response)
+
+      message = "Did this action already run? There's a 'Prepare for 0.2.0 release' commit right there."
+      expect(@manager.octokit).not_to receive(:make_blob)
+      expect { @manager.do_operation }.to output(/#{Regexp.quote(message)}/).to_stdout
     end
   end
 
