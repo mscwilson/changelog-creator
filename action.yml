@@ -11,11 +11,6 @@ inputs:
       Update CHANGELOG? "prepare for release" (or "prepare")
       Generate release notes? "github release notes" (or "github")
     required: true
-  base_branch:
-    description: |
-      Ignoring YAGNI and just adding this in now. Doesn't do anything currently.
-      Name of the base branch, if not main/master. The branch that you'll release from.
-    required: false
   version_script_path:
     description: |
       Optional file location for an versions-updating helper file. The file should contain a list of file paths 
