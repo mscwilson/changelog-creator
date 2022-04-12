@@ -1,4 +1,7 @@
 {
   "lib/version.rb": "repo_version = \"x.x.x\"",
-  "README.md": "The current version is vx.x.x."
+  "README.md": [
+    "The current version is vx.x.x.",
+    "uses: mscwilson/changelog-creator@x.x.x"
+  ]
 }

@@ -1,12 +1,12 @@
-name: "Update CHANGELOG"
+name: "Prepare for release"
 
-on: [push, pull_request]
+on: [pull_request]
 
 permissions:
   contents: write
 
 jobs:
-  changelog:
+  prepare-for-release:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
     outputs:
@@ -29,8 +29,3 @@ jobs:
           version_script_path: ".github/workflows/version_locations.json"
         env:
           ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Print decoded output?!
-        env:
-          DECODED-NOTES: ${{ steps.release-notes.outputs.release-notes }} | base64 --decode
-        run: echo $DECODED-NOTES
