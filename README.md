@@ -1,13 +1,18 @@
-# Release Helper
+# Release Helper Action
 ```
-As a member of the DV Trackers team, I want to automate some of the release process, to maximise time to do important stuff. 
+As a member of the DV Trackers team, 
+I want to automate some of the release process, 
+to maximise time to do important stuff. 
 ``` 
+A Github Action to automate the Snowplow [release process](https://github.com/snowplow-incubator/engineering-resources/blob/master/release-process.md). 
+It's based on our stricter Data Value Trackers workflow ([here on confluence](https://snplow.atlassian.net/wiki/spaces/DVR/pages/2775121921/Tracker+contribution)). It assumes that:
+* work branches are merged into `release/{{ version }}` branches
+* all commits in a release branch specify the issue number: `(close #100)`
+* release branches are merged into `main`/`master`
 
-The current version is v0.3.0.
+The current version of this Action is v0.3.0.
 
-- [Release Helper](#release-helper)
-  - [Prepare for release](#prepare-for-release)
-    - [CHANGELOG](#changelog)- [Release Helper](#release-helper)
+- [Release Helper Action](#release-helper-action)
   - [Prepare for release](#prepare-for-release)
     - [CHANGELOG](#changelog)
     - [Version strings](#version-strings)
@@ -17,22 +22,17 @@ The current version is v0.3.0.
     - [Output](#output)
     - [Example workflow: Prepare for release](#example-workflow-prepare-for-release)
     - [Example workflow: Release (notes and release)](#example-workflow-release-notes-and-release)
-    - [Version strings](#version-strings)
-  - [Release notes creation](#release-notes-creation)
-  - [Using the Action](#using-the-action)
-    - [Input options](#input-options)
-    - [Output](#output)
-    - [Example workflow: Prepare for release](#example-workflow-prepare-for-release)
-    - [Example workflow: Release (notes and release)](#example-workflow-release-notes-and-release)
+  - [The problem with external contributors](#the-problem-with-external-contributors)
+    - [Getting Snowplow org insider knowledge](#getting-snowplow-org-insider-knowledge)
 
 This Action automates different parts of the release process. Currently, this is separated into two operations:
 
-**Prepare for release/CHANGELOG creation** When a "release/x.x.x" branch is opened to `main` (or `master`), it updates and commits the CHANGELOG file. Also, all the version numbers in the project can be updated to the new version, if an appropriate file is provided. 
+**Prepare for release** When a `release/{{ version }}` branch is opened to `main` (or `master`), it updates and commits the CHANGELOG file. Also, all the version numbers in the project can be updated to the new version, if an appropriate file is provided. 
 
 **Release notes** As part of the standard release/deploy workflow. When the `main` branch is tagged for release, it creates and outputs release notes, which can be provided to the Github Release action (softprops/action-gh-release). The release notes are made of the PR description plus commits sorted by their issue labels.
 
 ## Prepare for release
-This operation must be specified in the workflow with the input "prepare for release" or "prepare". It will only run on a PR from a "release/{{ version }}" branch to `main`/`master`.
+This operation must be specified in the workflow with the input "prepare for release" or "prepare". It will only run on a PR from a `release/{{ version }}` branch to `main`/`master`.
 
 The new files are committed with the message "Prepare for {{ version }} release".
 
@@ -42,13 +42,13 @@ A basic CHANGELOG section looks like this:
 Version 0.2.0 (2022-02-01)
 -----------------------
 Publish Gradle module file with bintrayUpload (#255)
-Update snyk integration to include project name in GitHub action (#8) - thanks @ExternalPerson!
+Update snyk integration to include project name in GitHub action (#8)
 ```
 This Action gets the version number from the name of the release branch: "Release/{{ version }}" or "release/{{ version }}". The date is today's date.
 
 The commits are all the commits on the release branch, up until the "Prepare for {{ previous }} release" commit, excluding any without issue numbers. 
 
-If the commit was authored by someone not in the "snowplow" organisation, then it's from an external contributor. Their username is added to thank them.
+NB: external contributors are not listed, [see below](#getting-snowplow-org-insider-knowledge).
 
 ### Version strings
 A repo could have the current version written in several places, e.g. the version file, throughout the README, tests, etc.
@@ -70,7 +70,7 @@ For example:
   ]
 }
 ```
-Provide the path to this locations file as an Action input. See below for details.
+Provide the path to this locations file as an Action input.
 
 ## Release notes creation
 This operation must be specified in the workflow with the input "github release notes" or "github". It will only run on a tag event.
@@ -85,7 +85,7 @@ Example release notes:
 > 
 >**New features**  
 > Add an amazing new feature (#1) **BREAKING CHANGE**  
-> Track a new kind of event (#4) - thanks @ExternalPerson! **BREAKING CHANGE**  
+> Track a new kind of event (#4) **BREAKING CHANGE**  
 > Output winning lottery numbers (#6)  
 > 
 > **Bug fixes**  
@@ -100,16 +100,15 @@ The commits are the ones in between the "Prepare for x release" commits on the `
 
 Commits are labelled "breaking change" if the issue had the "category:breaking_change" label.
 
-As above for CHANGELOG, external contributions are determined based on membership of "snowplow" org.
-
+NB: external contributors are not listed, [see below](#getting-snowplow-org-insider-knowledge).
 
 ## Using the Action
-Use the Release Helper in a job like this:
+Use the Release Helper in a Github Actions workflow job like this:
 ```yaml
 steps:
   - uses: actions/checkout@v2
     with:
-      repository: mscwilson/changelog-creator
+      repository: snowplow-incubator/release-helper-action
 
   - uses: ruby/setup-ruby@v1
     with:
@@ -117,19 +116,19 @@ steps:
 
   - name: Update version strings and CHANGELOG
     id: release-notes
-    uses: mscwilson/changelog-creator@0.3.0
+    uses: snowplow-incubator/release-helper-action@0.1.0
     with:
       operation: "prepare" # or "github" - must specify an operation
     env:
       ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
-This is a Composite action written in Ruby, it requires multiple steps to a) checkout the Action repo, b) set up Ruby and install the gems, c) do the Action. 
+This is a Composite action written in Ruby, it requires these steps to a) checkout the Action repo, b) set up Ruby and install the gems, c) do the Action. 
 
-The Action uses the Github API Octokit wrapper. It requires the GITHUB_TOKEN for auth.
+The Action uses the Github API Octokit wrapper. The `GITHUB_TOKEN` is needed for auth.
 
 ### Input options
 ```yaml
-- uses: mscwilson/changelog-creator@0.3.0
+- uses: snowplow-incubator/release-helper-action@0.1.0
   with:
     # What you want the action to do. Must be one of these choices:
     # Update files? "prepare for release" (or "prepare")
@@ -173,14 +172,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          repository: mscwilson/changelog-creator
+          repository: snowplow-incubator/release-helper-action
 
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
 
       - name: Update version strings and CHANGELOG
-        uses: mscwilson/changelog-creator@0.3.0
+        uses: snowplow-incubator/release-helper-action@0.1.0
         with:
           operation: "prepare"
           version_script_path: ".github/workflows/version_locations.json"
@@ -236,7 +235,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          repository: mscwilson/changelog-creator
+          repository: snowplow-incubator/release-helper-action
 
       - uses: ruby/setup-ruby@v1
         with:
@@ -244,7 +243,7 @@ jobs:
 
       - name: Create release notes
         id: notes
-        uses: mscwilson/changelog-creator@0.3.0
+        uses: snowplow-incubator/release-helper-action@0.1.0
         with:
           operation: "github"
         env:
@@ -274,3 +273,17 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
+
+## The problem with external contributors
+It's important to thank community members who contribute PRs. But working out who is an external contributor is difficult.
+
+Not everyone is using their `@snowplowanalytics.com` email address for work.
+
+The Snowplow API provides endpoints for checking a user's [organisation membership](https://docs.github.com/en/rest/reference/orgs#check-organization-membership-for-a-user). It's possible for anyone to find out public membership of any organisation. Unfortunately, most of us are private `snowplow` members.
+
+### Getting Snowplow org insider knowledge
+The Github API requires authentication. The Action currently uses the default `GITHUB_TOKEN`. This token only has repo-level access, and is not a member of `snowplow` - it can only be used to detect public members.
+
+A poor solution would be to use a Personal Access Token.
+
+The best solution is described in [this blog post](https://michaelheap.com/ultimate-guide-github-actions-authentication/#github-apps): creating a Github App. These can be given organisational permissions. The downside is it must be set up by a `snowplow` admin. This Action's inputs would need rewriting to use the two Github App secrets instead of `GITHUB_TOKEN`.
