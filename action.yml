@@ -7,7 +7,7 @@ branding:
 inputs:
   operation:
     description: |
-      What you want the action to do. 
+      What you want the action to do. Must be one of these choices:
       Update CHANGELOG? "prepare for release" (or "prepare")
       Generate release notes? "github release notes" (or "github")
     required: true
@@ -18,10 +18,9 @@ inputs:
     required: false
   version_script_path:
     description: |
-      Ignoring YAGNI and just adding this in now. Doesn't do anything currently.
-      File location for an auto-versioning helper file. The file should contain a list of file paths
-      that need updating with the new version number. Haven't decided exactly what it should look
-      like yet. Only relevant for operation "prepare for release".
+      Optional file location for an versions-updating helper file. The file should contain a list of file paths 
+      and strings that need updating with the new version number. "X" out the version numbers.
+      Only relevant for operation "prepare for release". See README for example.
     required: false
 
 outputs:
